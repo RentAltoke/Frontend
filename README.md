@@ -34,8 +34,8 @@ Este proyecto está desarrollado con **Angular** y permite administrar de forma 
 ```bash
 git clone https://github.com/tu-usuario/rentaltoke-frontend.git
 cd rentaltoke-frontend
+```
 ## Development server
-
 To start a local development server, run:
 
 ```bash
@@ -72,6 +72,15 @@ git add .
 git commit -m "feat: agregar listado de inmuebles"
 git push origin feature/inmuebles
 ```
+### Crear el Pull Request (PR)
+
+Una vez hecho el push, debes entrar a GitHub para activar el proceso:
+
+- Verás un botón amarillo que dice "Compare & pull request". Haz clic ahí.
+- Asegúrate de que el destino sea: base: develop ← compare: feature/tu-rama.
+- Haz clic en "Create Pull Request".
+
+⚡ Importante: Gracias al Workflow de Auto-Merge, una vez que el PR sea creado, GitHub Actions lo validará y lo mezclará automáticamente con develop usando el método Squash (unificando tus commits para que el historial quede limpio).
 
 ### Mantenerse actualizado (evitar conflictos)
 Antes de trabajar SIEMPRE:
@@ -83,4 +92,3 @@ git checkout feature/inmuebles
 git merge develop
 ```
 
-Prueba 2 
