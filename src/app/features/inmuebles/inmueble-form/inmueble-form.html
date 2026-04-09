@@ -1,0 +1,16 @@
+<h2>Formulario Inmueble</h2>
+
+<div class="form">
+
+  <input [(ngModel)]="inmueble.nombre" placeholder="Nombre">
+  <input [(ngModel)]="inmueble.tipo" placeholder="Tipo">
+  <input [(ngModel)]="inmueble.direccion" placeholder="Dirección">
+  <input [(ngModel)]="inmueble.numero" placeholder="Número">
+  <input [(ngModel)]="inmueble.cp" placeholder="Código Postal">
+  <input [(ngModel)]="inmueble.ciudad" placeholder="Ciudad">
+  <input [(ngModel)]="inmueble.descripcion" placeholder="Descripción">
+  <input [(ngModel)]="inmueble.imagen" placeholder="URL Imagen">
+
+  <button (click)="guardar()">Guardar</button>
+
+</div>

@@ -1,0 +1,48 @@
+<h2>Inmuebles</h2>
+
+<button (click)="nuevo()" class="btn-add">
+  ➕ Añadir Inmueble
+</button>
+
+
+
+<div class="grid">
+  <div class="card" *ngFor="let i of inmuebles">
+    
+    <div class="image-wrapper">
+      <span class="badge-tipo">{{i.tipo}}</span>
+      <img [src]="i.imagen" alt="Propiedad RentAltoke">
+      
+      <div class="city-tag">
+        <span class="icon">📍</span> {{i.ciudad}}
+      </div>
+    </div>
+
+    <div class="info">
+      <div class="header-info">
+        <h3>{{i.nombre}}</h3>
+        <span class="cp-label">CP: {{i.cp}}</span>
+      </div>
+      
+      <p class="direccion">
+        {{i.direccion}} {{i.numero}}
+      </p>
+      
+      <p class="desc">{{i.descripcion}}</p>
+
+      <div class="footer-card">
+        <button [routerLink]="['/unidades', i.id]" class="btn-main">
+          Explorar Unidades
+          <i class="arrow-icon">→</i>
+        </button>
+      </div>
+    </div>
+
+<div class="actions">
+  <button (click)="editar(i.id)">✏️</button>
+  <button (click)="eliminar(i.id)">❌</button>
+</div>
+
+
+  </div>
+</div>

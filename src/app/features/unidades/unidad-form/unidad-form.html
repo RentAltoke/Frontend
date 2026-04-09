@@ -1,0 +1,11 @@
+<h2>Unidad</h2>
+
+<select [(ngModel)]="unidad.tipo">
+  <option value="PISO">Piso</option>
+  <option value="LOCAL">Local</option>
+</select>
+
+<input [(ngModel)]="unidad.planta" placeholder="Planta">
+<input [(ngModel)]="unidad.letra" placeholder="Letra">
+
+<button (click)="guardar()">Guardar</button>

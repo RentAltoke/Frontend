@@ -1,0 +1,22 @@
+<div class="layout">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo-container">
+      <img src="/logo2.png" class="logo">
+    </div>
+
+    <nav>
+      <a routerLink="/inmuebles" routerLinkActive="active">🏢 Inmuebles</a>
+      <a routerLink="/inquilinos" routerLinkActive="active">👥 Inquilinos</a>
+      <a routerLink="/alquiler" routerLinkActive="active">🔑 Alquiler</a>
+      <a routerLink="/buscador" routerLinkActive="active">🔍 Buscar</a>
+    </nav>
+  </aside>
+
+  <!-- 🔥 SOLO ESTO -->
+  <main class="content">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

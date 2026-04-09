@@ -1,0 +1,126 @@
+[
+  {
+    "id": 1,
+    "nombre": "Residencial Lima Centro",
+    "tipo": "Residencial",
+    "direccion": "Av. Arequipa",
+    "numero": "123",
+    "cp": "15001",
+    "ciudad": "Lima",
+    "descripcion": "Edificio moderno con departamentos familiares",
+    "imagen": "/inmuebles/11.jpg",
+    "unidades": [
+      { "id": 101, "tipo": "Departamento", "planta": "1", "letra": "101", "estado": "Disponible" },
+      { "id": 102, "tipo": "Departamento", "planta": "1", "letra": "102", "estado": "Ocupado" },
+      { "id": 103, "tipo": "Penthouse", "planta": "10", "letra": "A", "estado": "Mantenimiento" }
+    ]
+  },
+  {
+    "id": 2,
+    "nombre": "Residencial Miraflores",
+    "tipo": "Residencial",
+    "direccion": "Av. Larco",
+    "numero": "456",
+    "cp": "15074",
+    "ciudad": "Lima",
+    "descripcion": "Zona exclusiva cerca al mar",
+    "imagen": "/inmuebles/12.jpg",
+    "unidades": [
+      { "id": 201, "tipo": "Duplex", "planta": "4", "letra": "401", "estado": "Ocupado" },
+      { "id": 202, "tipo": "Departamento", "planta": "2", "letra": "205", "estado": "Disponible" }
+    ]
+  },
+  {
+    "id": 3,
+    "nombre": "Centro Comercial Norte",
+    "tipo": "Comercial",
+    "direccion": "Panamericana Norte",
+    "numero": "789",
+    "cp": "15100",
+    "ciudad": "Lima",
+    "descripcion": "Locales comerciales con alto flujo",
+    "imagen": "/inmuebles/21.jpg",
+    "unidades": [
+      { "id": 301, "tipo": "Local Ancla", "planta": "1", "letra": "L-01", "estado": "Ocupado" },
+      { "id": 302, "tipo": "Módulo", "planta": "1", "letra": "M-05", "estado": "Disponible" },
+      { "id": 303, "tipo": "Cine", "planta": "3", "letra": "C-01", "estado": "Disponible" }
+    ]
+  },
+  {
+    "id": 4,
+    "nombre": "Galería Empresarial",
+    "tipo": "Comercial",
+    "direccion": "San Isidro",
+    "numero": "321",
+    "cp": "15046",
+    "ciudad": "Lima",
+    "descripcion": "Oficinas y locales premium",
+    "imagen": "/inmuebles/22.jpg",
+    "unidades": [
+      { "id": 401, "tipo": "Oficina Coworking", "planta": "5", "letra": "502", "estado": "Disponible" },
+      { "id": 402, "tipo": "Consultorio", "planta": "2", "letra": "210", "estado": "Ocupado" }
+    ]
+  },
+  {
+    "id": 5,
+    "nombre": "Parque Industrial Sur",
+    "tipo": "Industrial",
+    "direccion": "Villa El Salvador",
+    "numero": "555",
+    "cp": "15800",
+    "ciudad": "Lima",
+    "descripcion": "Espacios amplios para fábricas",
+    "imagen": "/inmuebles/31.jpg",
+    "unidades": [
+      { "id": 501, "tipo": "Nave Industrial", "planta": "1", "letra": "N-01", "estado": "Ocupado" },
+      { "id": 502, "tipo": "Taller", "planta": "1", "letra": "T-12", "estado": "Mantenimiento" }
+    ]
+  },
+  {
+    "id": 6,
+    "nombre": "Almacenes Logísticos",
+    "tipo": "Industrial",
+    "direccion": "Callao",
+    "numero": "888",
+    "cp": "07001",
+    "ciudad": "Callao",
+    "descripcion": "Ideal para distribución",
+    "imagen": "/inmuebles/32.jpg",
+    "unidades": [
+      { "id": 601, "tipo": "Almacén Frío", "planta": "1", "letra": "A-01", "estado": "Disponible" },
+      { "id": 602, "tipo": "Depósito Aduanero", "planta": "1", "letra": "D-05", "estado": "Ocupado" }
+    ]
+  },
+  {
+    "id": 7,
+    "nombre": "Hospital Privado",
+    "tipo": "Especial",
+    "direccion": "Surco",
+    "numero": "222",
+    "cp": "15023",
+    "ciudad": "Lima",
+    "descripcion": "Infraestructura médica completa",
+    "imagen": "/inmuebles/41.jpg",
+    "unidades": [
+      { "id": 701, "tipo": "Quirófano", "planta": "3", "letra": "Q-1", "estado": "Ocupado" },
+      { "id": 702, "tipo": "Habitación VIP", "planta": "4", "letra": "405", "estado": "Disponible" },
+      { "id": 703, "tipo": "Emergencias", "planta": "1", "letra": "E-01", "estado": "Disponible" }
+    ]
+  },
+  {
+    "id": 8,
+    "nombre": "Centro Educativo",
+    "tipo": "Especial",
+    "direccion": "San Miguel",
+    "numero": "999",
+    "cp": "15087",
+    "ciudad": "Lima",
+    "descripcion": "Instalaciones educativas modernas",
+    "imagen": "/inmuebles/42.jpg",
+    "unidades": [
+      { "id": 801, "tipo": "Aula Magno", "planta": "1", "letra": "A", "estado": "Disponible" },
+      { "id": 802, "tipo": "Laboratorio", "planta": "2", "letra": "B", "estado": "Ocupado" },
+      { "id": 803, "tipo": "Auditorio", "planta": "1", "letra": "C", "estado": "Mantenimiento" }
+    ]
+  }
+]

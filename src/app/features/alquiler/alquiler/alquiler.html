@@ -1,0 +1,27 @@
+<h2>Alquiler</h2>
+
+<select [(ngModel)]="unidadId">
+  <option *ngFor="let u of unidades" [value]="u.id">
+    {{u.tipo}} - {{u.planta}} {{u.letra}}
+  </option>
+</select>
+
+<select [(ngModel)]="inquilinoId">
+  <option *ngFor="let i of inquilinos" [value]="i.id">
+    {{i.nombre}}
+  </option>
+</select>
+
+<button (click)="alquilar()">Alquilar</button>
+
+<hr>
+
+<h3>Desalquilar</h3>
+
+<select [(ngModel)]="unidadId">
+  <option *ngFor="let u of unidades" [value]="u.id">
+    {{u.tipo}} - {{u.planta}} {{u.letra}}
+  </option>
+</select>
+
+<button (click)="desalquilar()">Desalquilar</button>

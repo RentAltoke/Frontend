@@ -1,0 +1,8 @@
+<h2>Inquilinos</h2>
+<button routerLink="/inquilinos/nuevo">Nuevo</button>
+
+<ul>
+  <li *ngFor="let i of inquilinos">
+    {{i.nombre}} - {{i.dni}}
+  </li>
+</ul>

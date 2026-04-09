@@ -1,7 +1,39 @@
-# Frontend
+# 🏢 RentAltoke - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+Frontend del sistema **RentAltoke**, una plataforma para la gestión de inmuebles, unidades (departamentos/locales) e inquilinos.
 
+Este proyecto está desarrollado con **Angular** y permite administrar de forma eficiente propiedades y sus unidades asociadas.
+
+---
+
+## 📌 Características
+
+- Gestión de **Inmuebles**
+- Gestión de **Unidades** (departamentos, locales, etc.)
+- Gestión de **Inquilinos**
+- Formularios con validaciones
+- Navegación mediante rutas (Angular Router)
+- Interfaz moderna y modular
+
+---
+
+## 🛠️ Tecnologías utilizadas
+
+- Angular (CLI 21+)
+- TypeScript
+- HTML5 / CSS3
+- RxJS
+- Angular Router
+
+---
+
+## 🚀 Ejecución del proyecto
+
+### 1. Clonar el repositorio
+
+```bash
+git clone https://github.com/tu-usuario/rentaltoke-frontend.git
+cd rentaltoke-frontend
 ## Development server
 
 To start a local development server, run:
@@ -12,48 +44,41 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+##  Ejecución del Trabajo
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Cómo trabaja cada integrante
 
-```bash
-ng generate component component-name
-```
+Cada uno se encarga de un módulo (ideal en tu caso):
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Dev 1 → Inmuebles
+Dev 2 → Unidades
+Dev 3 → Inquilinos
 
 ```bash
-ng build
+# 1. Clonar repo
+git clone <repo>
+
+# 2. Cambiar a develop
+git checkout develop
+
+# 3. Crear su rama
+git checkout -b feature/inmuebles
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Subir cambios correctamente
 
 ```bash
-ng test
+git add .
+git commit -m "feat: agregar listado de inmuebles"
+git push origin feature/inmuebles
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
+### Mantenerse actualizado (evitar conflictos)
+Antes de trabajar SIEMPRE:
 ```bash
-ng e2e
+git checkout develop
+git pull origin develop
+
+git checkout feature/inmuebles
+git merge develop
 ```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
