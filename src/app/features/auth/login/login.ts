@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router'; // 👈 IMPORTANTE
 
 @Component({
   standalone: true,
@@ -9,4 +9,16 @@ import { RouterModule } from '@angular/router';
   templateUrl: './login.html',
    styleUrls: ['./login.css'],
 })
-export class Login {}
+export class Login {
+
+
+  constructor(private router: Router) {} // 👈 inyección
+
+  login() {
+    // 🔥 aquí iría tu validación (temporal o real)
+
+    this.router.navigate(['/inicio']); // 👈 REDIRECCIÓN
+  }
+
+
+}

@@ -1,22 +1,48 @@
-<div class="layout">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
 
-  <!-- Sidebar -->
-  <aside class="sidebar">
-    <div class="logo-container">
-      <img src="/logo2.png" class="logo">
+    <!-- LOGO -->
+    <a class="navbar-brand" routerLink="/inicio">
+      <img src="/logo2.png" height="40">
+    </a>
+
+    <!-- BOTÓN RESPONSIVE -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- LINKS -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/inicio" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+            🏠 Inicio
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/inmuebles" routerLinkActive="active">🏢 Inmuebles</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/inquilinos" routerLinkActive="active">👥 Inquilinos</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/alquiler" routerLinkActive="active">🔑 Alquiler</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/buscador" routerLinkActive="active">🔍 Buscar</a>
+        </li>
+
+      </ul>
     </div>
 
-    <nav>
-      <a routerLink="/inmuebles" routerLinkActive="active">🏢 Inmuebles</a>
-      <a routerLink="/inquilinos" routerLinkActive="active">👥 Inquilinos</a>
-      <a routerLink="/alquiler" routerLinkActive="active">🔑 Alquiler</a>
-      <a routerLink="/buscador" routerLinkActive="active">🔍 Buscar</a>
-    </nav>
-  </aside>
+  </div>
+</nav>
 
-  <!-- 🔥 SOLO ESTO -->
-  <main class="content">
-    <router-outlet></router-outlet>
-  </main>
-
-</div>
+<main class="content">
+  <router-outlet></router-outlet>
+</main>

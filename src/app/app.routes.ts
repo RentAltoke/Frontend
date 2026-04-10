@@ -12,6 +12,12 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./layout/sidebar/sidebar').then(m => m.Sidebar),
     children: [
+      //Inicio
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      {
+      path: 'inicio',
+      loadComponent: () => import('./features/inicio/inicio').then(m => m.Inicio)
+      },
 
       // INMUEBLES
       { path: 'inmuebles',
