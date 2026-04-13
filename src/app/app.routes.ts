@@ -66,7 +66,14 @@ export const routes: Routes = [
 
       { path: 'buscador',
         loadComponent: () => import('./features/unidades/unidad-buscador/unidad-buscador').then(m => m.UnidadBuscador)
+      },
+
+    // SECCIÓN USUARIO
+      { 
+        path: 'usuario',
+        loadComponent: () => import('./features/usuario/usuario').then(m => m.Usuario) 
       }
+
 
     ]
   }

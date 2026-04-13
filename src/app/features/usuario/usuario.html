@@ -1,0 +1,63 @@
+<div class="container mt-4" *ngIf="user; else loading">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+          <h4 class="mb-0">👤 Perfil del Usuario</h4>
+        </div>
+        <div class="card-body">
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted">Nombre Completo:</div>
+            <div class="col-sm-8 fw-bold">{{ user.nombre }} {{ user.apellido }}</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted">Correo:</div>
+            <div class="col-sm-8">{{ user.email }}</div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-4 text-muted">Rol en el sistema:</div>
+            <div class="col-sm-8">
+              <span class="badge bg-info text-dark">{{ user.rol }}</span>
+            </div>
+          </div>
+
+          <hr>
+          <h5 class="text-primary mb-3">Configuración de Negocio (RentAltoke)</h5>
+          
+          <div class="p-3 bg-light rounded border">
+            <div class="row mb-2">
+              <div class="col-sm-6"><strong>Empresa:</strong> {{ user.configuracion_negocio.empresa }}</div>
+              <div class="col-sm-6"><strong>RUC:</strong> {{ user.configuracion_negocio.ruc }}</div>
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <label class="text-muted small d-block">Moneda</label>
+                <span>{{ user.configuracion_negocio.moneda }}</span>
+              </div>
+              <div class="col-sm-4">
+                <label class="text-muted small d-block">IGV (%)</label>
+                <span class="badge bg-secondary">{{ user.configuracion_negocio.igv_porcentaje }}%</span>
+              </div>
+              <div class="col-sm-4">
+                <label class="text-muted small d-block">IPC Anual</label>
+                <span class="badge bg-warning text-dark">{{ user.configuracion_negocio.ipc_anual_actual }}%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer text-end">
+          <button class="btn btn-outline-primary btn-sm">Editar Configuración</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando datos...</span>
+    </div>
+    <p class="mt-2">Cargando información del usuario...</p>
+  </div>
+</ng-template>
