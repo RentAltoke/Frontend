@@ -1,17 +1,49 @@
 {
-  "usuario": {
-    "id": "USR-2026-001",
-    "password": "123",
-    "nombre": "Alexander",
-    "apellido": "Sistemas",
-    "email": "alexander@rentaltoke.com",
-    "rol": "SECRETARIO_ADMINISTRADOR",
-    "configuracion_negocio": {
-      "empresa": "RentAltoke Inmobiliaria",
-      "ruc": "20123456789",
-      "moneda": "PEN",
-      "igv_porcentaje": 18,
-      "ipc_anual_actual": 3.5
+  "usuario": [
+      {
+      "id": "USR-2026-001",
+      "password": "123",
+      "nombre": "Alexander",
+      "apellido": "Acosta",
+      "email": "alexander@rentaltoque.com",
+      "rol": "SECRETARIO_ADMINISTRADOR",
+      "configuracion_negocio": {
+        "empresa": "RentAltoke Inmobiliaria",
+        "ruc": "20123456789",
+        "moneda": "PEN",
+        "igv_porcentaje": 18,
+        "ipc_anual_actual": 3.5
+      }
+    },
+    {
+      "id": "USR-2026-002",
+      "password": "labubu",
+      "nombre": "Kevin",
+      "apellido": "Balbuena",
+      "email": "balbu@rentaltoque.com",
+      "rol": "SECRETARIO_ADMINISTRADOR",
+      "configuracion_negocio": {
+        "empresa": "RentAltoke Inmobiliaria",
+        "ruc": "20123456789",
+        "moneda": "PEN",
+        "igv_porcentaje": 18,
+        "ipc_anual_actual": 3.5
+      }
+    },
+    {
+      "id": "USR-2026-003",
+      "password": "jamon",
+      "nombre": "Jamir",
+      "apellido": "Rojas",
+      "email": "rojito@rentaltoque.com",
+      "rol": "SECRETARIO_ADMINISTRADOR",
+      "configuracion_negocio": {
+        "empresa": "RentAltoke Inmobiliaria",
+        "ruc": "20123456789",
+        "moneda": "PEN",
+        "igv_porcentaje": 18,
+        "ipc_anual_actual": 3.5
+      }
     }
-  }
+  ]
 }

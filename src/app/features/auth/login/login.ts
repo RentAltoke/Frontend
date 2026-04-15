@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router'; // 👈 IMPORTANTE
 import { FormsModule } from '@angular/forms'; // 👈 Necesario para [(ngModel)]
+import { AuthService } from '../../usuario/auth.service'; // 👈 Import AuthService
 
 @Component({
   standalone: true,
@@ -15,18 +16,15 @@ export class Login {
   userInput: string = '';
   passwordInput: string = '';
 
-  mockUser = {
-    email: "alexander@rentaltoke.com",
-    password: "123"
-  };
-  constructor(private router: Router) {} // 👈 inyección
+  constructor(private router: Router, private authService: AuthService) {} // 👈 Inject AuthService
 
-  login() {
-  if (this.userInput === this.mockUser.email && this.passwordInput === this.mockUser.password) {
+  async login() {
+    const success = await this.authService.login(this.userInput, this.passwordInput);
+    if (success) {
       console.log('Login exitoso');
       this.router.navigate(['/inicio']); 
     } else {
-      alert('Usuario o contraseña incorrectos. Intenta con: alexander@rentaltoke.com');
+      alert('Usuario o contraseña incorrectos.');
     }
   }
 }
