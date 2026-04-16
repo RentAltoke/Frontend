@@ -52,7 +52,7 @@ export const routes: Routes = [
 
       // INQUILINOS
       { path: 'inquilinos',
-        loadComponent: () => import('./features/inquilinos/inquilino-list/inquilino-list').then(m => m.InquilinoList)
+        loadComponent: () => import('./features/inquilinos/inquilino-list/inquilino-list').then(m => m.InquilinoListComponent)
       },
 
       { path: 'inquilinos/nuevo',
@@ -64,9 +64,7 @@ export const routes: Routes = [
         loadComponent: () => import('./features/alquiler/alquiler/alquiler').then(m => m.Alquiler)
       },
 
-      { path: 'buscador',
-        loadComponent: () => import('./features/unidades/unidad-buscador/unidad-buscador').then(m => m.UnidadBuscador)
-      },
+
 
     // SECCIÓN USUARIO
       { 

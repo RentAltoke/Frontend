@@ -151,20 +151,21 @@
 
 /* BOTÓN AÑADIR */
 .btn-add {
-  background: var(--naranja);
+  margin: 0 20px 20px;
+  background: linear-gradient(135deg, var(--naranja), var(--rojo));
   color: white;
   border: none;
-  padding: 12px 18px;
-  border-radius: 10px;
+  padding: 14px 22px;
+  border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 18px rgba(254, 109, 3, 0.25);
 }
 
 .btn-add:hover {
-  background: var(--rojo);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(217, 48, 28, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(217, 48, 28, 0.3);
 }
 
 /* FOOTER */
@@ -211,4 +212,11 @@
 .btn-delete:hover {
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(217, 48, 28, 0.3);
+}
+
+h2 {
+  color: var(--azul);
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 20px;
 }
