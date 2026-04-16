@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UnidadBuscador } from './unidad-buscador';
+import { Caja } from './caja';
 
-describe('UnidadBuscador', () => {
-  let component: UnidadBuscador;
-  let fixture: ComponentFixture<UnidadBuscador>;
+describe('Caja', () => {
+  let component: Caja;
+  let fixture: ComponentFixture<Caja>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UnidadBuscador],
+      imports: [Caja],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(UnidadBuscador);
+    fixture = TestBed.createComponent(Caja);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

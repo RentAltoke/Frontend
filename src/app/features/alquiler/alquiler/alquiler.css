@@ -1,0 +1,92 @@
+:host {
+  --naranja: rgb(254, 109, 3);
+  --azul: rgb(15, 28, 52);
+  --rojo: rgb(217, 48, 28);
+}
+
+.contenedor {
+  padding: 30px;
+  background: #f8fafc;
+  min-height: 100vh;
+}
+
+h2 {
+  color: var(--azul);
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+h3 {
+  color: var(--azul);
+  margin: 25px 0;
+}
+
+.unidad-card {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 8px 20px rgba(15, 28, 52, 0.08);
+}
+
+.unidad-card h4 {
+  margin: 0 0 8px;
+  color: var(--azul);
+}
+
+.unidad-card p {
+  margin: 0;
+  color: #6b7280;
+}
+
+.acciones {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+select {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  min-width: 220px;
+}
+
+button {
+  border: none;
+  padding: 12px 18px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-alquilar {
+  background: var(--naranja);
+  color: white;
+}
+
+.btn-desalquilar {
+  background: var(--rojo);
+  color: white;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+.disponible {
+  border-left: 6px solid #22c55e;
+}
+
+.ocupada {
+  border-left: 6px solid #ef4444;
+}
+
+small {
+  display: block;
+  margin-top: 8px;
+  color: #374151;
+}

@@ -1,0 +1,22 @@
+{
+  "cuentas": [
+    {
+      "id": "CTA-001",
+      "banco": "BCP",
+      "numero_cuenta": "191-99887766-0-11",
+      "tipo": "Corriente",
+      "moneda": "PEN",
+      "saldo_actual": 25400.50,
+      "titular": "RentAltoke Inmobiliaria"
+    },
+    {
+      "id": "CTA-002",
+      "banco": "BBVA",
+      "numero_cuenta": "0011-0445-02001234",
+      "tipo": "Ahorros",
+      "moneda": "PEN",
+      "saldo_actual": 12150.00,
+      "titular": "RentAltoke Inmobiliaria"
+    }
+  ]
+}

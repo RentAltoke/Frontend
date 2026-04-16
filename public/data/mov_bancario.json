@@ -1,0 +1,69 @@
+{
+  "movimientos": [
+    {
+      "id": "MOV-2026-001",
+      "fecha": "2026-04-05",
+      "tipo_movimiento": "INGRESO",
+      "categoria": "PAGO_RECIBO_MENSUAL",
+      "monto": 1200.00,
+      "cuenta_id": "CTA-001",
+      "referencia": {
+        "descripcion": "Cobro recibo Abril - Inquilino EXT-INQ-001",
+        "inmueble_id": 1,
+        "unidad_id": 102
+      }
+    },
+    {
+      "id": "MOV-2026-002",
+      "fecha": "2026-04-06",
+      "tipo_movimiento": "GASTO",
+      "categoria": "REPARACION_MANTENIMIENTO",
+      "monto": 350.00,
+      "cuenta_id": "CTA-001",
+      "referencia": {
+        "descripcion": "Reparación de ascensor - Cambio de cables",
+        "inmueble_id": 2,
+        "unidad_id": 202 
+      }
+    },
+    {
+      "id": "MOV-2026-003",
+      "fecha": "2026-04-07",
+      "tipo_movimiento": "GASTO",
+      "categoria": "PERSONAL_LIMPIEZA",
+      "monto": 1500.00,
+      "cuenta_id": "CTA-002",
+      "referencia": {
+        "descripcion": "Sueldo mensual personal de limpieza",
+        "inmueble_id": 2,
+        "unidad_id": 201
+      }
+    },
+    {
+      "id": "MOV-2026-004",
+      "fecha": "2026-04-10",
+      "tipo_movimiento": "INGRESO",
+      "categoria": "PAGO_RECIBO_MENSUAL",
+      "monto": 5500.00,
+      "cuenta_id": "CTA-001",
+      "referencia": {
+        "descripcion": "Cobro alquiler local comercial - Minimarket",
+        "inmueble_id": 3,
+        "unidad_id": 301
+      }
+    },
+    {
+      "id": "MOV-2026-005",
+      "fecha": "2026-04-12",
+      "tipo_movimiento": "GASTO",
+      "categoria": "SERVICIOS_PUBLICOS",
+      "monto": 450.20,
+      "cuenta_id": "CTA-001",
+      "referencia": {
+        "descripcion": "Pago de alumbrado público y áreas comunes",
+        "inmueble_id": 4,
+        "unidad_id": 402
+      }
+    }
+  ]
+}
