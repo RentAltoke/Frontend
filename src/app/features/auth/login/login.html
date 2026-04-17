@@ -1,16 +1,38 @@
 <div class="login-container">
   <div class="login-card">
-    <img src="logo2.png" alt="logo" class="logo">
-    <p class="subtitle">Gestión de alquileres</p>
 
-    <input type="text" 
-           [(ngModel)]="userInput" 
-           placeholder="Correo electrónico">
+    <form (ngSubmit)="login()">
 
-    <input type="password" 
-           [(ngModel)]="passwordInput" 
-           placeholder="Contraseña">
+      <img src="logo2.png" alt="Sistema de gestión de alquileres" class="logo">
 
-    <button (click)="login()">Iniciar sesión</button>
+      <div class="input-group">
+        <input type="text" 
+               [(ngModel)]="userInput"
+               name="user"
+               placeholder="Correo electrónico"
+               (input)="errorMessage=''">
+      </div>
+
+      <div class="input-group">
+        <input type="password" 
+               [(ngModel)]="passwordInput"
+               name="password"
+               placeholder="Contraseña"
+               (input)="errorMessage=''">
+      </div>
+
+      <p class="login-error" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </p>
+
+      <button type="submit"
+              [disabled]="!userInput || passwordInput.length < 8">
+        Iniciar sesión
+      </button>
+
+      <p class="extra-text">¿Olvidaste tu contraseña?</p>
+
+    </form>
+
   </div>
 </div>

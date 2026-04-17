@@ -1,3 +1,4 @@
+
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -8,7 +9,11 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule],
   templateUrl: './alquiler.html',
   styleUrls: ['./alquiler.css']
+
 })
+
+
+
 
 
 export class Alquiler implements OnInit {
@@ -18,8 +23,11 @@ export class Alquiler implements OnInit {
 
   unidadesDisponibles: any[] = [];
   unidadesOcupadas: any[] = [];
-
   seleccionInquilino: { [key: number]: string } = {};
+
+
+
+
 
   constructor(
     private http: HttpClient,

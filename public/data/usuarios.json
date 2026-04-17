@@ -2,7 +2,7 @@
   "usuario": [
       {
       "id": "USR-2026-001",
-      "password": "123",
+      "password": "12345678",
       "nombre": "Alexander",
       "apellido": "Acosta",
       "email": "alexander@rentaltoque.com",
@@ -17,7 +17,7 @@
     },
     {
       "id": "USR-2026-002",
-      "password": "labubu",
+      "password": "labububu",
       "nombre": "Kevin",
       "apellido": "Balbuena",
       "email": "balbu@rentaltoque.com",
@@ -32,7 +32,7 @@
     },
     {
       "id": "USR-2026-003",
-      "password": "jamon",
+      "password": "jamonada",
       "nombre": "Jamir",
       "apellido": "Rojas",
       "email": "rojito@rentaltoque.com",

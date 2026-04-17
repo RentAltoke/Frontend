@@ -104,6 +104,7 @@
     "unidades": [
       { "id": 701, "tipo": "Quirófano", "planta": "3", "letra": "Q-1", "estado": "Ocupado" },
       { "id": 702, "tipo": "Habitación VIP", "planta": "4", "letra": "405", "estado": "Disponible" },
+      { "id": 703, "tipo": "Emergencias", "planta": "1", "letra": "E-01", "estado": "Ocupado" },
       { "id": 703, "tipo": "Emergencias", "planta": "1", "letra": "E-01", "estado": "Ocupado" }
     ]
   },
