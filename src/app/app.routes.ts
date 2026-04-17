@@ -12,6 +12,12 @@ export const routes: Routes = [
     path: '',
     loadComponent: () => import('./layout/sidebar/sidebar').then(m => m.Sidebar),
     children: [
+      //Inicio
+      { path: '', redirectTo: 'inicio', pathMatch: 'full' },
+      {
+      path: 'inicio',
+      loadComponent: () => import('./features/inicio/inicio').then(m => m.Inicio)
+      },
 
       // INMUEBLES
       { path: 'inmuebles',
@@ -46,7 +52,7 @@ export const routes: Routes = [
 
       // INQUILINOS
       { path: 'inquilinos',
-        loadComponent: () => import('./features/inquilinos/inquilino-list/inquilino-list').then(m => m.InquilinoList)
+        loadComponent: () => import('./features/inquilinos/inquilino-list/inquilino-list').then(m => m.InquilinoListComponent)
       },
 
       { path: 'inquilinos/nuevo',
@@ -58,9 +64,14 @@ export const routes: Routes = [
         loadComponent: () => import('./features/alquiler/alquiler/alquiler').then(m => m.Alquiler)
       },
 
-      { path: 'buscador',
-        loadComponent: () => import('./features/unidades/unidad-buscador/unidad-buscador').then(m => m.UnidadBuscador)
+
+
+    // SECCIÓN USUARIO
+      { 
+        path: 'usuario',
+        loadComponent: () => import('./features/usuario/usuario').then(m => m.Usuario) 
       }
+
 
     ]
   }

@@ -1,0 +1,49 @@
+{
+  "usuario": [
+      {
+      "id": "USR-2026-001",
+      "password": "12345678",
+      "nombre": "Alexander",
+      "apellido": "Acosta",
+      "email": "alexander@rentaltoque.com",
+      "rol": "SECRETARIO_ADMINISTRADOR",
+      "configuracion_negocio": {
+        "empresa": "RentAltoke Inmobiliaria",
+        "ruc": "20123456789",
+        "moneda": "PEN",
+        "igv_porcentaje": 18,
+        "ipc_anual_actual": 3.5
+      }
+    },
+    {
+      "id": "USR-2026-002",
+      "password": "labububu",
+      "nombre": "Kevin",
+      "apellido": "Balbuena",
+      "email": "balbu@rentaltoque.com",
+      "rol": "SECRETARIO_ADMINISTRADOR",
+      "configuracion_negocio": {
+        "empresa": "RentAltoke Inmobiliaria",
+        "ruc": "20123456789",
+        "moneda": "PEN",
+        "igv_porcentaje": 18,
+        "ipc_anual_actual": 3.5
+      }
+    },
+    {
+      "id": "USR-2026-003",
+      "password": "jamonada",
+      "nombre": "Jamir",
+      "apellido": "Rojas",
+      "email": "rojito@rentaltoque.com",
+      "rol": "SECRETARIO_ADMINISTRADOR",
+      "configuracion_negocio": {
+        "empresa": "RentAltoke Inmobiliaria",
+        "ruc": "20123456789",
+        "moneda": "PEN",
+        "igv_porcentaje": 18,
+        "ipc_anual_actual": 3.5
+      }
+    }
+  ]
+}

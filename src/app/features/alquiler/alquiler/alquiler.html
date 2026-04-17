@@ -1,27 +1,69 @@
-<h2>Alquiler</h2>
+<div class="contenedor">
+  <h2>Gestión de Alquileres</h2>
+<div class="contenedor">
+  <h2>Gestión de Alquileres</h2>
 
-<select [(ngModel)]="unidadId">
-  <option *ngFor="let u of unidades" [value]="u.id">
-    {{u.tipo}} - {{u.planta}} {{u.letra}}
-  </option>
-</select>
+  <!-- DISPONIBLES -->
+  <section>
+    <h3>🟢 Unidades Disponibles</h3>
 
-<select [(ngModel)]="inquilinoId">
-  <option *ngFor="let i of inquilinos" [value]="i.id">
-    {{i.nombre}}
-  </option>
-</select>
+    <div class="unidad-card disponible" *ngFor="let unidad of unidadesDisponibles">
+      <div>
+        <h4>{{ unidad.inmuebleNombre }}</h4>
+        <p>{{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.letra }}</p>
+      </div>
 
-<button (click)="alquilar()">Alquilar</button>
+      <div class="acciones">
+        <select [(ngModel)]="seleccionInquilino[unidad.id]">
+          <option value="">Seleccionar inquilino</option>
+          <option *ngFor="let inq of inquilinos" [value]="inq.id">
+            {{ inq.datos_personales.nombre_completo }}
+          </option>
+        </select>
 
-<hr>
+        <button 
+          class="btn-alquilar" 
+          [disabled]="!seleccionInquilino[unidad.id]"
+          (click)="alquilarUnidad(unidad)">
+          Alquilar
+        </button>
+      </div>
+    </div>
+  </section>
 
-<h3>Desalquilar</h3>
+  <!-- OCUPADAS -->
+  <section>
+    <h3>🔴 Unidades Ocupadas</h3>
 
-<select [(ngModel)]="unidadId">
-  <option *ngFor="let u of unidades" [value]="u.id">
-    {{u.tipo}} - {{u.planta}} {{u.letra}}
-  </option>
-</select>
+    <div class="unidad-card ocupada" *ngFor="let unidad of unidadesOcupadas">
+      <div>
+        <h4>{{ unidad.inmuebleNombre }}</h4>
+        <p>{{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.letra }}</p>
 
-<button (click)="desalquilar()">Desalquilar</button>
+        <!-- 👤 Inquilino -->
+        <small *ngIf="unidad.inquilino">
+          Ocupado por: 
+          <strong>{{ unidad.inquilino.datos_personales.nombre_completo }}</strong>
+        </small>
+
+        <!-- 📅 Contrato -->
+        <small *ngIf="unidad.contrato">
+          <br>
+          Contrato: {{ unidad.contrato.fecha_inicio }} → {{ unidad.contrato.fecha_final }}
+        </small>
+
+        <!-- 💰 Renta -->
+        <small *ngIf="unidad.contrato">
+          <br>
+          Renta: {{ unidad.contrato.monto_renta_pactado | currency:'PEN':'S/ ' }}
+        </small>
+      </div>
+
+      <button 
+        class="btn-desalquilar" 
+        (click)="desalquilarUnidad(unidad)">
+        Desalquilar
+      </button>
+    </div>
+  </section>
+</div>

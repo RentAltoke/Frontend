@@ -1,0 +1,293 @@
+{
+  "inquilinos": [
+    {
+      "id": "EXT-INQ-001",
+      "tipo_persona": "NATURAL",
+      "datos_personales": {
+        "nombre_completo": "Carlos Alberto Ruiz",
+        "documento_identidad": "45678912",
+        "telefono": "999888777",
+        "email": "carlos.ruiz@gmail.com"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 102,
+          "id_inmueble": 1,
+          "fecha_inicio": "2025-05-01",
+          "fecha_final": "2026-05-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 1200.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 901,
+          "id_inmueble": 9,
+          "fecha_inicio": "2025-06-01",
+          "fecha_final": "2026-06-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 1500.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-002",
+      "tipo_persona": "JURIDICA",
+      "datos_personales": {
+        "nombre_completo": "Corporación Logística S.A.",
+        "documento_identidad": "20556677881",
+        "telefono": "01-5554433",
+        "email": "pagos@corplogistica.com.pe"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 602,
+          "id_inmueble": 6,
+          "fecha_inicio": "2024-10-15",
+          "fecha_final": "2026-10-15",
+          "dia_pago": 30,
+          "monto_renta_pactado": 4500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 601,
+          "id_inmueble": 6,
+          "fecha_inicio": "2025-01-01",
+          "fecha_final": "2027-01-01",
+          "dia_pago": 30,
+          "monto_renta_pactado": 5200.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-003",
+      "tipo_persona": "NATURAL",
+      "datos_personales": {
+        "nombre_completo": "Ana Lucía Mendoza",
+        "documento_identidad": "70123456",
+        "telefono": "912333444",
+        "email": "ana.mendoza@outlook.com"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 201,
+          "id_inmueble": 2,
+          "fecha_inicio": "2025-01-10",
+          "fecha_final": "2026-01-10",
+          "dia_pago": 1,
+          "monto_renta_pactado": 2800.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1001,
+          "id_inmueble": 10,
+          "fecha_inicio": "2025-03-01",
+          "fecha_final": "2026-03-01",
+          "dia_pago": 1,
+          "monto_renta_pactado": 3100.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-004",
+      "tipo_persona": "JURIDICA",
+      "datos_personales": {
+        "nombre_completo": "Minimarket El Norte E.I.R.L.",
+        "documento_identidad": "20109988774"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 301,
+          "id_inmueble": 3,
+          "fecha_inicio": "2024-03-20",
+          "fecha_final": "2026-03-20",
+          "dia_pago": 15,
+          "monto_renta_pactado": 5500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1202,
+          "id_inmueble": 12,
+          "fecha_inicio": "2025-02-01",
+          "fecha_final": "2027-02-01",
+          "dia_pago": 15,
+          "monto_renta_pactado": 6000.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-005",
+      "tipo_persona": "NATURAL",
+      "datos_personales": {
+        "nombre_completo": "Roberto Gómez Bolaños"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 402,
+          "id_inmueble": 4,
+          "fecha_inicio": "2025-08-01",
+          "fecha_final": "2026-08-01",
+          "dia_pago": 10,
+          "monto_renta_pactado": 1800.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-006",
+      "tipo_persona": "JURIDICA",
+      "datos_personales": {
+        "nombre_completo": "Constructora Delta S.A."
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 501,
+          "id_inmueble": 5,
+          "fecha_inicio": "2023-12-01",
+          "fecha_final": "2026-12-01",
+          "dia_pago": 28,
+          "monto_renta_pactado": 8500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1401,
+          "id_inmueble": 14,
+          "fecha_inicio": "2025-04-01",
+          "fecha_final": "2027-04-01",
+          "dia_pago": 28,
+          "monto_renta_pactado": 9000.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1501,
+          "id_inmueble": 15,
+          "fecha_inicio": "2025-06-01",
+          "fecha_final": "2027-06-01",
+          "dia_pago": 28,
+          "monto_renta_pactado": 8800.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-007",
+      "tipo_persona": "NATURAL",
+      "datos_personales": {
+        "nombre_completo": "Mariana de la Jara"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 701,
+          "id_inmueble": 7,
+          "fecha_inicio": "2025-11-20",
+          "fecha_final": "2026-11-20",
+          "dia_pago": 5,
+          "monto_renta_pactado": 3500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1602,
+          "id_inmueble": 16,
+          "fecha_inicio": "2025-09-01",
+          "fecha_final": "2026-09-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 2000.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-008",
+      "tipo_persona": "JURIDICA",
+      "datos_personales": {
+        "nombre_completo": "EducaPlus Perú S.A.C."
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 802,
+          "id_inmueble": 8,
+          "fecha_inicio": "2024-02-15",
+          "fecha_final": "2026-02-15",
+          "dia_pago": 20,
+          "monto_renta_pactado": 6000.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1102,
+          "id_inmueble": 11,
+          "fecha_inicio": "2025-03-01",
+          "fecha_final": "2027-03-01",
+          "dia_pago": 20,
+          "monto_renta_pactado": 6200.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-009",
+      "tipo_persona": "NATURAL",
+      "datos_personales": {
+        "nombre_completo": "Ricardo Gareca Nardi"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 801,
+          "id_inmueble": 8,
+          "fecha_inicio": "2026-03-01",
+          "fecha_final": "2027-03-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 1350.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1701,
+          "id_inmueble": 17,
+          "fecha_inicio": "2025-05-01",
+          "fecha_final": "2026-05-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 2500.00,
+          "moneda": "PEN"
+        }
+      ]
+    },
+
+    {
+      "id": "EXT-INQ-010",
+      "tipo_persona": "NATURAL",
+      "datos_personales": {
+        "nombre_completo": "Paolo Guerrero Gonzales"
+      },
+      "contratos": [
+        {
+          "id_unidad_alquilada": 703,
+          "id_inmueble": 7,
+          "fecha_inicio": "2026-04-10",
+          "fecha_final": "2027-04-10",
+          "dia_pago": 1,
+          "monto_renta_pactado": 3200.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1801,
+          "id_inmueble": 18,
+          "fecha_inicio": "2025-07-01",
+          "fecha_final": "2026-07-01",
+          "dia_pago": 1,
+          "monto_renta_pactado": 2800.00,
+          "moneda": "PEN"
+        }
+      ]
+    }
+  ]
+}

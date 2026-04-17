@@ -1,0 +1,182 @@
+[
+  {
+    "id_recibo": "REC-2026-04-001",
+    "id_unidad": 102,
+    "id_inmueble": 1,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": true,
+    "conceptos": {
+      "renta": 1200.00,
+      "agua": 45.50,
+      "luz": 80.20,
+      "mantenimiento": 50.00,
+      "ipc_anual": 12.00,
+      "igv": 234.00,
+      "otros": 0.00
+    },
+    "total": 1621.70
+  },
+  {
+    "id_recibo": "REC-2026-04-002",
+    "id_unidad": 602,
+    "id_inmueble": 6,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": true,
+    "conceptos": {
+      "renta": 4500.00,
+      "agua": 0.00,
+      "luz": 320.00,
+      "mantenimiento": 150.00,
+      "ipc_anual": 0.00,
+      "igv": 810.00,
+      "otros": 100.00
+    },
+    "total": 5880.00
+  },
+  {
+    "id_recibo": "REC-2026-04-003",
+    "id_unidad": 201,
+    "id_inmueble": 2,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": false,
+    "conceptos": {
+      "renta": 2800.00,
+      "agua": 60.00,
+      "luz": 110.00,
+      "mantenimiento": 80.00,
+      "ipc_anual": 25.00,
+      "igv": 504.00,
+      "otros": 0.00
+    },
+    "total": 3579.00
+  },
+  {
+    "id_recibo": "REC-2026-04-004",
+    "id_unidad": 301,
+    "id_inmueble": 3,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": true,
+    "conceptos": {
+      "renta": 5500.00,
+      "agua": 120.00,
+      "luz": 450.00,
+      "mantenimiento": 200.00,
+      "ipc_anual": 50.00,
+      "igv": 990.00,
+      "otros": 0.00
+    },
+    "total": 7310.00
+  },
+  {
+    "id_recibo": "REC-2026-04-005",
+    "id_unidad": 402,
+    "id_inmueble": 4,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": false,
+    "conceptos": {
+      "renta": 1800.00,
+      "agua": 35.00,
+      "luz": 65.00,
+      "mantenimiento": 40.00,
+      "ipc_anual": 0.00,
+      "igv": 324.00,
+      "otros": 15.00
+    },
+    "total": 2279.00
+  },
+  {
+    "id_recibo": "REC-2026-04-006",
+    "id_unidad": 501,
+    "id_inmueble": 5,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": true,
+    "conceptos": {
+      "renta": 8500.00,
+      "agua": 200.00,
+      "luz": 900.00,
+      "mantenimiento": 350.00,
+      "ipc_anual": 120.00,
+      "igv": 1530.00,
+      "otros": 0.00
+    },
+    "total": 11600.00
+  },
+  {
+    "id_recibo": "REC-2026-04-007",
+    "id_unidad": 701,
+    "id_inmueble": 7,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": false,
+    "conceptos": {
+      "renta": 3500.00,
+      "agua": 85.00,
+      "luz": 140.00,
+      "mantenimiento": 100.00,
+      "ipc_anual": 0.00,
+      "igv": 630.00,
+      "otros": 0.00
+    },
+    "total": 4455.00
+  },
+  {
+    "id_recibo": "REC-2026-04-008",
+    "id_unidad": 802,
+    "id_inmueble": 8,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": true,
+    "conceptos": {
+      "renta": 6000.00,
+      "agua": 0.00,
+      "luz": 250.00,
+      "mantenimiento": 180.00,
+      "ipc_anual": 60.00,
+      "igv": 1080.00,
+      "otros": 0.00
+    },
+    "total": 7570.00
+  },
+  {
+    "id_recibo": "REC-2026-04-009",
+    "id_unidad": 801,
+    "id_inmueble": 8,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": true,
+    "conceptos": {
+      "renta": 1350.00,
+      "agua": 30.00,
+      "luz": 55.00,
+      "mantenimiento": 45.00,
+      "ipc_anual": 0.00,
+      "igv": 243.00,
+      "otros": 0.00
+    },
+    "total": 1723.00
+  },
+  {
+    "id_recibo": "REC-2026-04-010",
+    "id_unidad": 703,
+    "id_inmueble": 7,
+    "fecha_emision": "2026-04-01",
+    "periodo": "Abril 2026",
+    "estado_cobro": false,
+    "conceptos": {
+      "renta": 3200.00,
+      "agua": 50.00,
+      "luz": 100.00,
+      "mantenimiento": 70.00,
+      "ipc_anual": 0.00,
+      "igv": 576.00,
+      "otros": 20.00
+    },
+    "total": 4016.00
+  }
+]

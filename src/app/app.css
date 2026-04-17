@@ -1,0 +1,117 @@
+/* --- FOOTER STYLES --- */
+.rentaltoke-footer {
+  background-color: #212529; /* Gris casi negro */
+  color: #adb5bd; /* Texto plomo claro */
+  padding: 60px 0 0 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-top: 50px;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  padding: 0 20px 40px 20px;
+}
+
+.footer-logo {
+  color: #ffffff;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.footer-logo span {
+  color: #6c757d; /* Detalle en plomo */
+  font-weight: 300;
+}
+
+.brand-info p {
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.footer-column h3 {
+  color: #ffffff;
+  font-size: 1.1rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-column ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-column ul li {
+  margin-bottom: 10px;
+}
+
+.footer-column ul li a {
+  color: #adb5bd;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.footer-column ul li a:hover {
+  color: #ffffff;
+}
+
+/* Indicadores de Status */
+.status-indicators {
+  margin-top: 20px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+}
+
+.status-dot {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.status-dot.online {
+  background-color: #28a745;
+  box-shadow: 0 0 8px #28a745;
+}
+
+.badge-dev {
+  background: #495057;
+  color: #e9ecef;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+/* Bottom Bar */
+.footer-bottom {
+  background-color: #1a1d20;
+  padding: 20px 0;
+  border-top: 1px solid #343a40;
+}
+
+.bottom-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 0.85rem;
+}
+
+.version-tag {
+  background: #343a40;
+  padding: 2px 8px;
+  border-radius: 3px;
+  color: #6c757d;
+}

@@ -1,170 +1,207 @@
 :host {
-  --naranja: rgb(254, 109, 3);
-  --azul: rgb(15, 28, 52);
-  --rojo: rgb(217, 48, 28);
-  --gris-suave: #f8f9fa;
-  --texto-suave: #6c757d;
+  --primary-dark: #0f1c34;
+  --accent-color: #fe6d03;
+  --danger: #d9301c;
+  --bg-page: #f4f7f9;
+  --text-main: #2d3436;
+  --text-light: #636e72;
+  --shadow-soft: 0 10px 25px rgba(0,0,0,0.05);
 }
 
+.page-container {
+  background-color: var(--bg-page);
+  min-height: 100vh;
+  padding: 30px;
+}
+
+/* Header de la Página */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin: 0;
+}
+
+.section-header p {
+  color: var(--text-light);
+  margin-top: 5px;
+}
+
+/* Botón Añadir */
+.btn-add {
+  background: var(--primary-dark);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-add:hover {
+  background: var(--accent-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(254, 109, 3, 0.3);
+}
+
+/* Grid y Cards */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 25px;
-  padding: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 30px;
 }
 
 .card {
-  background: #fff;
-  border-radius: 20px;
+  background: white;
+  border-radius: 16px;
   overflow: hidden;
-  border: 1px solid rgba(15, 28, 52, 0.08);
-  transition: all 0.4s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   flex-direction: column;
 }
 
 .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 15px 35px rgba(15, 28, 52, 0.12);
-  border-color: var(--naranja);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
 }
 
-/* IMAGEN */
+/* Imagen */
 .image-wrapper {
   position: relative;
-  height: 220px;
+  height: 230px;
+  overflow: hidden;
 }
 
 .image-wrapper img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.card:hover .image-wrapper img {
+  transform: scale(1.05);
 }
 
 .badge-tipo {
   position: absolute;
   top: 15px;
   left: 15px;
-  background: var(--azul);
+  background: rgba(15, 28, 52, 0.85);
+  backdrop-filter: blur(4px);
   color: #fff;
-  padding: 6px 14px;
-  border-radius: 8px;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.city-tag {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(255, 255, 255, 0.9);
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--azul);
+  font-size: 0.7rem;
+  font-weight: 700;
+  z-index: 2;
 }
 
-/* INFO */
+/* Info de la Card */
 .info {
-  padding: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
 
-.header-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 5px;
-}
-
 .header-info h3 {
+  font-size: 1.4rem;
+  color: var(--primary-dark);
   margin: 0;
-  font-size: 1.3rem;
-  color: var(--azul);
-  font-weight: 800;
 }
 
 .cp-label {
-  font-size: 0.7rem;
-  background: var(--gris-suave);
-  color: var(--texto-suave);
-  padding: 2px 6px;
-  border-radius: 4px;
+  font-size: 0.75rem;
+  color: var(--text-light);
+  font-weight: 500;
 }
 
 .direccion {
-  color: var(--naranja);
+  color: var(--accent-color);
+  font-size: 0.95rem;
   font-weight: 600;
-  font-size: 0.9rem;
-  margin-bottom: 15px;
+  margin: 8px 0;
 }
 
 .desc {
   font-size: 0.9rem;
-  color: #555;
-  line-height: 1.5;
-  margin-bottom: 20px;
+  color: var(--text-light);
+  line-height: 1.6;
+  margin-bottom: 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-/* BOTÓN */
+/* Footer de la Card */
+.card-footer {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .btn-main {
-  width: 100%;
-  background: var(--azul);
+  flex-grow: 1;
+  background: var(--primary-dark);
   color: white;
   border: none;
-  padding: 14px;
-  border-radius: 12px;
-  font-weight: 700;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
+  transition: 0.3s;
 }
 
 .btn-main:hover {
-  background: var(--naranja);
-  /* Un pequeño resplandor rojo en el hover del botón */
-  box-shadow: 0 4px 15px rgba(217, 48, 28, 0.2);
+  background: #1e2d4a;
 }
 
-.arrow-icon {
-  transition: transform 0.3s;
-}
-
-.btn-main:hover .arrow-icon {
-  transform: translateX(5px);
-}
-
-/* HEADER BOTÓN */
-.header-actions {
+/* Botones de Acción (Edición/Eliminación) */
+.action-buttons {
   display: flex;
-  justify-content: flex-end;
-  padding: 0 20px;
-  margin-bottom: 10px;
+  gap: 8px;
 }
 
+<<<<<<< HEAD
+.btn-icon {
+  background: #f1f3f5;
+  border: none;
+  width: 40px;
+  height: 40px;
+=======
 /* BOTÓN AÑADIR */
 .btn-add {
-  background: var(--naranja);
+  margin: 0 20px 20px;
+  background: linear-gradient(135deg, var(--naranja), var(--rojo));
   color: white;
   border: none;
-  padding: 12px 18px;
-  border-radius: 10px;
+  padding: 14px 22px;
+  border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.3s ease;
+  box-shadow: 0 6px 18px rgba(254, 109, 3, 0.25);
 }
 
 .btn-add:hover {
-  background: var(--rojo);
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(217, 48, 28, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(217, 48, 28, 0.3);
 }
 
 /* FOOTER */
@@ -187,11 +224,19 @@
   color: white;
   border: none;
   padding: 10px;
+>>>>>>> origin/develop
   border-radius: 8px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+<<<<<<< HEAD
+.btn-icon.edit:hover { background: #e7f5ff; color: #228be6; }
+.btn-icon.delete:hover { background: #fff5f5; color: var(--danger); }
+=======
 .btn-edit:hover {
   background: var(--naranja);
 }
@@ -212,3 +257,11 @@
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(217, 48, 28, 0.3);
 }
+
+h2 {
+  color: var(--azul);
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 20px;
+}
+>>>>>>> origin/develop
