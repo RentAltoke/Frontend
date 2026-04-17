@@ -15,16 +15,17 @@
       <h3>{{ inq.datos_personales.nombre_completo }}</h3>
       <p class="email">{{ inq.datos_personales.email }}</p>
       
-      <div class="detalles-pago">
-        <div class="dato">
-          <span class="label">Renta</span>
-          <span class="valor">{{ inq.contrato.monto_renta_pactado | currency:'PEN':'S/ ' }}</span>
-        </div>
-        <div class="dato">
-          <span class="label">Unidad</span>
-          <span class="valor">{{ inq.contrato.id_unidad_alquilada }}</span>
-        </div>
-      </div>
+<div class="detalles-pago">
+  <div class="dato" *ngFor="let c of inq.contratos">
+    <span class="label">Unidad {{ c.id_unidad_alquilada }}</span>
+    <span class="valor">
+      {{ c.monto_renta_pactado | currency:'PEN':'S/ ' }}
+    </span>
+    <small>
+      {{ c.fecha_inicio }} → {{ c.fecha_final }}
+    </small>
+  </div>
+</div>
       
       <p><strong>DNI:</strong> {{ inq.datos_personales.documento_identidad }}</p>
     </div>

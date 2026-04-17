@@ -1,0 +1,257 @@
+.dashboard-wrapper {
+  background-color: #f4f4f4;
+  min-height: 100vh;
+}
+
+/* Banner Principal */
+.hero-banner {
+  height: 300px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  padding: 0 10%;
+  color: white;
+}
+
+.hero-content h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+.user-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 5px 15px;
+  border-radius: 20px;
+  display: inline-block;
+  font-size: 0.9rem;
+  border: 1px solid white;
+}
+
+.content-container {
+  max-width: 1200px;
+  margin: -50px auto 0;
+  padding: 0 20px 50px;
+}
+
+/* Sección Inmuebles (Horizontal) */
+.main-section {
+  background: white;
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin-bottom: 2rem;
+}
+
+.section-text { padding: 3rem; flex: 1; }
+.section-image { flex: 1; background: #eee; }
+.section-image img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Grid de Tarjetas */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.feature-card:hover { transform: translateY(-5px); }
+.feature-card img { width: 100%; height: 180px; object-fit: cover; }
+.card-body { padding: 1.5rem; }
+
+/* Botones y Tipografía */
+.btn-plomo {
+  background: #4a4a4a;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.btn-link {
+  color: #333;
+  background: none;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.bank-management {
+  background: #2c2c2c;
+  color: white;
+  padding: 1.5rem 3rem;
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mini-thumb {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.bank-info { display: flex; align-items: center; }
+
+.solutions-section {
+  padding: 80px 10%;
+  background-color: #ffffff;
+  border-top: 1px solid #e9ecef;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-header .subtitle {
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.section-header h2 {
+  font-size: 2.2rem;
+  color: #212529;
+  margin-top: 10px;
+}
+
+.solutions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.solution-card {
+  padding: 40px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.solution-card:hover {
+  background: #ffffff;
+  border-color: #495057; /* Plomo oscuro */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+  transform: translateY(-5px);
+}
+
+.icon-box {
+  font-size: 2rem;
+  color: #495057;
+  margin-bottom: 20px;
+}
+
+.solution-card h3 {
+  font-size: 1.25rem;
+  color: #343a40;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.solution-content p {
+  color: #6c757d;
+  line-height: 1.6;
+  font-size: 0.95rem;
+  margin: 0;
+}
+
+/* Decoración sutil */
+.solution-card::before {
+  content: "";
+  width: 40px;
+  height: 3px;
+  background: #ced4da;
+  display: block;
+  margin-bottom: 20px;
+}
+
+/* Métricas */
+.metrics-bar {
+  display: flex;
+  justify-content: space-around;
+  background: #212529; /* Negro profundo */
+  color: white;
+  padding: 40px 10%;
+  text-align: center;
+}
+
+.metric-value {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #adb5bd; /* Plomo claro */
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Workflow */
+.workflow-section { padding: 60px 10%; background: #fdfdfd; }
+.workflow-steps {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.step { text-align: center; flex: 1; }
+.step-number {
+  width: 50px;
+  height: 50px;
+  background: #495057;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+  font-weight: bold;
+}
+
+.step-arrow { font-size: 1.5rem; color: #dee2e6; }
+
+/* Footer */
+.main-footer {
+  background: #ffffff;
+  padding: 40px 10%;
+  border-top: 2px solid #e9ecef;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  font-size: 0.9rem;
+  color: #6c757d;
+}
+
+.dot-online {
+  height: 8px;
+  width: 8px;
+  background-color: #28a745;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 5px;
+}
+

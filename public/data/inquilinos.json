@@ -9,19 +9,28 @@
         "telefono": "999888777",
         "email": "carlos.ruiz@gmail.com"
       },
-      "contrato": {
-        "id_unidad_alquilada": 102,
-        "id_inmueble": 1,
-        "fecha_inicio": "2025-05-01",
-        "dia_pago": 5,
-        "monto_renta_pactado": 1200.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "BCP",
-        "cuenta_referencia": "191-445522-0-10"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 102,
+          "id_inmueble": 1,
+          "fecha_inicio": "2025-05-01",
+          "fecha_final": "2026-05-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 1200.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 901,
+          "id_inmueble": 9,
+          "fecha_inicio": "2025-06-01",
+          "fecha_final": "2026-06-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 1500.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-002",
       "tipo_persona": "JURIDICA",
@@ -31,19 +40,28 @@
         "telefono": "01-5554433",
         "email": "pagos@corplogistica.com.pe"
       },
-      "contrato": {
-        "id_unidad_alquilada": 602,
-        "id_inmueble": 6,
-        "fecha_inicio": "2024-10-15",
-        "dia_pago": 30,
-        "monto_renta_pactado": 4500.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "BBVA",
-        "cuenta_referencia": "0011-0234-556677"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 602,
+          "id_inmueble": 6,
+          "fecha_inicio": "2024-10-15",
+          "fecha_final": "2026-10-15",
+          "dia_pago": 30,
+          "monto_renta_pactado": 4500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 601,
+          "id_inmueble": 6,
+          "fecha_inicio": "2025-01-01",
+          "fecha_final": "2027-01-01",
+          "dia_pago": 30,
+          "monto_renta_pactado": 5200.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-003",
       "tipo_persona": "NATURAL",
@@ -53,172 +71,223 @@
         "telefono": "912333444",
         "email": "ana.mendoza@outlook.com"
       },
-      "contrato": {
-        "id_unidad_alquilada": 201,
-        "id_inmueble": 2,
-        "fecha_inicio": "2025-01-10",
-        "dia_pago": 1,
-        "monto_renta_pactado": 2800.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "INTERBANK",
-        "cuenta_referencia": "200-334455667"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 201,
+          "id_inmueble": 2,
+          "fecha_inicio": "2025-01-10",
+          "fecha_final": "2026-01-10",
+          "dia_pago": 1,
+          "monto_renta_pactado": 2800.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1001,
+          "id_inmueble": 10,
+          "fecha_inicio": "2025-03-01",
+          "fecha_final": "2026-03-01",
+          "dia_pago": 1,
+          "monto_renta_pactado": 3100.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-004",
       "tipo_persona": "JURIDICA",
       "datos_personales": {
         "nombre_completo": "Minimarket El Norte E.I.R.L.",
-        "documento_identidad": "20109988774",
-        "telefono": "988777666",
-        "email": "ventas@elnorte.pe"
+        "documento_identidad": "20109988774"
       },
-      "contrato": {
-        "id_unidad_alquilada": 301,
-        "id_inmueble": 3,
-        "fecha_inicio": "2024-03-20",
-        "dia_pago": 15,
-        "monto_renta_pactado": 5500.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "SCOTIABANK",
-        "cuenta_referencia": "000-99887711"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 301,
+          "id_inmueble": 3,
+          "fecha_inicio": "2024-03-20",
+          "fecha_final": "2026-03-20",
+          "dia_pago": 15,
+          "monto_renta_pactado": 5500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1202,
+          "id_inmueble": 12,
+          "fecha_inicio": "2025-02-01",
+          "fecha_final": "2027-02-01",
+          "dia_pago": 15,
+          "monto_renta_pactado": 6000.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-005",
       "tipo_persona": "NATURAL",
       "datos_personales": {
-        "nombre_completo": "Roberto Gómez Bolaños",
-        "documento_identidad": "08776655",
-        "telefono": "955444333",
-        "email": "rgomez@gmail.com"
+        "nombre_completo": "Roberto Gómez Bolaños"
       },
-      "contrato": {
-        "id_unidad_alquilada": 402,
-        "id_inmueble": 4,
-        "fecha_inicio": "2025-08-01",
-        "dia_pago": 10,
-        "monto_renta_pactado": 1800.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "BCP",
-        "cuenta_referencia": "193-990011-0-44"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 402,
+          "id_inmueble": 4,
+          "fecha_inicio": "2025-08-01",
+          "fecha_final": "2026-08-01",
+          "dia_pago": 10,
+          "monto_renta_pactado": 1800.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-006",
       "tipo_persona": "JURIDICA",
       "datos_personales": {
-        "nombre_completo": "Constructora Delta S.A.",
-        "documento_identidad": "20443322115",
-        "telefono": "01-2223344",
-        "email": "contabilidad@delta.com"
+        "nombre_completo": "Constructora Delta S.A."
       },
-      "contrato": {
-        "id_unidad_alquilada": 501,
-        "id_inmueble": 5,
-        "fecha_inicio": "2023-12-01",
-        "dia_pago": 28,
-        "monto_renta_pactado": 8500.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "BBVA",
-        "cuenta_referencia": "0011-0998-2233"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 501,
+          "id_inmueble": 5,
+          "fecha_inicio": "2023-12-01",
+          "fecha_final": "2026-12-01",
+          "dia_pago": 28,
+          "monto_renta_pactado": 8500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1401,
+          "id_inmueble": 14,
+          "fecha_inicio": "2025-04-01",
+          "fecha_final": "2027-04-01",
+          "dia_pago": 28,
+          "monto_renta_pactado": 9000.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1501,
+          "id_inmueble": 15,
+          "fecha_inicio": "2025-06-01",
+          "fecha_final": "2027-06-01",
+          "dia_pago": 28,
+          "monto_renta_pactado": 8800.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-007",
       "tipo_persona": "NATURAL",
       "datos_personales": {
-        "nombre_completo": "Mariana de la Jara",
-        "documento_identidad": "44332211",
-        "telefono": "966555444",
-        "email": "mariana.jara@hotm.com"
+        "nombre_completo": "Mariana de la Jara"
       },
-      "contrato": {
-        "id_unidad_alquilada": 701,
-        "id_inmueble": 7,
-        "fecha_inicio": "2025-11-20",
-        "dia_pago": 5,
-        "monto_renta_pactado": 3500.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "INTERBANK",
-        "cuenta_referencia": "400-55667788"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 701,
+          "id_inmueble": 7,
+          "fecha_inicio": "2025-11-20",
+          "fecha_final": "2026-11-20",
+          "dia_pago": 5,
+          "monto_renta_pactado": 3500.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1602,
+          "id_inmueble": 16,
+          "fecha_inicio": "2025-09-01",
+          "fecha_final": "2026-09-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 2000.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-008",
       "tipo_persona": "JURIDICA",
       "datos_personales": {
-        "nombre_completo": "EducaPlus Perú S.A.C.",
-        "documento_identidad": "20887766552",
-        "telefono": "944333222",
-        "email": "info@educaplus.edu.pe"
+        "nombre_completo": "EducaPlus Perú S.A.C."
       },
-      "contrato": {
-        "id_unidad_alquilada": 802,
-        "id_inmueble": 8,
-        "fecha_inicio": "2024-02-15",
-        "dia_pago": 20,
-        "monto_renta_pactado": 6000.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "SCOTIABANK",
-        "cuenta_referencia": "000-22334455"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 802,
+          "id_inmueble": 8,
+          "fecha_inicio": "2024-02-15",
+          "fecha_final": "2026-02-15",
+          "dia_pago": 20,
+          "monto_renta_pactado": 6000.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1102,
+          "id_inmueble": 11,
+          "fecha_inicio": "2025-03-01",
+          "fecha_final": "2027-03-01",
+          "dia_pago": 20,
+          "monto_renta_pactado": 6200.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-009",
       "tipo_persona": "NATURAL",
       "datos_personales": {
-        "nombre_completo": "Ricardo Gareca Nardi",
-        "documento_identidad": "10223344",
-        "telefono": "922111000",
-        "email": "elprofe@gmail.com"
+        "nombre_completo": "Ricardo Gareca Nardi"
       },
-      "contrato": {
-        "id_unidad_alquilada": 801,
-        "id_inmueble": 8,
-        "fecha_inicio": "2026-03-01",
-        "dia_pago": 5,
-        "monto_renta_pactado": 1350.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "BCP",
-        "cuenta_referencia": "194-223344-0-55"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 801,
+          "id_inmueble": 8,
+          "fecha_inicio": "2026-03-01",
+          "fecha_final": "2027-03-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 1350.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1701,
+          "id_inmueble": 17,
+          "fecha_inicio": "2025-05-01",
+          "fecha_final": "2026-05-01",
+          "dia_pago": 5,
+          "monto_renta_pactado": 2500.00,
+          "moneda": "PEN"
+        }
+      ]
     },
+
     {
       "id": "EXT-INQ-010",
       "tipo_persona": "NATURAL",
       "datos_personales": {
-        "nombre_completo": "Paolo Guerrero Gonzales",
-        "documento_identidad": "40556677",
-        "telefono": "988000111",
-        "email": "depredador@peru.com"
+        "nombre_completo": "Paolo Guerrero Gonzales"
       },
-      "contrato": {
-        "id_unidad_alquilada": 703,
-        "id_inmueble": 7,
-        "fecha_inicio": "2026-04-10",
-        "dia_pago": 1,
-        "monto_renta_pactado": 3200.00,
-        "moneda": "PEN"
-      },
-      "referencia_bancaria": {
-        "banco_origen": "BBVA",
-        "cuenta_referencia": "0011-0777-1122"
-      }
+      "contratos": [
+        {
+          "id_unidad_alquilada": 703,
+          "id_inmueble": 7,
+          "fecha_inicio": "2026-04-10",
+          "fecha_final": "2027-04-10",
+          "dia_pago": 1,
+          "monto_renta_pactado": 3200.00,
+          "moneda": "PEN"
+        },
+        {
+          "id_unidad_alquilada": 1801,
+          "id_inmueble": 18,
+          "fecha_inicio": "2025-07-01",
+          "fecha_final": "2026-07-01",
+          "dia_pago": 1,
+          "monto_renta_pactado": 2800.00,
+          "moneda": "PEN"
+        }
+      ]
     }
   ]
 }

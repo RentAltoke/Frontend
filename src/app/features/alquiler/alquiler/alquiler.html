@@ -19,7 +19,10 @@
           </option>
         </select>
 
-        <button class="btn-alquilar" (click)="alquilarUnidad(unidad)">
+        <button 
+          class="btn-alquilar" 
+          [disabled]="!seleccionInquilino[unidad.id]"
+          (click)="alquilarUnidad(unidad)">
           Alquilar
         </button>
       </div>
@@ -35,12 +38,28 @@
         <h4>{{ unidad.inmuebleNombre }}</h4>
         <p>{{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.letra }}</p>
 
+        <!-- 👤 Inquilino -->
         <small *ngIf="unidad.inquilino">
-          Ocupado por: <strong>{{ unidad.inquilino.datos_personales.nombre_completo }}</strong>
+          Ocupado por: 
+          <strong>{{ unidad.inquilino.datos_personales.nombre_completo }}</strong>
+        </small>
+
+        <!-- 📅 Contrato -->
+        <small *ngIf="unidad.contrato">
+          <br>
+          Contrato: {{ unidad.contrato.fecha_inicio }} → {{ unidad.contrato.fecha_final }}
+        </small>
+
+        <!-- 💰 Renta -->
+        <small *ngIf="unidad.contrato">
+          <br>
+          Renta: {{ unidad.contrato.monto_renta_pactado | currency:'PEN':'S/ ' }}
         </small>
       </div>
 
-      <button class="btn-desalquilar" (click)="desalquilarUnidad(unidad)">
+      <button 
+        class="btn-desalquilar" 
+        (click)="desalquilarUnidad(unidad)">
         Desalquilar
       </button>
     </div>

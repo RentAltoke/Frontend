@@ -1,48 +1,49 @@
-<h2>Inmuebles</h2>
+<div class="page-container">
+  <header class="section-header">
+    <div class="title-group">
+      <h2>Gestión de Inmuebles</h2>
+      <p>Administre su cartera de edificios, pisos y locales comerciales.</p>
+    </div>
+    <button (click)="nuevo()" class="btn-add">
+      <span class="icon">+</span> Añadir Propiedad
+    </button>
+  </header>
 
-<button (click)="nuevo()" class="btn-add">
-  ➕ Añadir Inmueble
-</button>
-
-
-
-<div class="grid">
-  <div class="card" *ngFor="let i of inmuebles">
-    
-    <div class="image-wrapper">
-      <span class="badge-tipo">{{i.tipo}}</span>
-      <img [src]="i.imagen" alt="Propiedad RentAltoke">
+  <div class="grid">
+    <div class="card" *ngFor="let i of inmuebles">
       
-      <div class="city-tag">
-        <span class="icon">📍</span> {{i.ciudad}}
+      <div class="image-wrapper">
+        <span class="badge-tipo">{{i.tipo}}</span>
+        <img [src]="i.imagen" alt="Propiedad RentAltoke">
+        <div class="city-tag">
+          <i class="pin-icon">📍</i> {{i.ciudad}}
+        </div>
+      </div>
+
+      <div class="info">
+        <div class="header-info">
+          <h3>{{i.nombre}}</h3>
+          <span class="cp-label">CP {{i.cp}}</span>
+        </div>
+        
+        <p class="direccion">{{i.direccion}} {{i.numero}}</p>
+        <p class="desc">{{i.descripcion}}</p>
+
+        <div class="card-footer">
+          <button [routerLink]="['/unidades', i.id]" class="btn-main">
+            Explorar Unidades <i>→</i>
+          </button>
+          
+          <div class="action-buttons">
+            <button (click)="editar(i.id)" class="btn-icon edit" title="Editar">
+              <i class="fas fa-edit"></i> ✏️
+            </button>
+            <button (click)="eliminar(i.id)" class="btn-icon delete" title="Eliminar">
+              <i class="fas fa-trash"></i> ❌
+            </button>
+          </div>
+        </div>
       </div>
     </div>
-
-    <div class="info">
-      <div class="header-info">
-        <h3>{{i.nombre}}</h3>
-        <span class="cp-label">CP: {{i.cp}}</span>
-      </div>
-      
-      <p class="direccion">
-        {{i.direccion}} {{i.numero}}
-      </p>
-      
-      <p class="desc">{{i.descripcion}}</p>
-
-      <div class="footer-card">
-        <button [routerLink]="['/unidades', i.id]" class="btn-main">
-          Explorar Unidades
-          <i class="arrow-icon">→</i>
-        </button>
-      </div>
-    </div>
-
-<div class="actions">
-  <button (click)="editar(i.id)">✏️</button>
-  <button (click)="eliminar(i.id)">❌</button>
-</div>
-
-
   </div>
 </div>

@@ -1,1 +1,172 @@
-<p>inicio works!</p>
+<div class="dashboard-wrapper">
+  
+  <header class="hero-banner" [style.backgroundImage]="'linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(inicio/usuario.png)'">
+    <div class="hero-content">
+      <h1>RentAltoke Inmobiliaria</h1>
+      <p>Panel de Gestión de Inmuebles y Recaudación</p>
+      <div class="user-badge">
+        <span>{{ role }}</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="content-container">
+    
+    <section class="main-section">
+      <div class="section-text">
+        <h2>Estructura de Inmuebles</h2>
+        <p>Visualiza y administra la jerarquía de tus edificios, pisos y locales comerciales. Mantén actualizado el inventario de unidades gestionadas.</p>
+        <div class="actions">
+          <button class="btn-plomo">Ver Inventario</button>
+          <button class="btn-outline">Alta de Unidad</button>
+        </div>
+      </div>
+      <div class="section-image">
+        <img src="inicio/inmueble.png" alt="Estructura 3D de Inmuebles">
+      </div>
+    </section>
+
+    <div class="features-grid">
+      
+      <div class="feature-card">
+        <img src="inicio/recibos.png" alt="Generación de Recibos">
+        <div class="card-body">
+          <h3>Emisión de Recibos</h3>
+          <p>Genera recibos masivos basados en el mes anterior. Control de agua, luz e IPC.</p>
+          <button class="btn-link">Ir a Facturación →</button>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <img src="inicio/Diagrama.png" alt="Listados Estructurados">
+        <div class="card-body">
+          <h3>Listados y Reportes</h3>
+          <p>Acceso estructurado a inquilinos, morosidad y reportes de rentas.</p>
+          <button class="btn-link">Ver Reportes →</button>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <img src="inicio/Unidades.png" alt="Detalle de Unidades">
+        <div class="card-body">
+          <h3>Detalle Técnico</h3>
+          <p>Configuración de conceptos opcionales y obligatorios por cada unidad.</p>
+          <button class="btn-link">Configurar Unidades →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <footer class="bank-management">
+      <div class="bank-info">
+        <img src="inicio/Consulta.png" alt="Gestión Bancaria" class="mini-thumb">
+        <div>
+          <h4>Gestión de Movimientos Bancarios</h4>
+          <p>Registra ingresos y gastos asociados a cada edificio y cuenta bancaria.</p>
+        </div>
+      </div>
+      <button class="btn-dark">Nuevo Movimiento</button>
+    </footer>
+
+  </div>
+</div>
+
+<section class="solutions-section">
+  <div class="section-header">
+    <span class="subtitle">¿Por qué RentAltoke?</span>
+    <h2>Optimización de la Gestión Inmobiliaria</h2>
+    <p>Transformamos procesos manuales complejos en flujos de trabajo automatizados y precisos.</p>
+  </div>
+
+  <div class="solutions-grid">
+    <div class="solution-card">
+      <div class="icon-box">
+        <i class="fas fa-file-invoice-dollar"></i>
+      </div>
+      <div class="solution-content">
+        <h3>Eliminación de Errores en Recibos</h3>
+        <p>Olvídese de omitir conceptos o cometer errores de cálculo. El sistema oculta automáticamente valores en cero y valida campos obligatorios, garantizando recibos profesionales y exactos.</p>
+      </div>
+    </div>
+
+    <div class="solution-card">
+      <div class="icon-box">
+        <i class="fas fa-chart-line"></i>
+      </div>
+      <div class="solution-content">
+        <h3>Control de Actualización IPC</h3>
+        <p>RentAltoke gestiona la complejidad de las actualizaciones anuales de renta por IPC, asegurando que los ingresos de la propiedad se ajusten correctamente según la normativa vigente.</p>
+      </div>
+    </div>
+
+    <div class="solution-card">
+      <div class="icon-box">
+        <i class="fas fa-sitemap"></i>
+      </div>
+      <div class="solution-content">
+        <h3>Gestión de Unidades Complejas</h3>
+        <p>Centralizamos la administración de edificios que combinan pisos residenciales y locales comerciales, manteniendo una jerarquía clara y organizada de cada inmueble.</p>
+      </div>
+    </div>
+
+    <div class="solution-card">
+      <div class="icon-box">
+        <i class="fas fa-university"></i>
+      </div>
+      <div class="solution-content">
+        <h3>Transparencia Financiera</h3>
+        <p>Solucionamos el desorden en los movimientos bancarios. Cada ingreso y gasto se vincula a su unidad correspondiente, facilitando la declaración de renta y el control de saldos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="metrics-bar">
+  <div class="metric-item">
+    <span class="metric-value">+98%</span>
+    <span class="metric-label">Efectividad en Cobros</span>
+  </div>
+  <div class="metric-item">
+    <span class="metric-value">0%</span>
+    <span class="metric-label">Errores de Cálculo</span>
+  </div>
+  <div class="metric-item">
+    <span class="metric-value">2min</span>
+    <span class="metric-label">Emisión de Recibos Global</span>
+  </div>
+  <div class="metric-item">
+    <span class="metric-value">100%</span>
+    <span class="metric-label">Cumplimiento IPC</span>
+  </div>
+</section>
+
+<section class="workflow-section">
+  <div class="section-header">
+    <h2>Tu Flujo de Trabajo Inteligente</h2>
+  </div>
+  <div class="workflow-steps">
+    <div class="step">
+      <div class="step-number">01</div>
+      <h4>Estructura</h4>
+      <p>Registra edificios y unidades.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <div class="step-number">02</div>
+      <h4>Asignación</h4>
+      <p>Vincula inquilinos y contratos.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <div class="step-number">03</div>
+      <h4>Automatización</h4>
+      <p>Clona y emite recibos mensuales.</p>
+    </div>
+    <div class="step-arrow">→</div>
+    <div class="step">
+      <div class="step-number">04</div>
+      <h4>Conciliación</h4>
+      <p>Valida ingresos en bancos.</p>
+    </div>
+  </div>
+</section>
