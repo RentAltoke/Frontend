@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
 import { InmuebleService } from '../inmueble.service';
-import { ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
+import { ChangeDetectorRef,Component} from '@angular/core';
+import { Router,RouterModule } from '@angular/router';
 
 @Component({
   standalone: true,

@@ -178,13 +178,6 @@
   gap: 8px;
 }
 
-<<<<<<< HEAD
-.btn-icon {
-  background: #f1f3f5;
-  border: none;
-  width: 40px;
-  height: 40px;
-=======
 /* BOTÓN AÑADIR */
 .btn-add {
   margin: 0 20px 20px;
@@ -224,7 +217,6 @@
   color: white;
   border: none;
   padding: 10px;
->>>>>>> origin/develop
   border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
@@ -233,10 +225,6 @@
   justify-content: center;
 }
 
-<<<<<<< HEAD
-.btn-icon.edit:hover { background: #e7f5ff; color: #228be6; }
-.btn-icon.delete:hover { background: #fff5f5; color: var(--danger); }
-=======
 .btn-edit:hover {
   background: var(--naranja);
 }
@@ -264,4 +252,3 @@ h2 {
   font-weight: 800;
   margin: 20px;
 }
->>>>>>> origin/develop
