@@ -1,12 +1,7 @@
 import { Routes } from '@angular/router';
-
+import { authGuard } from './features/auth/auth.guard';
 export const routes: Routes = [
 
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-
-  { path: 'login',
-    loadComponent: () => import('./features/auth/login/login').then(m => m.Login)
-  },
 
   {
     path: '',
@@ -21,6 +16,7 @@ export const routes: Routes = [
 
       // INMUEBLES
       { path: 'inmuebles',
+        canActivate: [authGuard],
         loadComponent: () => import('./features/inmuebles/inmueble-list/inmueble-list').then(m => m.InmuebleList)
       },
 
@@ -49,9 +45,9 @@ export const routes: Routes = [
       loadComponent: () => import('./features/unidades/unidad-form/unidad-form').then(m => m.UnidadForm)
       },
 
-
       // INQUILINOS
       { path: 'inquilinos',
+        canActivate: [authGuard],
         loadComponent: () => import('./features/inquilinos/inquilino-list/inquilino-list').then(m => m.InquilinoListComponent)
       },
 
@@ -59,21 +55,41 @@ export const routes: Routes = [
         loadComponent: () => import('./features/inquilinos/inquilino-form/inquilino-form').then(m => m.InquilinoForm)
       },
 
+      // reportes
+
+     { path: 'reportes',
+      canActivate: [authGuard],
+        loadComponent: () => import('./features/reportes/reportes').then(m => m.Reportes)
+      },
+
+
       // OTROS
       { path: 'alquiler',
+        canActivate: [authGuard],
         loadComponent: () => import('./features/alquiler/alquiler/alquiler').then(m => m.Alquiler)
       },
 
+      {
+      path: 'caja/:id',
+      loadComponent: () => import('./features/caja/caja').then(m => m.Caja)
+      },
+    
 
 
     // SECCIÓN USUARIO
       { 
         path: 'usuario',
+        canActivate: [authGuard],
         loadComponent: () => import('./features/usuario/usuario').then(m => m.Usuario) 
       }
 
 
     ]
+  },
+
+  {
+    path: 'login',
+    loadComponent: () => import('./features/auth/login/login').then(m => m.Login)
   }
 
 ];

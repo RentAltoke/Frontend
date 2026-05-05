@@ -12,10 +12,6 @@ import { FormsModule } from '@angular/forms';
 
 })
 
-
-
-
-
 export class Alquiler implements OnInit {
 
   inmuebles: any[] = [];
@@ -38,57 +34,66 @@ export class Alquiler implements OnInit {
     this.cargarDatos();
   }
 
-  cargarDatos() {
-    this.http.get<any[]>('/data/inmuebles.json').subscribe({
-      next: (inmueblesData) => {
-        this.http.get<any>('/data/inquilinos.json').subscribe({
-          next: (inquilinosData) => {
-            this.inmuebles = inmueblesData;
-            this.inquilinos = inquilinosData.inquilinos;
+cargarDatos() {
+  // 🔥 traer unidades desde backend
+  this.http.get<any[]>('http://localhost:8081/api/inmuebles/unidades').subscribe({
+    next: (data) => {
 
-            this.procesarUnidades();
-            this.cdr.detectChanges();
+      const unidadesMapeadas = data.map(row => ({
+        id: row[0],
+        codigo: row[1],
+        tipo: row[2],
+        planta: row[3],
+        estado: row[4],
+
+        inmuebleId: row[5],
+        inmuebleNombre: row[6],
+        direccion: row[7],
+
+        inquilinoNombre: row[8],
+        montoRenta: row[9]
+      }));
+
+      this.procesarUnidades(unidadesMapeadas);
+      this.cdr.detectChanges();
+    },
+    error: err => console.error(err)
+  });
+
+  // 🔥 inquilinos (esto sí sigue igual)
+  this.http.get<any[]>('http://localhost:8081/api/inquilinos').subscribe({
+    next: (data) => {
+      this.inquilinos = data;
+    }
+  });
+}
+
+procesarUnidades(unidades: any[]) {
+  this.unidadesDisponibles = [];
+  this.unidadesOcupadas = [];
+
+  unidades.forEach(unidad => {
+
+    const unidadData = {
+      ...unidad,
+      inquilino: unidad.inquilinoNombre
+        ? { nombreCompleto: unidad.inquilinoNombre }
+        : null,
+
+      contrato: unidad.montoRenta
+        ? {
+            monto_renta_pactado: unidad.montoRenta
           }
-        });
-      }
-    });
-  }
+        : null
+    };
 
-  procesarUnidades() {
-    this.unidadesDisponibles = [];
-    this.unidadesOcupadas = [];
-
-    this.inmuebles.forEach(inmueble => {
-      inmueble.unidades.forEach((unidad: any) => {
-
-let contratoEncontrado = null;
-
-const inquilino = this.inquilinos.find(inq => {
-  contratoEncontrado = inq.contratos?.find((c: any) =>
-    c.id_unidad_alquilada === unidad.id &&
-    c.id_inmueble === inmueble.id
-  );
-  return contratoEncontrado;
-});
-
-
-
-const unidadData = {
-  ...unidad,
-  inmuebleNombre: inmueble.nombre,
-  inmuebleId: inmueble.id,
-  inquilino: inquilino || null,
-  contrato: contratoEncontrado || null
-};
-
-        if (unidad.estado.toLowerCase() === 'disponible') {
-          this.unidadesDisponibles.push(unidadData);
-        } else if (unidad.estado.toLowerCase() === 'ocupado') {
-          this.unidadesOcupadas.push(unidadData);
-        }
-      });
-    });
-  }
+    if (unidad.estado.toLowerCase() === 'disponible') {
+      this.unidadesDisponibles.push(unidadData);
+    } else if (unidad.estado.toLowerCase() === 'ocupado') {
+      this.unidadesOcupadas.push(unidadData);
+    }
+  });
+}
 
 alquilarUnidad(unidad: any) {
   const inquilinoId = this.seleccionInquilino[unidad.id];

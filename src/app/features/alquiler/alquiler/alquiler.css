@@ -2,91 +2,204 @@
   --naranja: rgb(254, 109, 3);
   --azul: rgb(15, 28, 52);
   --rojo: rgb(217, 48, 28);
+
+  --gris-bg: #f4f7fb;
+  --gris-texto: #6b7280;
+  --gris-borde: #e5e7eb;
 }
 
+/* 🔥 CONTENEDOR */
 .contenedor {
-  padding: 30px;
-  background: #f8fafc;
+  padding: 40px;
+  background: var(--gris-bg);
   min-height: 100vh;
 }
 
+/* 🔥 TITULOS */
 h2 {
   color: var(--azul);
-  font-size: 2rem;
+  font-size: 2.2rem;
+  font-weight: 800;
   margin-bottom: 30px;
+  letter-spacing: -0.5px;
 }
 
 h3 {
   color: var(--azul);
-  margin: 25px 0;
+  margin: 35px 0 20px;
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 
+/* 🔥 CARD */
 .unidad-card {
   background: white;
   border-radius: 18px;
-  padding: 20px;
+  padding: 22px 24px;
   margin-bottom: 18px;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 8px 20px rgba(15, 28, 52, 0.08);
+
+  border: 1px solid var(--gris-borde);
+
+  box-shadow: 0 10px 25px rgba(15, 28, 52, 0.06);
+
+  transition: all 0.25s ease;
 }
 
+/* ✨ HOVER PRO */
+.unidad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(15, 28, 52, 0.12);
+}
+
+/* 🔥 INFO */
 .unidad-card h4 {
-  margin: 0 0 8px;
+  margin: 0 0 6px;
   color: var(--azul);
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .unidad-card p {
   margin: 0;
-  color: #6b7280;
+  color: var(--gris-texto);
+  font-size: 0.95rem;
 }
 
+/* 🔥 DETALLES */
+small {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.85rem;
+  color: #374151;
+}
+
+/* 🔥 ACCIONES */
 .acciones {
   display: flex;
   gap: 12px;
   align-items: center;
 }
 
+/* 🔥 SELECT */
 select {
   padding: 10px 14px;
   border-radius: 10px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--gris-borde);
   min-width: 220px;
+
+  font-size: 0.9rem;
+  outline: none;
+
+  transition: all 0.2s ease;
 }
 
+select:focus {
+  border-color: var(--naranja);
+  box-shadow: 0 0 0 3px rgba(254, 109, 3, 0.15);
+}
+
+/* 🔥 BOTONES */
 button {
   border: none;
   padding: 12px 18px;
   border-radius: 12px;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
+  font-size: 0.9rem;
+
+  transition: all 0.25s ease;
 }
 
+/* 🟠 ALQUILAR */
 .btn-alquilar {
-  background: var(--naranja);
+  background: linear-gradient(135deg, var(--naranja), #ff7f2a);
   color: white;
+  box-shadow: 0 6px 18px rgba(254, 109, 3, 0.25);
 }
 
+.btn-alquilar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(254, 109, 3, 0.35);
+}
+
+/* 🔴 DESALQUILAR */
 .btn-desalquilar {
-  background: var(--rojo);
+  background: linear-gradient(135deg, var(--rojo), #ff5a3c);
   color: white;
+  box-shadow: 0 6px 18px rgba(217, 48, 28, 0.25);
 }
 
-button:hover {
-  opacity: 0.9;
+.btn-desalquilar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(217, 48, 28, 0.35);
 }
 
+/* 🔥 ESTADOS VISUALES */
 .disponible {
   border-left: 6px solid #22c55e;
+  position: relative;
 }
 
 .ocupada {
-  border-left: 6px solid #ef4444;
+  border-left: 6px solid var(--rojo);
+  position: relative;
 }
 
-small {
-  display: block;
-  margin-top: 8px;
-  color: #374151;
+/* 🔥 BADGE DE ESTADO (extra pro) */
+.disponible::after {
+  content: "Disponible";
+  position: absolute;
+  top: 12px;
+  right: 18px;
+
+  background: #dcfce7;
+  color: #166534;
+
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.ocupada::after {
+  content: "Ocupado";
+  position: absolute;
+  top: 12px;
+  right: 18px;
+
+  background: #fee2e2;
+  color: #991b1b;
+
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+/* 🔥 SECCIONES */
+section {
+  margin-bottom: 40px;
+}
+
+/* 🔥 RESPONSIVE */
+@media (max-width: 768px) {
+  .unidad-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  .acciones {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  select,
+  button {
+    width: 100%;
+  }
 }

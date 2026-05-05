@@ -2,14 +2,45 @@
 
 <div class="form">
 
+  <!-- 🔥 SELECTOR DE IMAGEN -->
+  <div class="selector-imagen">
+
+    <button (click)="anterior()">⬅</button>
+
+    <div class="imagen-container">
+      <img [src]="imagenes[index]" />
+    </div>
+
+    <button (click)="siguiente()">➡</button>
+
+  </div>
+
+  <!-- 🔥 BOTÓN ELEGIR -->
+  <button (click)="elegirImagen()" class="btn-elegir">
+    Elegir Inmueble
+  </button>
+
+  <!-- 🔥 PREVIEW SELECCIONADA -->
+  <div *ngIf="inmueble.imagenUrl" class="preview">
+    <h4>Seleccionada:</h4>
+    <img [src]="inmueble.imagenUrl">
+  </div>
+
+  <!-- 🔥 FORM -->
   <input [(ngModel)]="inmueble.nombre" placeholder="Nombre">
-  <input [(ngModel)]="inmueble.tipo" placeholder="Tipo">
+
+  <select [(ngModel)]="inmueble.tipo">
+    <option value="RESIDENCIAL">Residencial</option>
+    <option value="COMERCIAL">Comercial</option>
+    <option value="INDUSTRIAL">Industrial</option>
+    <option value="ESPECIAL">Especial</option>
+  </select>
+
   <input [(ngModel)]="inmueble.direccion" placeholder="Dirección">
   <input [(ngModel)]="inmueble.numero" placeholder="Número">
-  <input [(ngModel)]="inmueble.cp" placeholder="Código Postal">
+  <input [(ngModel)]="inmueble.codigoPostal" placeholder="Código Postal">
   <input [(ngModel)]="inmueble.ciudad" placeholder="Ciudad">
   <input [(ngModel)]="inmueble.descripcion" placeholder="Descripción">
-  <input [(ngModel)]="inmueble.imagen" placeholder="URL Imagen">
 
   <button (click)="guardar()">Guardar</button>
 

@@ -14,16 +14,21 @@
       
       <div class="image-wrapper">
         <span class="badge-tipo">{{i.tipo}}</span>
-        <img [src]="i.imagen" alt="Propiedad RentAltoke">
+
+        <!-- 🔥 IMPORTANTE -->
+        <img [src]="i.imagenUrl" alt="Propiedad">
+
         <div class="city-tag">
-          <i class="pin-icon">📍</i> {{i.ciudad}}
+          📍 {{i.ciudad}}
         </div>
       </div>
 
       <div class="info">
         <div class="header-info">
           <h3>{{i.nombre}}</h3>
-          <span class="cp-label">CP {{i.cp}}</span>
+
+          <!-- 🔥 IMPORTANTE -->
+          <span class="cp-label">CP {{i.codigoPostal}}</span>
         </div>
         
         <p class="direccion">{{i.direccion}} {{i.numero}}</p>
@@ -31,15 +36,15 @@
 
         <div class="card-footer">
           <button [routerLink]="['/unidades', i.id]" class="btn-main">
-            Explorar Unidades <i>→</i>
+            Explorar Unidades →
           </button>
           
           <div class="action-buttons">
-            <button (click)="editar(i.id)" class="btn-icon edit" title="Editar">
-              <i class="fas fa-edit"></i> ✏️
+            <button (click)="editar(i.id)" class="btn-icon edit">
+              ✏️
             </button>
-            <button (click)="eliminar(i.id)" class="btn-icon delete" title="Eliminar">
-              <i class="fas fa-trash"></i> ❌
+            <button (click)="eliminar(i.id)" class="btn-icon delete">
+              ❌
             </button>
           </div>
         </div>

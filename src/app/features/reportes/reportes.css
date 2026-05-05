@@ -1,0 +1,117 @@
+:root {
+  --naranja: rgb(254, 109, 3);
+  --azul: rgb(15, 28, 52);
+  --rojo: rgb(217, 48, 28);
+}
+
+/* CONTENEDOR */
+.reportes-container {
+  padding: 20px;
+  background: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* TITULO */
+.titulo {
+  color: var(--azul);
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* GRID DE CARDS */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 por fila */
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* HEADER */
+.card-header {
+  background: var(--azul);
+  color: white;
+  padding: 10px;
+  border-radius: 12px 12px 0 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.codigo {
+  font-weight: bold;
+}
+
+.tipo {
+  background: var(--naranja);
+  padding: 2px 6px;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+/* BODY */
+.card-body {
+  padding: 12px;
+  font-size: 13px;
+}
+
+.card-body p {
+  margin: 4px 0;
+}
+
+.inquilino {
+  color: var(--azul);
+  font-weight: 600;
+}
+
+/* COSTOS GRID */
+.grid-costos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+/* TOTAL */
+.total {
+  margin-top: 10px;
+  font-weight: bold;
+  color: var(--naranja);
+  font-size: 14px;
+}
+
+/* FOOTER */
+.card-footer {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+/* BOTON */
+.btn-reporte {
+  background: var(--naranja);
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: 0.2s;
+}
+
+.btn-reporte:hover {
+  background: var(--rojo);
+}

@@ -3,189 +3,219 @@
   --azul: rgb(15, 28, 52);
   --rojo: rgb(217, 48, 28);
   --gris: #f4f6f9;
+  --blanco: #ffffff;
+  --texto-sec: #6c757d;
 }
 
-/* Título */
+/* =========================
+   HEADER
+========================= */
 h2 {
   color: var(--azul);
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 20px;
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin: 25px 20px 10px;
+  letter-spacing: -0.5px;
 }
 
-/* Botón agregar */
+/* =========================
+   BOTÓN PRINCIPAL
+========================= */
 .btn-add {
   margin: 0 20px 20px;
   background: linear-gradient(135deg, var(--naranja), var(--rojo));
   color: white;
   border: none;
-  padding: 14px 22px;
-  border-radius: 12px;
+  padding: 14px 24px;
+  border-radius: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: 0.3s ease;
-  box-shadow: 0 6px 18px rgba(254, 109, 3, 0.25);
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(254, 109, 3, 0.25);
 }
 
 .btn-add:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(217, 48, 28, 0.3);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(217, 48, 28, 0.35);
 }
 
-/* Grid */
+/* =========================
+   GRID
+========================= */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
   padding: 20px;
   background: var(--gris);
 }
 
-/* Card */
+/* =========================
+   CARD
+========================= */
 .card {
-  background: white;
-  border-radius: 24px;
+  background: var(--blanco);
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(15, 28, 52, 0.08);
-  transition: all 0.3s ease;
-  border: 1px solid rgba(15, 28, 52, 0.05);
+  box-shadow: 0 12px 30px rgba(15, 28, 52, 0.08);
+  transition: all 0.35s ease;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 18px 40px rgba(15, 28, 52, 0.18);
+  transform: translateY(-10px);
+  box-shadow: 0 25px 55px rgba(15, 28, 52, 0.18);
 }
 
-/* Imagen */
+/* Glow effect elegante */
+.card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(254, 109, 3, 0.15),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.4s;
+  pointer-events: none; /* 🔥 CLAVE */
+}
+
+.card:hover::after {
+  opacity: 1;
+}
+
+/* =========================
+   IMAGEN
+========================= */
 .image-container {
   width: 100%;
-  height: 280px; /* altura uniforme ideal */
+  height: 260px;
   background: #e9ecef;
   position: relative;
   overflow: hidden;
 }
 
-/* Imagen adaptable */
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* llena sin deformar */
-  object-position: center; /* centra mejor */
-  transition: transform 0.4s ease;
-  border-bottom: 5px solid var(--naranja);
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  border-bottom: 4px solid var(--naranja);
 }
 
-/* zoom hover */
 .card:hover .image-container img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-/* Badge */
+/* Overlay sutil */
+.image-container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.25), transparent);
+}
+
+/* =========================
+   BADGE
+========================= */
 .tipo-badge {
   position: absolute;
   top: 15px;
   right: 15px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   background: rgba(15, 28, 52, 0.85);
   color: white;
   border-radius: 30px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  backdrop-filter: blur(4px);
-  z-index: 2;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  backdrop-filter: blur(6px);
 }
 
-/* Info */
+/* =========================
+   INFO
+========================= */
 .info {
-  padding: 25px;
+  padding: 24px;
   text-align: center;
   flex: 1;
 }
 
 .info h3 {
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   color: var(--azul);
   font-weight: 800;
 }
 
+/* línea decorativa */
+.info h3::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--naranja);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
 .info .email {
-  color: #6c757d;
-  font-size: 0.95rem;
-  margin: 10px 0 20px;
-  word-break: break-word;
+  color: var(--texto-sec);
+  font-size: 0.9rem;
+  margin: 12px 0 18px;
 }
 
-/* Datos */
-.detalles-pago {
-  background: linear-gradient(135deg, #f8f9fa, #eef2f7);
-  border-radius: 16px;
-  padding: 18px;
-  display: flex;
-  justify-content: space-around;
-  margin-bottom: 18px;
-  border: 1px solid #e6ebf0;
-}
-
-.dato {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.label {
-  font-size: 0.75rem;
-  color: #6c757d;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.valor {
-  font-weight: 700;
-  color: var(--azul);
-  font-size: 1rem;
-}
-
-/* DNI */
+/* =========================
+   DATOS
+========================= */
 .info p {
   color: #495057;
-  margin-top: 10px;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  margin: 6px 0;
 }
 
-/* Botón inferior */
+/* =========================
+   BOTÓN FINAL
+========================= */
 .btn-contacto {
   width: calc(100% - 30px);
-  margin: 0 15px 15px;
+  margin: 0 15px 18px;
   padding: 14px;
   background: var(--azul);
   color: white;
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
+  letter-spacing: 0.3px;
 }
 
 .btn-contacto:hover {
   background: var(--naranja);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(254, 109, 3, 0.3);
 }
 
-/* Responsive */
+/* =========================
+   RESPONSIVE
+========================= */
 @media (max-width: 768px) {
+  h2 {
+    font-size: 1.8rem;
+  }
+
   .image-container {
-    height: 240px;
+    height: 220px;
   }
 
-  .detalles-pago {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .info h3 {
-    font-size: 1.2rem;
+  .card:hover {
+    transform: none;
   }
 }

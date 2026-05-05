@@ -1,22 +1,28 @@
 <h2>Unidades de {{inmueble?.nombre}}</h2>
+
 <button (click)="nuevaUnidad()" class="btn-add">
   ➕ Añadir Unidad
 </button>
+
 <div class="grid">
 
   <div class="card" *ngFor="let u of unidades">
 
     <h3>{{u.tipo}}</h3>
 
-    <p>Planta: {{u.planta}}</p>
-    <p>Letra: {{u.letra}}</p>
+    <p><strong>Planta:</strong> {{u.planta}}</p>
+    <p><strong>Código:</strong> {{u.codigo}}</p>
 
-    <span class="estado" [ngClass]="u.estado.toLowerCase()">
+    <span class="estado" [ngClass]="u.estado?.toLowerCase()">
       {{u.estado}}
     </span>
+
     <div class="actions">
-      <button (click)="eliminarUnidad(u.id)" class="btn-delete">❌</button>
+      <button (click)="eliminarUnidad(u.id)" class="btn-delete">
+        ❌ Eliminar
+      </button>
     </div>
+
   </div>
 
 </div>
