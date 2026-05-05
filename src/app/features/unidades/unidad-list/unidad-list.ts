@@ -1,55 +1,54 @@
-import { Component } from '@angular/core';
+import { Component,ChangeDetectorRef,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { InmuebleService } from '../../inmuebles/inmueble.service';
-import { ChangeDetectorRef } from '@angular/core';
-import { Router } from '@angular/router';
 import { UnidadService } from '../unidad.service';
+
 @Component({
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './unidad-list.html',
   styleUrls: ['./unidad-list.css']
 })
-export class UnidadList {
+export class UnidadList implements OnInit {
 
   unidades: any[] = [];
   inmueble: any;
   inmuebleId!: number;
-constructor(
-  private route: ActivatedRoute,
-  private inmuebleService: InmuebleService,
-  private cdr: ChangeDetectorRef,
-  private router: Router,
-  private unidadService: UnidadService,
-) {}
 
-async ngOnInit() {
-  this.inmuebleId = +this.route.snapshot.params['id'];
+  constructor(
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private inmuebleService: InmuebleService,
+    private unidadService: UnidadService,
+    private router: Router
+  ) {}
 
-  await this.inmuebleService.loadData();
+  ngOnInit() {
+    this.inmuebleId = +this.route.snapshot.params['id'];
 
-  this.inmueble = this.inmuebleService.getById(this.inmuebleId);
-  this.unidades = this.inmueble?.unidades || [];
+    // 🔥 traer inmueble
+    this.inmuebleService.getById(this.inmuebleId).subscribe(data => {
+      this.inmueble = data;
+    });
 
-  this.cdr.detectChanges(); // 🔥 CLAVE
-}
+    // 🔥 traer unidades desde backend
+    this.unidadService.getByInmueble(this.inmuebleId).subscribe(data => {
+      this.unidades = data;
+      this.cdr.detectChanges(); 
+    });
+  
+
+  }
 
   nuevaUnidad() {
     this.router.navigate(['/unidades', this.inmuebleId, 'nueva']);
   }
 
-eliminarUnidad(uid: number) {
-  // eliminar directamente del inmueble
-  this.inmueble.unidades = this.inmueble.unidades.filter(
-    (u: any) => u.id !== uid
-  );
-
-  // guardar cambios
-  this.inmuebleService.update(this.inmueble);
-
-  // refrescar vista
-  this.unidades = [...this.inmueble.unidades];
-}
-
+  eliminarUnidad(uid: number) {
+    this.unidadService.delete(uid).subscribe(() => {
+      // 🔥 actualizar lista en frontend
+      this.unidades = this.unidades.filter(u => u.id !== uid);
+    });
+  }
 }

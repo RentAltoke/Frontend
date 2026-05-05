@@ -1,1 +1,43 @@
-<p>caja works!</p>
+<div class="caja-container">
+
+<h2>
+  Movimientos de 
+  <span class="nombre">{{ inquilinoNombre }}</span>
+</h2>
+
+<p class="subtitulo">
+  Historial de movimientos financieros
+</p>
+  <table class="tabla-movimientos">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Tipo</th>
+        <th>Categoría</th>
+        <th>Inmueble</th>
+        <th>Unidad</th>
+        <th>Descripción</th>
+        <th>Monto</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let m of movimientos">
+        <td>{{ m.fecha }}</td>
+        <td>
+          <span class="badge" [ngClass]="m.tipo === 'INGRESO' ? 'ingreso-badge' : 'gasto-badge'">
+            {{ m.tipo }}
+          </span>
+        </td>
+        <td>{{ m.categoria }}</td>
+        <td>{{ m.inmueble }}</td>
+        <td>{{ m.unidad }}</td>
+        <td class="descripcion">{{ m.descripcion }}</td>
+        <td [ngClass]="m.tipo === 'INGRESO' ? 'ingreso' : 'gasto'">
+          S/ {{ m.monto }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,1 +1,48 @@
-<p>reportes works!</p>
+<div class="reportes-container">
+
+  <h2 class="titulo">📊 Reportes de Recibos</h2>
+
+  <div class="cards-container">
+
+    <div class="card" *ngFor="let r of recibos">
+
+      <div class="card-header">
+        <span class="codigo">{{ r.codigo }}</span>
+        <span class="tipo">{{ r.tipo }}</span>
+      </div>
+
+      <div class="card-body">
+
+        <p><strong>Unidad:</strong> {{ r.unidad }}</p>
+        <p><strong>Inmueble:</strong> {{ r.inmueble }}</p>
+        <p class="inquilino"><strong>Inquilino:</strong> {{ r.inquilino }}</p>
+
+        <hr>
+
+        <div class="grid-costos">
+          <span>Renta: S/ {{ r.renta || 0 }}</span>
+          <span>Agua: S/ {{ r.agua || 0 }}</span>
+          <span>Luz: S/ {{ r.luz || 0 }}</span>
+          <span>Mantenimiento: S/ {{ r.mantenimiento || 0 }}</span>
+          <span>IPC: S/ {{ r.ipc || 0 }}</span>
+          <span>IGV: S/ {{ r.igv || 0 }}</span>
+          <span>Otros: S/ {{ r.otros || 0 }}</span>
+        </div>
+
+        <div class="total">
+          Total: S/ {{ r.total | number:'1.2-2' }}
+        </div>
+
+      </div>
+
+      <div class="card-footer">
+<button class="btn-reporte" (click)="generarPDF(r)">
+  📄 Generar Reporte
+</button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

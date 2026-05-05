@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,33 +10,87 @@ import { InmuebleService } from '../inmueble.service';
   templateUrl: './inmueble-form.html',
   styleUrls: ['./inmueble-form.css']
 })
-export class InmuebleForm {
+export class InmuebleForm implements OnInit {
 
   inmueble: any = {};
+  id!: number;
+imagenes: string[] = [
+  '/inmuebles_nuevos/15.jpg',
+  '/inmuebles_nuevos/16.jpg',
+  '/inmuebles_nuevos/17.jpg',
+  '/inmuebles_nuevos/18.jpg',
+  
+  '/inmuebles_nuevos/25.jpg',
+  '/inmuebles_nuevos/26.jpg',
+  '/inmuebles_nuevos/27.jpg',
+  '/inmuebles_nuevos/28.jpg',
 
+  '/inmuebles_nuevos/37.jpg',
+  '/inmuebles_nuevos/38.jpg',
+  '/inmuebles_nuevos/39.jpg',
+  '/inmuebles_nuevos/310.jpg',
+
+  '/inmuebles_nuevos/46.jpg',
+  '/inmuebles_nuevos/47.jpg',
+  '/inmuebles_nuevos/48.jpg',
+  '/inmuebles_nuevos/49.jpg',
+  '/inmuebles_nuevos/410.jpg',
+  '/inmuebles_nuevos/411.jpg',
+
+
+
+];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private service: InmuebleService
   ) {}
 
-  async ngOnInit() {
-    await this.service.loadData();
 
-    const id = this.route.snapshot.params['id'];
+  seleccionarImagen(img: string) {
+  this.inmueble.imagenUrl = img;
+}
 
-    if (id) {
-      this.inmueble = this.service.getById(+id);
+index: number = 0;
+
+// 🔥 navegar
+siguiente() {
+  this.index = (this.index + 1) % this.imagenes.length;
+}
+
+anterior() {
+  this.index = (this.index - 1 + this.imagenes.length) % this.imagenes.length;
+}
+
+// 🔥 elegir imagen
+elegirImagen() {
+  this.inmueble.imagenUrl = this.imagenes[this.index];
+}
+
+  ngOnInit() {
+    const idParam = this.route.snapshot.params['id'];
+
+    if (idParam) {
+      this.id = +idParam;
+
+      // 🔥 cargar desde backend
+      this.service.getById(this.id).subscribe(data => {
+        this.inmueble = data;
+      });
     }
   }
 
   guardar() {
     if (this.inmueble.id) {
-      this.service.update(this.inmueble);
+      // 🔥 UPDATE
+      this.service.update(this.inmueble.id, this.inmueble).subscribe(() => {
+        this.router.navigate(['/inmuebles']);
+      });
     } else {
-      this.service.add(this.inmueble);
+      // 🔥 CREATE
+      this.service.add(this.inmueble).subscribe(() => {
+        this.router.navigate(['/inmuebles']);
+      });
     }
-
-    this.router.navigate(['/inmuebles']);
   }
 }

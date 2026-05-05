@@ -1,50 +1,38 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InmuebleService {
 
-  private inmuebles: any[] = [];
+  private apiUrl = 'http://localhost:8081/api/inmuebles';
 
-  // 🔥 cargar JSON UNA sola vez
-async loadData() {
-  if (this.inmuebles.length === 0) {
+  constructor(private http: HttpClient) {}
 
-    let url = '';
-
-    if (typeof window !== 'undefined') {
-      // 🌐 navegador
-      url = '/data/inmuebles.json';
-    } else {
-      // 🖥️ SSR (Node)
-      url = 'http://localhost:4200/data/inmuebles.json';
-    }
-
-    const res = await fetch(url);
-    this.inmuebles = await res.json();
-  }
-}
-
-  getAll() {
-    return this.inmuebles;
+  // 🔥 GET ALL
+  getAll(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
 
-  add(inmueble: any) {
-    inmueble.id = Date.now();
-    this.inmuebles.push(inmueble);
+  // 🔥 GET BY ID
+  getById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/${id}`);
   }
 
-  delete(id: number) {
-    this.inmuebles = this.inmuebles.filter(i => i.id !== id);
+  // 🔥 CREATE
+  add(inmueble: any): Observable<any> {
+    return this.http.post(this.apiUrl, inmueble);
   }
 
-  getById(id: number) {
-    return this.inmuebles.find(i => i.id == id);
+  // 🔥 UPDATE
+  update(id: number, inmueble: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, inmueble);
   }
 
-  update(inmueble: any) {
-    const index = this.inmuebles.findIndex(i => i.id === inmueble.id);
-    this.inmuebles[index] = inmueble;
+  // 🔥 DELETE
+  delete(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
   }
 }

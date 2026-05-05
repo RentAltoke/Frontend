@@ -1,68 +1,55 @@
-<h2>Nuevo Inquilino</h2>
+<h2>Formulario Inquilino</h2>
 
-<div class="form-container">
-  <div class="form-header">
-    <h2>Registrar Nuevo Inquilino</h2>
-    <p>Complete la información para el nuevo contrato de arrendamiento.</p>
+<div class="form">
+
+  <!-- SELECTOR -->
+  <div class="selector-imagen">
+
+    <button type="button" (click)="anterior()">⬅</button>
+
+    <div class="imagen-container">
+      <img [src]="imagenes[index]" />
+    </div>
+
+    <button type="button" (click)="siguiente()">➡</button>
+
   </div>
 
-  <form (ngSubmit)="guardarInquilino()" #inquilinoForm="ngForm">
-    <div class="form-section">
-      <h3><i class="fa fa-user"></i> Datos Personales</h3>
-      <div class="form-grid">
-        <div class="field">
-          <label>Tipo de Persona</label>
-          <select [(ngModel)]="nuevoInquilino.tipo_persona" name="tipo_persona">
-            <option value="NATURAL">Persona Natural</option>
-            <option value="JURIDICA">Persona Jurídica</option>
-          </select>
-        </div>
+  <!-- ELEGIR -->
+  <button type="button" (click)="elegirImagen()" class="btn-elegir">
+    Elegir Imagen
+  </button>
 
-        <div class="field">
-          <label>Nombre Completo / Razón Social</label>
-          <input type="text" [(ngModel)]="nuevoInquilino.datos_personales.nombre_completo" name="nombre" required>
-        </div>
+  <!-- PREVIEW -->
+  <div *ngIf="nuevoInquilino.foto_url" class="preview">
+    <h4>Seleccionada:</h4>
+    <img [src]="nuevoInquilino.foto_url">
+  </div>
 
-        <div class="field">
-          <label>DNI / RUC</label>
-          <input type="text" [(ngModel)]="nuevoInquilino.datos_personales.documento_identidad" name="documento" required>
-        </div>
+  <!-- FORM -->
+  <select [(ngModel)]="nuevoInquilino.tipoPersona" name="tipo">
+    <option value="NATURAL">Persona Natural</option>
+    <option value="JURIDICA">Persona Jurídica</option>
+  </select>
 
-        <div class="field">
-          <label>Email de Contacto</label>
-          <input type="email" [(ngModel)]="nuevoInquilino.datos_personales.email" name="email">
-        </div>
-      </div>
-    </div>
+  <input [(ngModel)]="nuevoInquilino.nombreCompleto" name="nombre" placeholder="Nombre completo">
 
-    <div class="form-section">
-      <h3><i class="fa fa-file-contract"></i> Detalles del Contrato</h3>
-      <div class="form-grid">
-        <div class="field">
-          <label>ID Inmueble (Edificio)</label>
-          <input type="number" [(ngModel)]="nuevoInquilino.contrato.id_inmueble" name="id_inmueble" required>
-        </div>
+  <input [(ngModel)]="nuevoInquilino.documentoIdentidad" name="doc" placeholder="DNI / RUC">
 
-        <div class="field">
-          <label>ID Unidad (Piso/Local)</label>
-          <input type="number" [(ngModel)]="nuevoInquilino.contrato.id_unidad_alquilada" name="id_unidad" required>
-        </div>
+  <input [(ngModel)]="nuevoInquilino.telefono" name="tel" placeholder="Teléfono">
 
-        <div class="field">
-          <label>Monto Renta (S/)</label>
-          <input type="number" [(ngModel)]="nuevoInquilino.contrato.monto_renta_pactado" name="renta" required>
-        </div>
+  <input [(ngModel)]="nuevoInquilino.email" name="email" placeholder="Email">
 
-        <div class="field">
-          <label>Día de Pago</label>
-          <input type="number" [(ngModel)]="nuevoInquilino.contrato.dia_pago" name="dia_pago" min="1" max="31">
-        </div>
-      </div>
-    </div>
+  <!-- CONTRATO -->
+  <h3>Contrato</h3>
 
-    <div class="form-actions">
-      <button type="button" class="btn-secondary" (click)="cancelar()">Cancelar</button>
-      <button type="submit" class="btn-primary" [disabled]="!inquilinoForm.valid">Guardar Inquilino</button>
-    </div>
-  </form>
+  <input [(ngModel)]="contrato.unidad_id" name="unidad" placeholder="ID Unidad">
+
+  <input [(ngModel)]="contrato.monto_renta" name="renta" type="number" placeholder="Monto renta">
+
+  <input [(ngModel)]="contrato.dia_pago" name="dia" type="number" placeholder="Día de pago">
+
+  <!-- GUARDAR -->
+  <button type="button" (click)="guardar()">Guardar Inquilino</button>
+
 </div>

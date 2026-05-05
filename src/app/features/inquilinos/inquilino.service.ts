@@ -1,31 +1,32 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+export interface Inquilino {
+  id: number;
+  codigo: string;
+  nombreCompleto: string;
+  email: string;
+  documentoIdentidad: string;
+  telefono: string;
+  tipoPersona: string;
+  activo: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class InquilinoService {
 
-  private inquilinos: any[] = [];
+  private apiUrl = 'http://localhost:8081/api/inquilinos';
 
-  getAll() {
-    return this.inquilinos;
+  constructor(private http: HttpClient) {}
+
+  listar(): Observable<Inquilino[]> {
+    return this.http.get<Inquilino[]>(this.apiUrl);
   }
 
-  add(inquilino: any) {
-    inquilino.id = Date.now();
-    this.inquilinos.push(inquilino);
-  }
-
-  delete(id: number) {
-    this.inquilinos = this.inquilinos.filter(i => i.id !== id);
-  }
-
-  getById(id: number) {
-    return this.inquilinos.find(i => i.id == id);
-  }
-
-  update(inquilino: any) {
-    const index = this.inquilinos.findIndex(i => i.id === inquilino.id);
-    this.inquilinos[index] = inquilino;
+  morosos(): Observable<Inquilino[]> {
+    return this.http.get<Inquilino[]>(`${this.apiUrl}/morosos`);
   }
 }

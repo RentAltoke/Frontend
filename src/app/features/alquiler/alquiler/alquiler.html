@@ -6,16 +6,24 @@
     <h3>🟢 Unidades Disponibles</h3>
 
     <div class="unidad-card disponible" *ngFor="let unidad of unidadesDisponibles">
+      
       <div>
         <h4>{{ unidad.inmuebleNombre }}</h4>
-        <p>{{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.letra }}</p>
+
+        <!-- 🔥 CAMBIO: letra → codigo -->
+        <p>
+          {{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.codigo }}
+        </p>
       </div>
 
       <div class="acciones">
+        
+        <!-- 🔥 CAMBIO: nombreCompleto directo -->
         <select [(ngModel)]="seleccionInquilino[unidad.id]">
           <option value="">Seleccionar inquilino</option>
+
           <option *ngFor="let inq of inquilinos" [value]="inq.id">
-            {{ inq.datos_personales.nombre_completo }}
+            {{ inq.nombreCompleto }}
           </option>
         </select>
 
@@ -25,6 +33,7 @@
           (click)="alquilarUnidad(unidad)">
           Alquilar
         </button>
+
       </div>
     </div>
   </section>
@@ -34,27 +43,27 @@
     <h3>🔴 Unidades Ocupadas</h3>
 
     <div class="unidad-card ocupada" *ngFor="let unidad of unidadesOcupadas">
+      
       <div>
         <h4>{{ unidad.inmuebleNombre }}</h4>
-        <p>{{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.letra }}</p>
+
+        <p>
+          {{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.codigo }}
+        </p>
 
         <!-- 👤 Inquilino -->
         <small *ngIf="unidad.inquilino">
           Ocupado por: 
-          <strong>{{ unidad.inquilino.datos_personales.nombre_completo }}</strong>
-        </small>
-
-        <!-- 📅 Contrato -->
-        <small *ngIf="unidad.contrato">
-          <br>
-          Contrato: {{ unidad.contrato.fecha_inicio }} → {{ unidad.contrato.fecha_final }}
+          <strong>{{ unidad.inquilino?.nombreCompleto }}</strong>
         </small>
 
         <!-- 💰 Renta -->
         <small *ngIf="unidad.contrato">
           <br>
-          Renta: {{ unidad.contrato.monto_renta_pactado | currency:'PEN':'S/ ' }}
+          Renta: 
+          {{ unidad.contrato?.monto_renta_pactado | currency:'PEN':'S/ ' }}
         </small>
+
       </div>
 
       <button 
@@ -62,6 +71,7 @@
         (click)="desalquilarUnidad(unidad)">
         Desalquilar
       </button>
+
     </div>
   </section>
 </div>

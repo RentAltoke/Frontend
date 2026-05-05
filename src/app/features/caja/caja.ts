@@ -1,9 +1,74 @@
-import { Component } from '@angular/core';
+import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-caja',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './caja.html',
-  styleUrl: './caja.css',
+  styleUrls: ['./caja.css'],
 })
-export class Caja {}
+export class Caja implements OnInit {
+
+  inquilinoId: number | null = null;
+
+  inquilinoNombre: string = '';
+  movimientos: any[] = [];
+
+constructor(
+  private route: ActivatedRoute,
+  private http: HttpClient,
+  private cdr: ChangeDetectorRef
+) {}
+
+ngOnInit(): void {
+  this.route.paramMap.subscribe(params => {
+    this.inquilinoId = Number(params.get('id'));
+
+    console.log('Inquilino ID:', this.inquilinoId);
+    this.cargarInquilino();
+    this.cargarMovimientos();
+  });
+}
+
+cargarInquilino() {
+  if (!this.inquilinoId) return;
+
+  this.http.get<any[]>('http://localhost:8081/api/inquilinos')
+    .subscribe(data => {
+
+      const inquilino = data.find(i => i.id === this.inquilinoId);
+
+      this.inquilinoNombre = inquilino
+        ? inquilino.nombreCompleto
+        : 'Inquilino no encontrado';
+
+    });
+}
+
+cargarMovimientos() {
+  if (!this.inquilinoId) return;
+
+  this.http.get<any[]>(`http://localhost:8081/api/movimientos/inquilino/${this.inquilinoId}`)
+    .subscribe(data => {
+
+      this.movimientos = data.map(m => ({
+        
+        codigo: m.codigo,
+        fecha: m.fecha,
+        tipo: m.tipo,
+        categoria: m.categoria,
+        monto: m.monto,
+        descripcion: m.descripcion,
+
+        // 🔥 datos importantes
+        unidad: m.unidad?.codigo,
+        inmueble: m.unidad?.inmueble?.nombre,
+        banco: m.cuenta?.banco?.nombre
+      }));
+     this.cdr.detectChanges();
+    });
+}
+}

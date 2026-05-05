@@ -1,0 +1,123 @@
+:host {
+  --naranja: rgb(254, 109, 3);
+  --azul: rgb(15, 28, 52);
+  --rojo: rgb(217, 48, 28);
+  --gris: #f4f6f9;
+  --blanco: #ffffff;
+  --texto-sec: #6c757d;
+}
+
+/* CONTENEDOR */
+.caja-container {
+  padding: 30px;
+  background: var(--gris);
+  min-height: 100vh;
+}
+
+/* TITULO */
+h2 {
+  color: var(--azul);
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+/* TABLA */
+.tabla-movimientos {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--blanco);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 28, 52, 0.1);
+}
+
+/* HEADER */
+.tabla-movimientos thead {
+  background: var(--azul);
+  color: white;
+}
+
+.tabla-movimientos th {
+  padding: 16px;
+  text-align: left;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+/* FILAS */
+.tabla-movimientos td {
+  padding: 14px 16px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* EFECTO HOVER */
+.tabla-movimientos tbody tr {
+  transition: all 0.25s ease;
+}
+
+.tabla-movimientos tbody tr:hover {
+  background: rgba(254, 109, 3, 0.08);
+  transform: scale(1.01);
+}
+
+/* LINEAS SUAVES */
+.tabla-movimientos tbody tr:not(:last-child) {
+  border-bottom: 1px solid #eee;
+}
+
+/* DESCRIPCIÓN */
+.descripcion {
+  color: var(--texto-sec);
+  font-size: 0.85rem;
+}
+
+/* MONTO */
+.ingreso {
+  color: var(--naranja);
+  font-weight: 700;
+}
+
+.gasto {
+  color: var(--rojo);
+  font-weight: 700;
+}
+
+/* BADGES */
+.badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.ingreso-badge {
+  background: rgba(254, 109, 3, 0.15);
+  color: var(--naranja);
+}
+
+.gasto-badge {
+  background: rgba(217, 48, 28, 0.15);
+  color: var(--rojo);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .tabla-movimientos th,
+  .tabla-movimientos td {
+    padding: 10px;
+    font-size: 0.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+.subtitulo {
+  color: #6c757d;
+  margin-top: -10px;
+  margin-bottom: 20px;
+}

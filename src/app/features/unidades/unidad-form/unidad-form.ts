@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { UnidadService } from '../unidad.service';
   imports: [CommonModule, FormsModule],
   templateUrl: './unidad-form.html'
 })
-export class UnidadForm {
+export class UnidadForm implements OnInit {
 
   unidad: any = {};
   inmuebleId!: number;
@@ -23,16 +23,21 @@ export class UnidadForm {
   ngOnInit() {
     this.inmuebleId = +this.route.snapshot.params['id'];
 
-    this.unidad.inmuebleId = this.inmuebleId;
+    // 🔥 importante para backend
+    this.unidad.inmueble = { id: this.inmuebleId };
   }
 
   guardar() {
     if (this.unidad.id) {
-      this.service.update(this.unidad);
+      // 🔥 UPDATE
+      this.service.update(this.unidad.id, this.unidad).subscribe(() => {
+        this.router.navigate(['/unidades', this.inmuebleId]);
+      });
     } else {
-      this.service.add(this.unidad);
+      // 🔥 CREATE
+      this.service.add(this.unidad).subscribe(() => {
+        this.router.navigate(['/unidades', this.inmuebleId]);
+      });
     }
-
-    this.router.navigate(['/unidades', this.inmuebleId]);
   }
 }

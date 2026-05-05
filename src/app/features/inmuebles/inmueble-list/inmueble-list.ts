@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { InmuebleService } from '../inmueble.service';
-import { ChangeDetectorRef,Component} from '@angular/core';
+import { ChangeDetectorRef,Component,OnInit } from '@angular/core';
 import { Router,RouterModule } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { Router,RouterModule } from '@angular/router';
   templateUrl: './inmueble-list.html',
   styleUrls: ['./inmueble-list.css']
 })
-export class InmuebleList {
+export class InmuebleList implements OnInit {
 
   inmuebles: any[] = [];
 
@@ -19,26 +19,32 @@ export class InmuebleList {
   private router: Router
 ) {}
 
+
 async ngOnInit() {
   console.log("ENTRA INMUEBLES");
+  this.service.getAll().subscribe(data => {
+      this.inmuebles = data;
+        console.log(this.inmuebles);
 
-  await this.service.loadData();
-  this.inmuebles = this.service.getAll();
+  this.cdr.detectChanges(); 
+    });
 
-  console.log(this.inmuebles);
 
-  this.cdr.detectChanges(); // 🔥 SOLUCIÓN
-}
-nuevo() {
-  this.router.navigate(['/inmuebles/nuevo']);
 }
 
-editar(id: number) {
-  this.router.navigate(['/inmuebles/editar', id]);
-}
 
-  eliminar(id: number) {
-    this.service.delete(id);
-    this.inmuebles = this.service.getAll();
+  nuevo() {
+    this.router.navigate(['/inmuebles/nuevo']);
   }
+  editar(id: number) {
+    this.router.navigate(['/inmuebles/editar', id]);
+  }
+
+    eliminar(id: number) {
+    this.service.delete(id).subscribe(() => {
+      // 🔥 refrescar lista después de eliminar
+      this.inmuebles = this.inmuebles.filter(i => i.id !== id);
+    });
+  }
+
 }
