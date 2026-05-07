@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-
+import { InquilinoService, Inquilino } from '../inquilino.service';
 @Component({
   selector: 'app-inquilino-form',
   standalone: true,
@@ -13,13 +13,13 @@ import { Router } from '@angular/router';
 export class InquilinoForm {
 
   imagenes: string[] = [
-    'inquilinos_nuevos/EXT-INQ-013.jpg',
-    'inquilinos_nuevos/EXT-INQ-014.jpg',
-    'inquilinos_nuevos/EXT-INQ-015.jpg',
-    'inquilinos_nuevos/EXT-INQ-016.jpg',
-    'inquilinos_nuevos/EXT-INQ-017.jpg',
-    'inquilinos_nuevos/EXT-INQ-018.jpg',
-    'inquilinos_nuevos/EXT-INQ-019.jpg'
+    'inquilinos/EXT-INQ-013.jpg',
+    'inquilinos/EXT-INQ-014.jpg',
+    'inquilinos/EXT-INQ-015.jpg',
+    'inquilinos/EXT-INQ-016.jpg',
+    'inquilinos/EXT-INQ-017.jpg',
+    'inquilinos/EXT-INQ-018.jpg',
+    'inquilinos/EXT-INQ-019.jpg'
   ];
 
   index = 0;
@@ -40,7 +40,7 @@ export class InquilinoForm {
     dia_pago: 5
   };
 
-  constructor(private router: Router) {}
+  constructor(private inquilinoService: InquilinoService,private router: Router) {}
 
   siguiente() {
     this.index = (this.index + 1) % this.imagenes.length;
@@ -57,32 +57,46 @@ export class InquilinoForm {
     this.nuevoInquilino.codigo = nombre?.replace('.jpg', '');
   }
 
-  guardar() {
-
-    // 🚨 validación básica
+guardar() {
     if (!this.nuevoInquilino.foto_url) {
       alert('Debes elegir una imagen');
       return;
     }
 
-    const nuevo = {
-      id: Date.now(), // 🔥 ID automático
-      ...this.nuevoInquilino,
-      contrato: this.contrato
-    };
+  const request = {
+     id: this.nuevoInquilino.number,
+    codigo: this.nuevoInquilino.codigo,
+    tipoPersona: this.nuevoInquilino.tipoPersona,
+    nombreCompleto: this.nuevoInquilino.nombreCompleto,
+    documentoIdentidad: this.nuevoInquilino.documentoIdentidad,
+    telefono: this.nuevoInquilino.telefono,
+    email: this.nuevoInquilino.email
+  };
 
-    const data = JSON.parse(localStorage.getItem('inquilinos') || '[]');
+  this.inquilinoService.guardar(request).subscribe({
+    next: (resp) => {
 
-    data.push(nuevo);
+      console.log(resp);
 
-    localStorage.setItem('inquilinos', JSON.stringify(data));
+      alert('Inquilino guardado en BD');
 
-    alert('Inquilino guardado (local)');
-    this.router.navigate(['/inquilinos']);
-  }
+      this.router.navigate(['/inquilinos']);
+    },
 
-  // 👇 NUEVO MÉTODO PARA VOLVER A LA LISTA DE INQUILINOS
+    error: (err) => {
+      console.error(err);
+      alert('Error al guardar');
+    }
+  });
+
+
+
+
+}
+
+
   volver() {
     this.router.navigate(['/inquilinos']);
   }
+
 }
