@@ -11,10 +11,9 @@ import { InmuebleService } from '../inmueble.service';
   styleUrls: ['./inmueble-form.css']
 })
 export class InmuebleForm implements OnInit {
-
   inmueble: any = {};
   id!: number;
-imagenes: string[] = [
+  imagenes: string[] = [
   '/inmuebles_nuevos/15.jpg',
   '/inmuebles_nuevos/16.jpg',
   '/inmuebles_nuevos/17.jpg',
@@ -36,10 +35,8 @@ imagenes: string[] = [
   '/inmuebles_nuevos/49.jpg',
   '/inmuebles_nuevos/410.jpg',
   '/inmuebles_nuevos/411.jpg',
+  ];
 
-
-
-];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -51,46 +48,46 @@ imagenes: string[] = [
   this.inmueble.imagenUrl = img;
 }
 
-index: number = 0;
+  index: number = 0;
 
-// 🔥 navegar
-siguiente() {
-  this.index = (this.index + 1) % this.imagenes.length;
-}
-
-anterior() {
-  this.index = (this.index - 1 + this.imagenes.length) % this.imagenes.length;
-}
-
-// 🔥 elegir imagen
-elegirImagen() {
-  this.inmueble.imagenUrl = this.imagenes[this.index];
-}
-
-  ngOnInit() {
-    const idParam = this.route.snapshot.params['id'];
-
-    if (idParam) {
-      this.id = +idParam;
-
-      // 🔥 cargar desde backend
-      this.service.getById(this.id).subscribe(data => {
-        this.inmueble = data;
-      });
-    }
+  // Navegar
+  siguiente() {
+    this.index = (this.index + 1) % this.imagenes.length;
   }
+
+  anterior() {
+    this.index = (this.index - 1 + this.imagenes.length) % this.imagenes.length;
+  }
+
+  // Elegir imagen
+  elegirImagen() {
+    this.inmueble.imagenUrl = this.imagenes[this.index];
+  }
+
+    ngOnInit() {
+      const idParam = this.route.snapshot.params['id'];
+
+      if (idParam) {
+        this.id = +idParam;
+        this.service.getById(this.id).subscribe(data => {
+          this.inmueble = data;
+        });
+      }
+    }
 
   guardar() {
     if (this.inmueble.id) {
-      // 🔥 UPDATE
       this.service.update(this.inmueble.id, this.inmueble).subscribe(() => {
         this.router.navigate(['/inmuebles']);
       });
     } else {
-      // 🔥 CREATE
       this.service.add(this.inmueble).subscribe(() => {
         this.router.navigate(['/inmuebles']);
       });
     }
+  }
+
+  volver() {
+    this.router.navigate(['/inmuebles']);
   }
 }

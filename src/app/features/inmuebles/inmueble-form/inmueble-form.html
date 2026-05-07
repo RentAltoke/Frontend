@@ -1,47 +1,76 @@
-<h2>Formulario Inmueble</h2>
+<div class="form-container">
+  <h2 class="form-title">Datos del Inmueble</h2>
 
-<div class="form">
-
-  <!-- 🔥 SELECTOR DE IMAGEN -->
-  <div class="selector-imagen">
-
-    <button (click)="anterior()">⬅</button>
-
-    <div class="imagen-container">
-      <img [src]="imagenes[index]" />
+  <div class="image-selector-card">
+    <div class="selector-controls">
+      <button class="nav-btn" (click)="anterior()">⬅</button>
+      
+      <div class="imagen-container">
+        <img [src]="imagenes[index]" alt="Vista previa del inmueble" />
+      </div>
+      
+      <button class="nav-btn" (click)="siguiente()">➡</button>
     </div>
 
-    <button (click)="siguiente()">➡</button>
+    <button (click)="elegirImagen()" class="btn-elegir">
+      Confirmar Imagen Seleccionada
+    </button>
 
+    <div *ngIf="inmueble.imagenUrl" class="preview">
+      <h4>Imagen Confirmada:</h4>
+      <img [src]="inmueble.imagenUrl" alt="Inmueble seleccionado">
+    </div>
   </div>
 
-  <!-- 🔥 BOTÓN ELEGIR -->
-  <button (click)="elegirImagen()" class="btn-elegir">
-    Elegir Inmueble
-  </button>
+  <div class="form-grid">
+    <div class="form-group full-width">
+      <label>Nombre del Inmueble</label>
+      <input [(ngModel)]="inmueble.nombre" placeholder="Ej: Departamento Centro">
+    </div>
 
-  <!-- 🔥 PREVIEW SELECCIONADA -->
-  <div *ngIf="inmueble.imagenUrl" class="preview">
-    <h4>Seleccionada:</h4>
-    <img [src]="inmueble.imagenUrl">
+    <div class="form-group">
+      <label>Tipo de Inmueble</label>
+      <select [(ngModel)]="inmueble.tipo">
+        <option value="RESIDENCIAL">Residencial</option>
+        <option value="COMERCIAL">Comercial</option>
+        <option value="INDUSTRIAL">Industrial</option>
+        <option value="ESPECIAL">Especial</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Ciudad</label>
+      <input [(ngModel)]="inmueble.ciudad" placeholder="Ej: Lima">
+    </div>
+
+    <div class="form-group full-width">
+      <label>Dirección</label>
+      <input [(ngModel)]="inmueble.direccion" placeholder="Calle, Avenida...">
+    </div>
+
+    <div class="form-group">
+      <label>Número</label>
+      <input [(ngModel)]="inmueble.numero" placeholder="Ej: 123">
+    </div>
+
+    <div class="form-group">
+      <label>Código Postal</label>
+      <input [(ngModel)]="inmueble.codigoPostal" placeholder="Ej: 28001">
+    </div>
+
+    <div class="form-group full-width">
+      <label>Descripción</label>
+      <input [(ngModel)]="inmueble.descripcion" placeholder="Detalles adicionales sobre el inmueble...">
+    </div>
   </div>
 
-  <!-- 🔥 FORM -->
-  <input [(ngModel)]="inmueble.nombre" placeholder="Nombre">
-
-  <select [(ngModel)]="inmueble.tipo">
-    <option value="RESIDENCIAL">Residencial</option>
-    <option value="COMERCIAL">Comercial</option>
-    <option value="INDUSTRIAL">Industrial</option>
-    <option value="ESPECIAL">Especial</option>
-  </select>
-
-  <input [(ngModel)]="inmueble.direccion" placeholder="Dirección">
-  <input [(ngModel)]="inmueble.numero" placeholder="Número">
-  <input [(ngModel)]="inmueble.codigoPostal" placeholder="Código Postal">
-  <input [(ngModel)]="inmueble.ciudad" placeholder="Ciudad">
-  <input [(ngModel)]="inmueble.descripcion" placeholder="Descripción">
-
-  <button (click)="guardar()">Guardar</button>
-
+  <div class="form-actions">
+    <button class="btn-volver" (click)="volver()">
+      Volver al listado
+    </button>
+    
+    <button class="btn-guardar" (click)="guardar()">
+      Guardar Inmueble
+    </button>
+  </div>
 </div>

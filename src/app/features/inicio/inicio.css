@@ -280,6 +280,10 @@
   color: #CBD5E1;
   padding-top: 26px;
   flex-shrink: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+  pointer-events: none;
 }
 
 /* ===== RESPONSIVE ===== */
