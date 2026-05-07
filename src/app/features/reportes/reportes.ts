@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -15,7 +15,7 @@ export class Reportes implements OnInit{
 
 
 constructor(
-  private http: HttpClient,
+  private http: HttpClient, private cdr: ChangeDetectorRef
 ) {}
 
 ngOnInit(): void {
@@ -50,6 +50,7 @@ cargarRecibos(){
     
     
       }));
+    this.cdr.detectChanges();
   });
 }
 

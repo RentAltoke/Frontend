@@ -42,7 +42,6 @@
 /* HEADER */
 .card-header {
   background: var(--azul);
-  color: white;
   padding: 10px;
   border-radius: 12px 12px 0 0;
   display: flex;
@@ -103,7 +102,7 @@
 /* BOTON */
 .btn-reporte {
   background: var(--naranja);
-  color: white;
+  color: var(--azul);
   border: none;
   padding: 8px 12px;
   border-radius: 6px;

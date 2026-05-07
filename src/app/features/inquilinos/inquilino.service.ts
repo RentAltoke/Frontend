@@ -10,7 +10,6 @@ export interface Inquilino {
   documentoIdentidad: string;
   telefono: string;
   tipoPersona: string;
-  activo: boolean;
 }
 
 @Injectable({
@@ -29,4 +28,10 @@ export class InquilinoService {
   morosos(): Observable<Inquilino[]> {
     return this.http.get<Inquilino[]>(`${this.apiUrl}/morosos`);
   }
+
+
+  guardar(inquilino: Inquilino): Observable<any> {
+    return this.http.post(this.apiUrl, inquilino);
+  }
+
 }
