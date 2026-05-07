@@ -207,7 +207,6 @@
   overflow: hidden;
 }
 
-/* Solución para el Collapse: Quitamos el gap y centramos */
 .sidebar.collapsed .menu-item {
   gap: 0; 
   padding: 14px 0;
