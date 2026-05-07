@@ -17,20 +17,20 @@
     <section class="main-section">
       <div class="section-text">
         <h2>Gestión de Inmuebles</h2>
-        <p>Visualiza y administra la jerarquía de tus edificios, pisos y locales comerciales. Mantén actualizado el inventario de unidades gestionadas.</p>
+        <p>Administra tus edificios, pisos y locales comerciales. Mantén actualizado el inventario de unidades gestionadas.</p>
         <a (click)="navegarAModulo('/inmuebles')" class="btn-primary" style="cursor: pointer;">Ver Inmuebles →</a>
       </div>
       <div class="section-image">
         <img src="inicio/inmueble.png" alt="Estructura de Inmuebles">
       </div>
     </section>
-
+s
     <div class="features-grid">
       <div class="feature-card">
         <img src="inicio/Unidades.png" alt="Inquilinos">
         <div class="card-body">
           <h3>Gestión de Inquilinos</h3>
-          <p>Registro y seguimiento de movimientos bancarios.</p>
+          <p>Administra la información, contratos y movimientos bancarios de tus inquilinos.</p>
           <a (click)="navegarAModulo('/inquilinos')" class="btn-link" style="cursor: pointer;">Ver Inquilinos →</a>
         </div>
       </div>
@@ -39,7 +39,7 @@
         <img src="inicio/recibos.png" alt="Contratos">
         <div class="card-body">
           <h3>Alquileres</h3>
-          <p>Gestiona los alquileres y monitorea la disponibilidad.</p>
+          <p>Gestiona tus alquileres y monitorea la disponibilidad de las unidades.</p>
           <a (click)="navegarAModulo('/alquiler')" class="btn-link" style="cursor: pointer;">Ir a Alquiler →</a>
         </div>
       </div>
@@ -48,7 +48,7 @@
         <img src="inicio/Diagrama.png" alt="Reportes">
         <div class="card-body">
           <h3>Reportes y Recibos</h3>
-          <p>Acceso estructurado a morosidad, historial de recibos y análisis de rentas.</p>
+          <p>Visualiza el historial y genera recibos de manera organizada.</p>
           <a (click)="navegarAModulo('/reportes')" class="btn-link" style="cursor: pointer;">Ver Reportes →</a>
         </div>
       </div>
@@ -63,25 +63,25 @@
         <div (click)="navegarAModulo('/inmuebles')" class="step" style="cursor: pointer;">
           <div class="step-number">01</div>
           <h4>Inmueble</h4>
-          <p>Registra inmuebles y unidades</p>
+          <p>Registra inmuebles y sus unidades</p>
         </div>
         <div class="step-arrow">→</div>
         <div (click)="navegarAModulo('/inquilinos')" class="step" style="cursor: pointer;">
           <div class="step-number">02</div>
-          <h4>Asignación</h4>
-          <p>Registra inquilinos</p>
+          <h4>Inquilino</h4>
+          <p>Registra inquilinos y sus contratos</p>
         </div>
         <div class="step-arrow">→</div>
         <div (click)="navegarAModulo('/alquiler')" class="step" style="cursor: pointer;">
           <div class="step-number">03</div>
           <h4>Alquiler</h4>
-          <p>Vincula inquilinos a sus unidades</p>
+          <p>Alquila las unidades a los inquilinos</p>
         </div>
         <div class="step-arrow">→</div>
         <div (click)="navegarAModulo('/reportes')" class="step" style="cursor: pointer;">
           <div class="step-number">04</div>
           <h4>Reporte</h4>
-          <p>Genera recibos y estados</p>
+          <p>Visualiza el historial y genera recibos</p>
         </div>
       </div>
     </section>

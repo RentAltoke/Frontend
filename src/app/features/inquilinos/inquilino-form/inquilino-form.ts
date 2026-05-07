@@ -80,4 +80,9 @@ export class InquilinoForm {
     alert('Inquilino guardado (local)');
     this.router.navigate(['/inquilinos']);
   }
+
+  // 👇 NUEVO MÉTODO PARA VOLVER A LA LISTA DE INQUILINOS
+  volver() {
+    this.router.navigate(['/inquilinos']);
+  }
 }

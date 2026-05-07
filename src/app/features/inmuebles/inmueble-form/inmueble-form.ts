@@ -43,14 +43,12 @@ export class InmuebleForm implements OnInit {
     private service: InmuebleService
   ) {}
 
-
   seleccionarImagen(img: string) {
-  this.inmueble.imagenUrl = img;
-}
+    this.inmueble.imagenUrl = img;
+  }
 
   index: number = 0;
 
-  // Navegar
   siguiente() {
     this.index = (this.index + 1) % this.imagenes.length;
   }
@@ -59,21 +57,20 @@ export class InmuebleForm implements OnInit {
     this.index = (this.index - 1 + this.imagenes.length) % this.imagenes.length;
   }
 
-  // Elegir imagen
   elegirImagen() {
     this.inmueble.imagenUrl = this.imagenes[this.index];
   }
 
-    ngOnInit() {
-      const idParam = this.route.snapshot.params['id'];
+  ngOnInit() {
+    const idParam = this.route.snapshot.params['id'];
 
-      if (idParam) {
-        this.id = +idParam;
-        this.service.getById(this.id).subscribe(data => {
-          this.inmueble = data;
-        });
-      }
+    if (idParam) {
+      this.id = +idParam;
+      this.service.getById(this.id).subscribe(data => {
+        this.inmueble = data;
+      });
     }
+  }
 
   guardar() {
     if (this.inmueble.id) {

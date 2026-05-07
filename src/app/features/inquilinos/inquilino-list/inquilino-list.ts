@@ -33,8 +33,5 @@ export class InquilinoListComponent implements OnInit {
         console.error('Error al cargar inquilinos:', err);
       }
     });
-   
   }
-
-
 }

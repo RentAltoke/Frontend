@@ -158,9 +158,10 @@
   font-size: 0.7rem;
   background: var(--bg-subtle);
   color: var(--text-muted);
-  padding: 2px 8px;
+  padding: 2px 3px;
   border-radius: 4px;
   font-weight: 600;
+  align-self: flex-start;
 }
 
 .direccion {
@@ -187,6 +188,7 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  background: white;
 }
 
 .btn-main {
