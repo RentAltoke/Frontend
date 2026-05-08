@@ -1,9 +1,12 @@
 <div class="contenedor">
-  <h2>Gestión de Alquileres</h2>
-
+  <div class="title-group">
+    <h2>Gestión de Alquileres</h2>
+    <p>Administre sus alquieres y disponibilidad de unidades.</p>
+  </div>
+  
   <!-- DISPONIBLES -->
   <section>
-    <h3>🟢 Unidades Disponibles</h3>
+    <h3>Unidades Disponibles</h3>
 
     <div class="unidad-card disponible" *ngFor="let unidad of unidadesDisponibles">
       
@@ -40,7 +43,7 @@
 
   <!-- OCUPADAS -->
   <section>
-    <h3>🔴 Unidades Ocupadas</h3>
+    <h3>Unidades Ocupadas</h3>
 
     <div class="unidad-card ocupada" *ngFor="let unidad of unidadesOcupadas">
       

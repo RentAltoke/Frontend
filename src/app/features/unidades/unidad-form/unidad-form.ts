@@ -7,7 +7,8 @@ import { UnidadService } from '../unidad.service';
 @Component({
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './unidad-form.html'
+  templateUrl: './unidad-form.html',
+  styleUrls: ['./unidad-form.css']
 })
 export class UnidadForm implements OnInit {
 
@@ -22,22 +23,22 @@ export class UnidadForm implements OnInit {
 
   ngOnInit() {
     this.inmuebleId = +this.route.snapshot.params['id'];
-
-    // 🔥 importante para backend
     this.unidad.inmueble = { id: this.inmuebleId };
   }
 
   guardar() {
     if (this.unidad.id) {
-      // 🔥 UPDATE
       this.service.update(this.unidad.id, this.unidad).subscribe(() => {
         this.router.navigate(['/unidades', this.inmuebleId]);
       });
     } else {
-      // 🔥 CREATE
       this.service.add(this.unidad).subscribe(() => {
         this.router.navigate(['/unidades', this.inmuebleId]);
       });
     }
+  }
+
+  volver() {
+    this.router.navigate(['/unidades', this.inmuebleId]);
   }
 }

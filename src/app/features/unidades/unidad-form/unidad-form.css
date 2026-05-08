@@ -1,0 +1,241 @@
+/* CONTENEDOR GENERAL */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background: var(--blanco, #FFFFFF);
+  border-radius: 12px;
+  box-shadow: var(--shadow-md, 0 4px 20px rgba(0,0,0,0.04));
+  border: 1px solid var(--border-color, #E2E8F0);
+  color: var(--text-main, #1E293B);
+}
+
+/* TÍTULO */
+.form-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text-main, #1E293B);
+  margin-bottom: 24px;
+  text-align: left;
+  border-bottom: 2px solid #E2E8F0;
+  padding-bottom: 10px;
+}
+
+/* GRILLA DEL FORMULARIO */
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted, #64748B);
+}
+
+/* INPUTS Y SELECTS */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color, #E2E8F0);
+  background-color: #F8FAFC;
+  color: var(--text-main, #1E293B);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--naranja-brand, #FE6D03);
+  background-color: var(--blanco, #FFFFFF);
+  box-shadow: 0 0 0 3px var(--naranja-light, rgba(254, 109, 3, 0.12));
+}
+
+/* TARJETA DEL SELECTOR DE IMAGEN */
+.image-selector-card {
+  background: var(--azul-bg, #F4F7FE);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  border: 1px dashed var(--border-color, #E2E8F0);
+}
+
+.selector-controls {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.imagen-container img {
+  width: 260px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: var(--shadow-sm, 0 1px 3px rgba(0,0,0,0.05));
+  border: 3px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.imagen-container img:hover {
+  transform: scale(1.03);
+}
+
+/* BOTONES DE NAVEGACIÓN (FLECHAS) */
+.nav-btn {
+  background: var(--blanco, #FFFFFF);
+  color: var(--naranja-brand, #FE6D03);
+  border: 1px solid var(--border-color, #E2E8F0);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.nav-btn:hover {
+  background: var(--naranja-brand, #FE6D03);
+  color: var(--blanco, #FFFFFF);
+  border-color: var(--naranja-brand, #FE6D03);
+}
+
+/* BOTÓN ELEGIR IMAGEN */
+.btn-elegir {
+  background: var(--blanco, #FFFFFF);
+  color: var(--text-main, #1E293B);
+  border: 1px solid var(--border-color, #E2E8F0);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-elegir:hover {
+  background: var(--border-color, #E2E8F0);
+}
+
+/* PREVIEW */
+.preview {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.preview h4 {
+  color: var(--text-muted, #64748B);
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.preview img {
+  width: 200px;
+  border-radius: 8px;
+  border: 2px solid var(--naranja-brand, #FE6D03);
+}
+
+/* BOTÓN GUARDAR (Usa el mismo gradiente del botón de Cerrar sesión) */
+.btn-guardar {
+  width: 100%;
+  background: linear-gradient(135deg, var(--naranja-brand, #FE6D03) 0%, var(--rojo-brand, #D9301C) 100%);
+  color: var(--blanco, #FFFFFF);
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 30px;
+  box-shadow: 0 4px 12px rgba(254, 109, 3, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-guardar:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(254, 109, 3, 0.35);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+  .form-group.full-width {
+    grid-column: span 1;
+  }
+  .imagen-container img {
+    width: 200px;
+    height: 130px;
+  }
+}
+
+/*  CONTENEDOR DE BOTONES */
+.form-actions {
+  display: flex;
+  gap: 15px; /* Espacio entre botones */
+  margin-top: 40px;
+  align-items: center;
+}
+
+/* BOTÓN VOLVER (Estilo secundario) */
+.btn-volver {
+  flex: 1; /* Ocupa menos espacio que el de guardar */
+  background: var(--blanco, #FFFFFF);
+  color: var(--text-main, #1E293B);
+  border: 1px solid var(--border-color, #E2E8F0);
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-volver:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+  color: var(--naranja-brand, #FE6D03);
+}
+
+/* AJUSTE AL BOTÓN GUARDAR */
+.btn-guardar {
+  flex: 2;
+  margin-top: 0;
+  background: linear-gradient(135deg, var(--naranja-brand, #FE6D03) 0%, var(--rojo-brand, #D9301C) 100%);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(254, 109, 3, 0.2);
+  transition: transform 0.2s;
+}
+
+.btn-guardar:hover {
+  transform: translateY(-2px);
+}

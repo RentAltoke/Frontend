@@ -2,7 +2,7 @@
   --naranja: rgb(254, 109, 3);
   --azul: rgb(15, 28, 52);
   --rojo: rgb(217, 48, 28);
-
+  --primary-dark: #1E293B;
   --gris-bg: #f4f7fb;
   --gris-texto: #6b7280;
   --gris-borde: #e5e7eb;
@@ -11,17 +11,23 @@
 /* 🔥 CONTENEDOR */
 .contenedor {
   padding: 40px;
-  background: var(--gris-bg);
+  background: #F4F7FE;
   min-height: 100vh;
 }
 
 /* 🔥 TITULOS */
 h2 {
-  color: var(--azul);
-  font-size: 2.2rem;
+  font-size: 2rem;
   font-weight: 800;
-  margin-bottom: 30px;
+  color: var(--primary-dark);
+  margin: 0;
   letter-spacing: -0.5px;
+}
+
+.title-group p {
+  color: var(--text-muted);
+  margin-top: 4px;
+  font-size: 1rem;
 }
 
 h3 {

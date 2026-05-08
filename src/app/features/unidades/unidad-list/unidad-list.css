@@ -5,17 +5,39 @@
   --gris: #f4f6f9;
 }
 
-/* 🔥 TÍTULO */
-h2 {
+/* 🔥 PÁGINA */
+.page-container {
+  padding: 40px;
+  background-color: #F4F7FE;
+  min-height: 100vh;
+}
+
+/* 🔥 HEADER */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.section-header h2 {
   color: var(--azul);
   font-size: 2rem;
   font-weight: 800;
-  margin: 20px;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.section-header p {
+  color: #64748B;
+  margin-top: 4px;
+  font-size: 1rem;
+  margin-bottom: 0;
 }
 
 /* 🔥 BOTÓN ADD */
 .btn-add {
-  margin: 0 20px 20px;
+  margin: 0;
   background: linear-gradient(135deg, var(--naranja), var(--rojo));
   color: white;
   border: none;
@@ -37,8 +59,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 25px;
-  padding: 20px;
-  background: var(--gris);
+  background: transparent;
 }
 
 /* 🔥 CARD */
