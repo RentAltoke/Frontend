@@ -1,70 +1,11 @@
 <div class="reportes-container">
 
-<header class="hero-panel">
-  <div class="hero-text">
-    <span class="eyebrow">Módulo de reportes</span>
-    <h2>Reportes de Recibos</h2>
-    <p>Consulta y genera reportes de pago con una vista clara y profesional.</p>
-  </div>
-
-  <div class="hero-stats">
-    <div class="stat-card">
-      <span>Total recibos</span>
-      <strong>{{ recibos.length }}</strong>
+  <header class="section-header">
+    <div>
+      <h2>Reportes de Recibos</h2>
+      <p>Genere y descargue los reportes de cobro de sus unidades.</p>
     </div>
-    <div class="stat-card success">
-      <span>Montos altos</span>
-      <strong>S/ {{ totalGeneral | number:'1.0-0' }}</strong>
-    </div>
-    <div class="stat-card danger">
-      <span>Promedio</span>
-      <strong>S/ {{ promedioTotal | number:'1.0-0' }}</strong>
-    </div>
-  </div>
-</header>
-
-<div class="filtros-container">
-
-  <input
-    type="text"
-    placeholder="Código"
-    [(ngModel)]="codigoFiltro"
-    (input)="filtrarRecibos()">
-
-  <input
-    type="text"
-    placeholder="Inmueble"
-    [(ngModel)]="inmuebleFiltro"
-    (input)="filtrarRecibos()">
-
-  <input
-    type="text"
-    placeholder="Inquilino"
-    [(ngModel)]="inquilinoFiltro"
-    (input)="filtrarRecibos()">
-
-</div>
-
-<div class="range-container">
-
-  <label>
-    Monto:
-    <strong>
-      S/ {{ minValue }} - S/ {{ maxValue }}
-    </strong>
-  </label>
-
-  <ngx-slider
-    [(value)]="minValue"
-    [(highValue)]="maxValue"
-    [options]="options"
-    (userChangeEnd)="filtrarRecibos()">
-  </ngx-slider>
-
-</div>
-
-
-
+  </header>
 
   <div class="cards-container">
 
@@ -100,9 +41,9 @@
       </div>
 
       <div class="card-footer">
-<button class="btn-reporte" (click)="generarPDF(r)">
-  📄 Generar Reporte
-</button>
+        <button class="btn-reporte" (click)="generarPDF(r)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M13.5 3H12H8C6.34315 3 5 4.34315 5 6V18C5 19.6569 6.34315 21 8 21H12M13.5 3L19 8.625M13.5 3V7.625C13.5 8.17728 13.9477 8.625 14.5 8.625H19M19 8.625V11.8125" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M17.5 15V21M17.5 21L15 18.5M17.5 21L20 18.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Generar Reporte
+        </button>
       </div>
 
     </div>

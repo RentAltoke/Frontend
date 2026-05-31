@@ -1,11 +1,12 @@
-<div class="page-shell">
-
-  <header class="hero-panel">
-    <div class="hero-text">
-      <span class="eyebrow">Módulo de alquileres</span>
-      <h2>Gestión de Alquileres</h2>
-      <p>Visualiza y administra unidades disponibles y ocupadas desde una vista moderna y ordenada.</p>
-    </div>
+<div class="contenedor">
+  <div class="title-group">
+    <h2>Gestión de Alquileres</h2>
+    <p>Administre sus alquieres y disponibilidad de unidades.</p>
+  </div>
+  
+  <!-- DISPONIBLES -->
+  <section>
+    <h3>Unidades Disponibles</h3>
 
     <div class="hero-stats">
       <div class="stat-card">
@@ -86,8 +87,12 @@
     </div>
   </section>
 
-  <section class="section-block">
-    <div class="section-head">
+  <!-- OCUPADAS -->
+  <section>
+    <h3>Unidades Ocupadas</h3>
+
+    <div class="unidad-card ocupada" *ngFor="let unidad of unidadesOcupadas">
+      
       <div>
         <h3>🔴 Unidades Ocupadas</h3>
         <p>Consulta quién ocupa la unidad y el monto de renta pactado.</p>

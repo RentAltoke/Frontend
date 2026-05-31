@@ -1,11 +1,35 @@
-<h2>Unidad</h2>
+<div class="page-container">
+  <div class="form-container">
+    <h2 class="form-title">Datos de la Unidad</h2>
 
-<select [(ngModel)]="unidad.tipo">
-  <option value="PISO">Piso</option>
-  <option value="LOCAL">Local</option>
-</select>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Tipo de Unidad</label>
+        <select [(ngModel)]="unidad.tipo">
+          <option value="PISO">Piso</option>
+          <option value="LOCAL">Local</option>
+        </select>
+      </div>
 
-<input [(ngModel)]="unidad.planta" placeholder="Planta">
-<input [(ngModel)]="unidad.letra" placeholder="Letra">
+      <div class="form-group">
+        <label>Planta</label>
+        <input [(ngModel)]="unidad.planta" placeholder="Ej: 1">
+      </div>
 
-<button (click)="guardar()">Guardar</button>
+      <div class="form-group">
+        <label>Letra / Código</label>
+        <input [(ngModel)]="unidad.letra" placeholder="Ej: A">
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn-volver" (click)="volver()">
+        Volver al listado
+      </button>
+
+      <button class="btn-guardar" (click)="guardar()">
+        Guardar Unidad
+      </button>
+    </div>
+  </div>
+</div>

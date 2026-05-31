@@ -66,10 +66,6 @@ cargarRecibos(){
     
     
       }));
-    
-this.totalGeneral = this.recibos.reduce((acc, r) => acc + (r.total || 0), 0);
-this.promedioTotal = this.recibos.length > 0 ? this.totalGeneral / this.recibos.length : 0;
-    this.recibosFiltrados = [...this.recibos];
     this.cdr.detectChanges();
   });
 }
