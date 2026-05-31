@@ -19,7 +19,7 @@ export class Alquiler implements OnInit {
 
   unidadesDisponibles: any[] = [];
   unidadesOcupadas: any[] = [];
-  seleccionInquilino: { [key: number]: string } = {};
+  seleccionInquilino: { [key: number]: number | null } = {};
 
 
 
@@ -98,12 +98,17 @@ procesarUnidades(unidades: any[]) {
 alquilarUnidad(unidad: any) {
   const inquilinoId = this.seleccionInquilino[unidad.id];
 
-  if (!inquilinoId) {
+  if (inquilinoId == null) {
     alert('Selecciona un inquilino');
     return;
   }
 
   const inquilino = this.inquilinos.find(i => i.id === inquilinoId);
+
+  if (!inquilino) {
+    alert('No se encontró el inquilino');
+    return;
+  }
 
   const nuevoContrato = {
     id_unidad_alquilada: unidad.id,
@@ -115,7 +120,6 @@ alquilarUnidad(unidad: any) {
     moneda: 'PEN'
   };
 
-  // 🔥 IMPORTANTE: agregar al array
   if (!inquilino.contratos) {
     inquilino.contratos = [];
   }
@@ -129,7 +133,7 @@ alquilarUnidad(unidad: any) {
   this.unidadesDisponibles = this.unidadesDisponibles.filter(u => u.id !== unidad.id);
   this.unidadesOcupadas.push(unidad);
 
-  alert(`Unidad ${unidad.letra} alquilada a ${inquilino.datos_personales.nombre_completo}`);
+  alert(`Unidad ${unidad.codigo} alquilada a ${inquilino.nombreCompleto}`);
 }
 
 
@@ -153,4 +157,7 @@ desalquilarUnidad(unidad: any) {
 
   alert(`Unidad ${unidad.letra} ahora está disponible`);
 }
+
+
+
 }

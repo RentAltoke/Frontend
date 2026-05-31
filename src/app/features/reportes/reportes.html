@@ -1,10 +1,74 @@
 <div class="reportes-container">
 
-  <h2 class="titulo">📊 Reportes de Recibos</h2>
+<header class="hero-panel">
+  <div class="hero-text">
+    <span class="eyebrow">Módulo de reportes</span>
+    <h2>Reportes de Recibos</h2>
+    <p>Consulta y genera reportes de pago con una vista clara y profesional.</p>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-card">
+      <span>Total recibos</span>
+      <strong>{{ recibos.length }}</strong>
+    </div>
+    <div class="stat-card success">
+      <span>Montos altos</span>
+      <strong>S/ {{ totalGeneral | number:'1.0-0' }}</strong>
+    </div>
+    <div class="stat-card danger">
+      <span>Promedio</span>
+      <strong>S/ {{ promedioTotal | number:'1.0-0' }}</strong>
+    </div>
+  </div>
+</header>
+
+<div class="filtros-container">
+
+  <input
+    type="text"
+    placeholder="Código"
+    [(ngModel)]="codigoFiltro"
+    (input)="filtrarRecibos()">
+
+  <input
+    type="text"
+    placeholder="Inmueble"
+    [(ngModel)]="inmuebleFiltro"
+    (input)="filtrarRecibos()">
+
+  <input
+    type="text"
+    placeholder="Inquilino"
+    [(ngModel)]="inquilinoFiltro"
+    (input)="filtrarRecibos()">
+
+</div>
+
+<div class="range-container">
+
+  <label>
+    Monto:
+    <strong>
+      S/ {{ minValue }} - S/ {{ maxValue }}
+    </strong>
+  </label>
+
+  <ngx-slider
+    [(value)]="minValue"
+    [(highValue)]="maxValue"
+    [options]="options"
+    (userChangeEnd)="filtrarRecibos()">
+  </ngx-slider>
+
+</div>
+
+
+
 
   <div class="cards-container">
 
-    <div class="card" *ngFor="let r of recibos">
+    <div class="card" *ngFor="let r of recibosFiltrados">
 
       <div class="card-header">
         <span class="codigo">{{ r.codigo }}</span>

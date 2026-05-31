@@ -1,77 +1,142 @@
-<div class="contenedor">
-  <h2>Gestión de Alquileres</h2>
+<div class="page-shell">
 
-  <!-- DISPONIBLES -->
-  <section>
-    <h3>🟢 Unidades Disponibles</h3>
+  <header class="hero-panel">
+    <div class="hero-text">
+      <span class="eyebrow">Módulo de alquileres</span>
+      <h2>Gestión de Alquileres</h2>
+      <p>Visualiza y administra unidades disponibles y ocupadas desde una vista moderna y ordenada.</p>
+    </div>
 
-    <div class="unidad-card disponible" *ngFor="let unidad of unidadesDisponibles">
-      
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span>Total</span>
+        <strong>{{ unidadesDisponibles.length + unidadesOcupadas.length }}</strong>
+      </div>
+      <div class="stat-card success">
+        <span>Disponibles</span>
+        <strong>{{ unidadesDisponibles.length }}</strong>
+      </div>
+      <div class="stat-card danger">
+        <span>Ocupadas</span>
+        <strong>{{ unidadesOcupadas.length }}</strong>
+      </div>
+    </div>
+  </header>
+
+  <section class="section-block">
+    <div class="section-head">
       <div>
-        <h4>{{ unidad.inmuebleNombre }}</h4>
-
-        <!-- 🔥 CAMBIO: letra → codigo -->
-        <p>
-          {{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.codigo }}
-        </p>
+        <h3>🟢 Unidades Disponibles</h3>
+        <p>Selecciona un inquilino y asigna la unidad.</p>
       </div>
+      <span class="section-badge">{{ unidadesDisponibles.length }} registros</span>
+    </div>
 
-      <div class="acciones">
-        
-        <!-- 🔥 CAMBIO: nombreCompleto directo -->
-        <select [(ngModel)]="seleccionInquilino[unidad.id]">
-          <option value="">Seleccionar inquilino</option>
+    <div class="cards-grid">
+      <article class="unit-card available" *ngFor="let unidad of unidadesDisponibles">
 
-          <option *ngFor="let inq of inquilinos" [value]="inq.id">
-            {{ inq.nombreCompleto }}
-          </option>
-        </select>
+        <div class="unit-card__top">
+          <div class="unit-title-group">
+            <span class="status-pill success">Disponible</span>
+            <h4>{{ unidad.inmuebleNombre }}</h4>
+            <p>{{ unidad.tipo }} · Piso {{ unidad.planta }} · Unidad {{ unidad.codigo }}</p>
+          </div>
 
-        <button 
-          class="btn-alquilar" 
-          [disabled]="!seleccionInquilino[unidad.id]"
-          (click)="alquilarUnidad(unidad)">
-          Alquilar
-        </button>
+          <div class="unit-code">
+            {{ unidad.codigo }}
+          </div>
+        </div>
 
-      </div>
+        <div class="unit-card__body">
+          <div class="info-line">
+            <span>Dirección</span>
+            <strong>{{ unidad.direccion }}</strong>
+          </div>
+
+          <div class="info-line">
+            <span>Estado</span>
+            <strong>{{ unidad.estado }}</strong>
+          </div>
+
+          <div class="info-line">
+            <span>Inmueble</span>
+            <strong>{{ unidad.inmuebleNombre }}</strong>
+          </div>
+        </div>
+
+        <div class="unit-card__actions">
+          <label>Asignar inquilino</label>
+
+          <select [(ngModel)]="seleccionInquilino[unidad.id]">
+            <option [ngValue]="null">Seleccionar inquilino</option>
+            <option *ngFor="let inq of inquilinos" [ngValue]="inq.id">
+              {{ inq.nombreCompleto }}
+            </option>
+          </select>
+
+          <button
+            class="btn-alquilar"
+            [disabled]="!seleccionInquilino[unidad.id]"
+            (click)="alquilarUnidad(unidad)">
+            Alquilar unidad
+          </button>
+        </div>
+
+      </article>
     </div>
   </section>
 
-  <!-- OCUPADAS -->
-  <section>
-    <h3>🔴 Unidades Ocupadas</h3>
-
-    <div class="unidad-card ocupada" *ngFor="let unidad of unidadesOcupadas">
-      
+  <section class="section-block">
+    <div class="section-head">
       <div>
-        <h4>{{ unidad.inmuebleNombre }}</h4>
-
-        <p>
-          {{ unidad.tipo }} - Piso {{ unidad.planta }} - Unidad {{ unidad.codigo }}
-        </p>
-
-        <!-- 👤 Inquilino -->
-        <small *ngIf="unidad.inquilino">
-          Ocupado por: 
-          <strong>{{ unidad.inquilino?.nombreCompleto }}</strong>
-        </small>
-
-        <!-- 💰 Renta -->
-        <small *ngIf="unidad.contrato">
-          <br>
-          Renta: 
-          {{ unidad.contrato?.monto_renta_pactado | currency:'PEN':'S/ ' }}
-        </small>
-
+        <h3>🔴 Unidades Ocupadas</h3>
+        <p>Consulta quién ocupa la unidad y el monto de renta pactado.</p>
       </div>
+      <span class="section-badge">{{ unidadesOcupadas.length }} registros</span>
+    </div>
 
-      <button 
-        class="btn-desalquilar" 
-        (click)="desalquilarUnidad(unidad)">
-        Desalquilar
-      </button>
+    <div class="cards-grid">
+      <article class="unit-card occupied" *ngFor="let unidad of unidadesOcupadas">
 
+        <div class="unit-card__top">
+          <div class="unit-title-group">
+            <span class="status-pill danger">Ocupado</span>
+            <h4>{{ unidad.inmuebleNombre }}</h4>
+            <p>{{ unidad.tipo }} · Piso {{ unidad.planta }} · Unidad {{ unidad.codigo }}</p>
+          </div>
+
+          <div class="unit-code">
+            {{ unidad.codigo }}
+          </div>
+        </div>
+
+        <div class="unit-card__body">
+          <div class="info-box">
+            <span>Inquilino actual</span>
+            <strong>{{ unidad.inquilino?.nombreCompleto }}</strong>
+          </div>
+
+          <div class="info-line">
+            <span>Renta pactada</span>
+            <strong>
+              {{ unidad.contrato?.monto_renta_pactado | currency:'PEN':'S/ ' }}
+            </strong>
+          </div>
+
+          <div class="info-line">
+            <span>Inmueble</span>
+            <strong>{{ unidad.inmuebleNombre }}</strong>
+          </div>
+        </div>
+
+        <div class="unit-card__actions">
+          <button class="btn-desalquilar" (click)="desalquilarUnidad(unidad)">
+            Desalquilar unidad
+          </button>
+        </div>
+
+      </article>
     </div>
   </section>
+
 </div>
