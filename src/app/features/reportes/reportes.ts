@@ -4,16 +4,32 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { FormsModule } from '@angular/forms';
+import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.html',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,FormsModule,NgxSliderModule],
   styleUrl: './reportes.css',
 })
 export class Reportes implements OnInit{
 
+recibosFiltrados: any[] = [];
+totalGeneral = 0;
+promedioTotal = 0;
+codigoFiltro= '';
+inmuebleFiltro= '';
+inquilinoFiltro= '';
 
+minValue: number = 0;
+maxValue: number = 10000;
+
+options: Options = {
+  floor: 0,
+  ceil: 10000,
+  step: 50
+};
 constructor(
   private http: HttpClient, private cdr: ChangeDetectorRef
 ) {}
@@ -54,12 +70,42 @@ cargarRecibos(){
   });
 }
 
+filtrarRecibos() {
+
+  this.recibosFiltrados = this.recibos.filter(r => {
+
+    const codigoOK =
+      !this.codigoFiltro ||
+      r.codigo.toLowerCase()
+        .includes(this.codigoFiltro.toLowerCase());
+
+    const inmuebleOK =
+      !this.inmuebleFiltro ||
+      r.inmueble.toLowerCase()
+        .includes(this.inmuebleFiltro.toLowerCase());
+
+    const inquilinoOK =
+      !this.inquilinoFiltro ||
+      r.inquilino.toLowerCase()
+        .includes(this.inquilinoFiltro.toLowerCase());
+
+    const montoOK =
+      r.total >= this.minValue &&
+      r.total <= this.maxValue;
+
+    return codigoOK &&
+           inmuebleOK &&
+           inquilinoOK &&
+           montoOK;
+  });
+
+}
 
 async generarPDF(r: any) {
 
   const doc = new jsPDF();
 
-  // 📌 RUTAS
+
   const logoURL = '/logo2.png';
   const inquilinoURL = `/inquilinos/${r.cod_inquilino}.jpg`;
   const inmuebleURL = r.cod_inmueble;
@@ -142,7 +188,7 @@ async generarPDF(r: any) {
 
   const finalY = (doc as any).lastAutoTable.finalY;
 
-  // 🟧 TOTAL BOX
+
   doc.setFillColor(254, 109, 3);
   doc.rect(130, finalY + 5, 60, 12, 'F');
 
@@ -150,17 +196,17 @@ async generarPDF(r: any) {
   doc.setFontSize(12);
   doc.text(`TOTAL: S/ ${r.total.toFixed(2)}`, 160, finalY + 13, { align: 'center' });
 
-  // 📌 FOOTER LINE
+
   doc.setDrawColor(15, 28, 52);
   doc.line(14, 280, 196, 280);
 
-  // FOOTER TEXT
+
   doc.setFontSize(8);
   doc.setTextColor(100);
   doc.text('Sistema RentAltoke', 14, 285);
   doc.text('Generado automáticamente', 150, 285);
 
-  // 💾 GUARDAR
+
   doc.save(`Recibo_${r.codigo}.pdf`);
 }
 

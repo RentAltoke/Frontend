@@ -27,18 +27,61 @@ export class Login implements OnInit {
     private http: HttpClient
   ) {}
 
-  // 🚫 Si ya está logeado → no entra al login
   ngOnInit(): void {
     if (this.authService.isLoggedIn()) {
       this.router.navigate(['/inicio']);
     }
   }
 
+login() {
 
+  this.errorMessage = '';
+
+  if (!this.userInput || this.passwordInput.length < 8) {
+
+    this.errorMessage = 'Ingrese datos válidos';
+    return;
+
+  }
+
+  const credentials = {
+
+    email: this.userInput,
+    password: this.passwordInput
+
+  };
+
+  this.authService.login(credentials)
+    .subscribe({
+
+      next: () => {
+
+        const returnUrl =
+          this.route.snapshot.queryParams['returnUrl']
+          || '/inicio';
+
+        this.router.navigate([returnUrl]);
+
+      },
+
+      error: () => {
+
+        this.errorMessage =
+          'Usuario o contraseña incorrectos';
+
+      }
+
+    });
+
+}
+
+
+
+  /*
 
   login() {
-
-    this.errorMessage = '';
+    
+  this.errorMessage = '';
 
     if (!this.userInput || this.passwordInput.length < 8) {
       this.errorMessage = 'Ingrese datos válidos';
@@ -58,29 +101,22 @@ export class Login implements OnInit {
 
           if (usuario) {
 
-            // 🔐 guardar sesión
             this.authService.login(usuario);
-
             const returnUrl =
               this.route.snapshot.queryParams['returnUrl'] || '/inicio';
-
             this.router.navigate([returnUrl]);
-
           } else {
             this.errorMessage = 'Usuario o contraseña incorrectos';
           }
-
         },
         error: () => {
           this.errorMessage = 'Error al conectar con el servidor';
         }
       });
 
-  }
-
-
-
-
-
+    }
+    
+    
+    */
 
 }
