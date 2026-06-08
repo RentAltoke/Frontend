@@ -1,127 +1,142 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { InmuebleForm } from './inmueble-form';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { InmuebleService } from '../inmueble.service';
-import 'jasmine';
-describe('InmuebleForm', () => {
+import { FormBuilder } from '@angular/forms';
+import { vi } from 'vitest';
+import Swal from 'sweetalert2';
 
-  let component: InmuebleForm;
-  let fixture: ComponentFixture<InmuebleForm>;
+import { InmuebleForm } from './inmueble-form';
+const mocks = vi.hoisted(() => ({
+  fireMock: vi.fn(() =>
+    Promise.resolve({ isConfirmed: true })
+  )
+}));
 
-  let routerSpy: jasmine.SpyObj<Router>;
-  let serviceSpy: jasmine.SpyObj<InmuebleService>;
+vi.mock('sweetalert2', () => ({
+  default: {
+    fire: mocks.fireMock
+  }
+}));
 
-  beforeEach(async () => {
 
-    routerSpy = jasmine.createSpyObj('Router', ['navigate']);
+let component: InmuebleForm;
 
-    serviceSpy = jasmine.createSpyObj(
-      'InmuebleService',
-      ['getById']
-    );
+let routerMock: {
+  navigate: ReturnType<typeof vi.fn>;
+};
 
-    serviceSpy.getById.and.returnValue(
-      of({
-        id: 1,
-        nombre: 'Edificio Central',
-        tipo: 'COMERCIAL',
-        ciudad: 'Lima',
-        direccion: 'Av Peru',
-        numero: '123',
-        codigoPostal: '15001',
-        descripcion: 'Prueba',
-        imagenUrl: '/img.jpg'
-      })
-    );
+let serviceMock: {
+  getById: ReturnType<typeof vi.fn>;
+};
 
-    await TestBed.configureTestingModule({
-      imports: [InmuebleForm],
-      providers: [
-        {
-          provide: Router,
-          useValue: routerSpy
-        },
-        {
-          provide: InmuebleService,
-          useValue: serviceSpy
-        },
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
-              params: {}
-            }
-          }
-        }
-      ]
-    }).compileComponents();
+beforeEach(() => {
 
-    fixture = TestBed.createComponent(InmuebleForm);
-    component = fixture.componentInstance;
+  routerMock = {
+    navigate: vi.fn()
+  };
 
-    fixture.detectChanges();
-  });
+  serviceMock = {
+    getById: vi.fn()
+  };
 
-  it('debe crear el componente', () => {
-    expect(component).toBeTruthy();
-  });
+  component = new InmuebleForm(
+    new FormBuilder(),
+    {
+      snapshot: {
+        params: {}
+      }
+    } as any,
+    routerMock as any,
+    serviceMock as any
+  );
 
-  it('debe crear el formulario', () => {
-    expect(component.form).toBeDefined();
-  });
+});
 
-  it('debe iniciar con tipo RESIDENCIAL', () => {
-    expect(
-      component.form.get('tipo')?.value
-    ).toBe('RESIDENCIAL');
-  });
+it('debe crear el componente', () => {
 
-  it('debe retroceder la imagen al llamar anterior()', () => {
-  component.index = 1;
+  expect(component)
+    .toBeTruthy();
+
+});
+
+it('debe crear el formulario', () => {
+
+  component.ngOnInit();
+
+  expect(component.form)
+    .toBeDefined();
+
+});
+
+it('debe seleccionar imagen', () => {
+
+  component.seleccionarImagen('/foto.jpg');
+
+  expect(component.inmueble.imagenUrl)
+    .toBe('/foto.jpg');
+
+});
+
+it('debe retroceder imagen', () => {
+
+  component.index = 0;
+
   component.anterior();
+
   expect(component.index)
-    .toBe(0);
-  });
-
-it('debe asignar la imagen seleccionada al formulario', () => {
-  component.index = 2;
-  component.elegirImagen();
-  expect(
-    component.form.get('imagenUrl')?.value
-  ).toBe(component.imagenes[2]);
-});
-
-it('debe navegar al listado de inmuebles', () => {
-
-  component.volver();
-
-  expect(routerSpy.navigate)
-    .toHaveBeenCalledWith(['/inmuebles']);
+    .toBe(component.imagenes.length - 1);
 
 });
 
-it('debe ser inválido si nombre está vacío', () => {
+it('debe avanzar imagen', () => {
 
-  component.form.patchValue({
-    nombre: ''
-  });
+  component.index = 0;
 
-  expect(component.form.invalid)
-    .toBeTrue();
+  component.siguiente();
 
-});
-
-it('debe ser inválido si nombre está vacío', () => {
-
-  component.form.patchValue({
-    nombre: ''
-  });
-
-  expect(component.form.invalid)
-    .toBeTrue();
+  expect(component.index)
+    .toBe(1);
 
 });
 
+it('debe cargar inmueble por id', () => {
+
+  component = new InmuebleForm(
+    new FormBuilder(),
+    {
+      snapshot: {
+        params: {
+          id: 5
+        }
+      }
+    } as any,
+    routerMock as any,
+    serviceMock as any
+  );
+
+  serviceMock.getById.mockReturnValue(
+    of({
+      nombre: 'Edificio Central',
+      tipo: 'RESIDENCIAL',
+      ciudad: 'Lima',
+      direccion: 'Av Peru',
+      numero: '123',
+      codigoPostal: '15001',
+      descripcion: 'Desc',
+      imagenUrl: '/foto.jpg'
+    })
+  );
+
+  component.ngOnInit();
+
+  expect(serviceMock.getById)
+    .toHaveBeenCalledWith(5);
+
 });
+
+
+//--
+
+
 

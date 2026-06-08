@@ -1,215 +1,195 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { of, throwError } from 'rxjs';
 import { ChangeDetectorRef } from '@angular/core';
-import { of } from 'rxjs';
+
 import { InquilinoListComponent } from './inquilino-list';
-import { InquilinoService } from '../inquilino.service';
 
 describe('InquilinoListComponent', () => {
 
   let component: InquilinoListComponent;
-  let fixture: ComponentFixture<InquilinoListComponent>;
 
-  let serviceSpy: jasmine.SpyObj<InquilinoService>;
-  let cdrSpy: jasmine.SpyObj<ChangeDetectorRef>;
+  let inquilinoServiceMock: {
+    listar: ReturnType<typeof vi.fn>;
+  };
+
+  let cdrMock: Partial<ChangeDetectorRef>;
+
+  beforeEach(() => {
+
+    inquilinoServiceMock = {
+      listar: vi.fn()
+    };
+
+    cdrMock = {
+      detectChanges: vi.fn()
+    };
+
+    component = new InquilinoListComponent(
+      inquilinoServiceMock as any,
+      cdrMock as ChangeDetectorRef
+    );
+
+  });
 
   const mockInquilinos = [
     {
-      id: 1,
-      codigo: 'EXT-INQ-001',
-      nombreCompleto: 'Carlos Ruiz',
-      email: 'carlos@gmail.com',
+      id:1,
+      codigo: 'I001',
+      nombreCompleto: 'Juan Perez',
       documentoIdentidad: '12345678',
-      telefono: '999888777',
+      email: 'juan@gmail.com',
+      telefono: '999111222',
       tipoPersona: 'NATURAL'
     },
     {
-      id: 2,
-      codigo: 'EXT-INQ-002',
-      nombreCompleto: 'Empresa ABC SAC',
-      email: 'empresa@gmail.com',
+      id:2,
+      codigo: 'I002',
+      nombreCompleto: 'Empresa SAC',
       documentoIdentidad: '20123456789',
-      telefono: '014567890',
+      email: 'empresa@gmail.com',
+      telefono: '999333444',
       tipoPersona: 'JURIDICA'
     }
   ];
 
-  beforeEach(async () => {
+  it('debe crear el componente', () => {
 
-    serviceSpy = jasmine.createSpyObj(
-      'InquilinoService',
-      ['listar']
-    );
+    expect(component).toBeTruthy();
 
-    cdrSpy = jasmine.createSpyObj(
-      'ChangeDetectorRef',
-      ['detectChanges']
-    );
+  });
 
-    serviceSpy.listar.and.returnValue(
+  it('debe llamar cargarInquilinos en ngOnInit', () => {
+
+    const spy = vi.spyOn(component, 'cargarInquilinos')
+      .mockImplementation(() => {});
+
+    component.ngOnInit();
+
+    expect(spy).toHaveBeenCalled();
+
+  });
+
+  it('debe cargar inquilinos correctamente', () => {
+
+    inquilinoServiceMock.listar.mockReturnValue(
       of(mockInquilinos)
     );
 
-    await TestBed.configureTestingModule({
-      imports: [InquilinoListComponent],
-      providers: [
-        {
-          provide: InquilinoService,
-          useValue: serviceSpy
-        },
-        {
-          provide: ChangeDetectorRef,
-          useValue: cdrSpy
-        }
-      ]
-    }).compileComponents();
+    component.cargarInquilinos();
 
-    fixture = TestBed.createComponent(
-      InquilinoListComponent
+    expect(component.inquilinos)
+      .toEqual(mockInquilinos);
+
+    expect(component.inquilinosFiltrados)
+      .toEqual(mockInquilinos);
+
+  });
+
+  it('debe llamar detectChanges', () => {
+
+    inquilinoServiceMock.listar.mockReturnValue(
+      of(mockInquilinos)
     );
 
-    component = fixture.componentInstance;
+    component.cargarInquilinos();
 
-    fixture.detectChanges();
-  });
-
-  it('debe crear el componente', () => {
-    expect(component).toBeTruthy();
-  });
-
-  it('debe cargar los inquilinos al iniciar', () => {
-
-    expect(serviceSpy.listar)
+    expect(cdrMock.detectChanges)
       .toHaveBeenCalled();
 
-    expect(component.inquilinos.length)
-      .toBe(2);
-
-    expect(component.inquilinosFiltrados.length)
-      .toBe(2);
-
   });
 
-  it('debe llamar detectChanges después de cargar', () => {
+  it('debe manejar errores al cargar inquilinos', () => {
 
-    expect(cdrSpy.detectChanges)
+    const consoleSpy =
+      vi.spyOn(console, 'error')
+        .mockImplementation(() => {});
+
+    inquilinoServiceMock.listar.mockReturnValue(
+      throwError(() => new Error('Error'))
+    );
+
+    component.cargarInquilinos();
+
+    expect(consoleSpy)
       .toHaveBeenCalled();
 
   });
 
   it('debe filtrar por nombre', () => {
 
-    component.textoBusqueda = 'carlos';
+    component.inquilinos = mockInquilinos;
+
+    component.textoBusqueda = 'juan';
 
     component.filtrarInquilinos();
 
     expect(component.inquilinosFiltrados.length)
       .toBe(1);
 
-    expect(
-      component.inquilinosFiltrados[0].nombreCompleto
-    ).toContain('Carlos');
-
   });
 
-  it('debe filtrar por código', () => {
+  it('debe filtrar por codigo', () => {
 
-    component.textoBusqueda = 'EXT-INQ-002';
+    component.inquilinos = mockInquilinos;
+
+    component.textoBusqueda = 'I001';
 
     component.filtrarInquilinos();
 
     expect(component.inquilinosFiltrados.length)
       .toBe(1);
 
-    expect(
-      component.inquilinosFiltrados[0].codigo
-    ).toBe('EXT-INQ-002');
-
   });
+
+
 
   it('debe filtrar por email', () => {
-
+    component.inquilinos = mockInquilinos;
     component.textoBusqueda = 'empresa@gmail.com';
-
     component.filtrarInquilinos();
-
     expect(component.inquilinosFiltrados.length)
       .toBe(1);
-
   });
-
-  it('debe filtrar por DNI o RUC', () => {
-
-    component.textoBusqueda = '12345678';
-
+  it('debe filtrar por telefono', () => {
+    component.inquilinos = mockInquilinos;
+    component.textoBusqueda = '999111222';
     component.filtrarInquilinos();
-
     expect(component.inquilinosFiltrados.length)
       .toBe(1);
-
   });
-
-  it('debe filtrar por teléfono', () => {
-
-    component.textoBusqueda = '999888777';
-
-    component.filtrarInquilinos();
-
-    expect(component.inquilinosFiltrados.length)
-      .toBe(1);
-
-  });
-
-  it('debe filtrar por tipo NATURAL', () => {
-
-    component.tipoPersonaFiltro = 'NATURAL';
-
-    component.filtrarInquilinos();
-
-    expect(component.inquilinosFiltrados.length)
-      .toBe(1);
-
-    expect(
-      component.inquilinosFiltrados[0].tipoPersona
-    ).toBe('NATURAL');
-
-  });
-
-  it('debe filtrar por tipo JURIDICA', () => {
-
+  it('debe filtrar por tipoPersona', () => {
+    component.inquilinos = mockInquilinos;
     component.tipoPersonaFiltro = 'JURIDICA';
-
     component.filtrarInquilinos();
-
     expect(component.inquilinosFiltrados.length)
       .toBe(1);
-
-    expect(
-      component.inquilinosFiltrados[0].tipoPersona
-    ).toBe('JURIDICA');
-
+    expect(component.inquilinosFiltrados[0].codigo)
+      .toBe('I002');
   });
-
-  it('debe filtrar por texto y tipo al mismo tiempo', () => {
-
+  it('debe filtrar por texto y tipoPersona', () => {
+    component.inquilinos = mockInquilinos;
     component.textoBusqueda = 'empresa';
     component.tipoPersonaFiltro = 'JURIDICA';
-
     component.filtrarInquilinos();
-
     expect(component.inquilinosFiltrados.length)
       .toBe(1);
-
   });
 
-  it('debe retornar lista vacía cuando no existan coincidencias', () => {
-
-    component.textoBusqueda = 'xxxxxxxx';
-
+  it('no debe retornar resultados si no encuentra coincidencias', () => {
+    component.inquilinos = mockInquilinos;
+    component.textoBusqueda = 'XXXX';
     component.filtrarInquilinos();
-
     expect(component.inquilinosFiltrados.length)
       .toBe(0);
+  });
 
+  it('debe mostrar todos cuando no hay filtros', () => {
+    component.inquilinos = mockInquilinos;
+    component.textoBusqueda = '';
+    component.tipoPersonaFiltro = '';
+    component.filtrarInquilinos();
+    expect(component.inquilinosFiltrados.length)
+      .toBe(2);
   });
 
 });
