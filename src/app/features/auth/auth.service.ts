@@ -53,12 +53,24 @@ logout() {
 }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('usuario');
+
+    if (typeof window === 'undefined') {
+      return false;
+    }
+
+    return !!window.localStorage.getItem('token');
   }
 
   */
   getUsuario() {
-    return JSON.parse(localStorage.getItem('usuario') || '{}');
+
+    if (typeof window === 'undefined') {
+      return {};
+    }
+
+    return JSON.parse(
+      window.localStorage.getItem('usuario') || '{}'
+    );
   }
   
 }

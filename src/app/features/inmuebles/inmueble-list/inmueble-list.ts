@@ -51,9 +51,67 @@ export class InmuebleList implements OnInit {
     this.router.navigate(['/inmuebles/editar', id]);
   }
 
-  eliminar(id: number) {
-    this.service.delete(id).subscribe(() => {
-      this.inmuebles = this.inmuebles.filter(i => i.id !== id);
-    });
+async eliminar(id: number) {
+ console.log("ANTES:", this.inmueblesFiltrados.length);
+  const inmueble = this.inmuebles.find(i => i.id === id);
+
+console.log("ID recibido:", id);
+
+this.inmuebles.forEach(i => {
+  console.log(i.id, typeof i.id);
+});
+
+console.log("Tipo id:", typeof id);
+
+  const result = await Swal.fire({
+    title: 'Eliminar inmueble',
+    html: `
+      ¿Desea eliminar el inmueble?<br>
+      <b>${inmueble?.nombre}</b>
+    `,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, eliminar',
+    cancelButtonText: 'Cancelar',
+    confirmButtonColor: '#D9301C'
+  });
+
+  if (!result.isConfirmed) {
+    return;
   }
+
+
+ // inmueble.removing = true;
+
+setTimeout(() => {
+
+this.inmuebles =
+  this.inmuebles.filter(i => Number(i.id) !== Number(id));
+
+this.inmueblesFiltrados =
+  this.inmueblesFiltrados.filter(i => Number(i.id) !== Number(id));
+  
+this.cdr.detectChanges();
+ Swal.fire({
+  icon: 'success',
+  title: 'Inmueble eliminado',
+    html: `
+      <b>${inmueble.nombre}</b><br>
+      fue retirado de la lista.
+      `,
+      confirmButtonColor: '#D9301C',
+      timer: 2500,
+      timerProgressBar: true
+      
+    });
+  }, 400);
+  console.log("DESPUÉS:", this.inmueblesFiltrados.length);
+  this.cdr.detectChanges();
+
+}
+trackById(_: number, item: any): number {
+  return item.id;
+}
+
+
 }

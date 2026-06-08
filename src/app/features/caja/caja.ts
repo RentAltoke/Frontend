@@ -11,7 +11,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./caja.css'],
 })
 export class Caja implements OnInit {
-
+  totalIngresos = 0;
+  totalGastos = 0;
+  balance = 0;
   inquilinoId: number | null = null;
 
   inquilinoNombre: string = '';
@@ -63,12 +65,68 @@ cargarMovimientos() {
         monto: m.monto,
         descripcion: m.descripcion,
 
-        // 🔥 datos importantes
         unidad: m.unidad?.codigo,
         inmueble: m.unidad?.inmueble?.nombre,
         banco: m.cuenta?.banco?.nombre
       }));
+
+      console.log(this.movimientos);
+      data.forEach(m => {
+  console.log(m.tipo, m.monto);
+});
+      this.totalIngresos = this.movimientos
+        .filter(m => m.tipo === 'INGRESO')
+        .reduce((sum, m) => sum + m.monto, 0);
+
+      this.totalGastos = this.movimientos
+        .filter(m => m.tipo === 'GASTO')
+        .reduce((sum, m) => sum + m.monto, 0);
+
+      this.balance = this.totalIngresos - this.totalGastos;
+      console.log('Datos');
+      console.log('Ingresos:', this.totalIngresos);
+      console.log('Gastos:', this.totalGastos);
+      console.log('Balance:', this.balance);
      this.cdr.detectChanges();
     });
 }
+
+
+descargarPdf() {
+
+  if (!this.inquilinoId) return;
+
+  this.http.get(
+    `http://localhost:8081/api/reportes/caja/${this.inquilinoId}`,
+    {
+      responseType: 'blob'
+    }
+  ).subscribe({
+
+    next: (blob) => {
+
+      const url = window.URL.createObjectURL(blob);
+
+      const a = document.createElement('a');
+
+      a.href = url;
+      a.download = `reporte-caja-${this.inquilinoId}.pdf`;
+
+      document.body.appendChild(a);
+
+      a.click();
+
+      document.body.removeChild(a);
+
+      window.URL.revokeObjectURL(url);
+    },
+
+    error: (err) => {
+      console.error('Error descargando PDF', err);
+    }
+
+  });
+}
+
+
 }

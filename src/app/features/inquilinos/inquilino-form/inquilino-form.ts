@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InquilinoService, Inquilino } from '../inquilino.service';
 @Component({
   selector: 'app-inquilino-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './inquilino-form.html',
   styleUrls: ['./inquilino-form.css']
 })
-export class InquilinoForm {
-
+export class InquilinoForm implements OnInit{
   imagenes: string[] = [
     'inquilinos/EXT-INQ-013.jpg',
     'inquilinos/EXT-INQ-014.jpg',
@@ -21,7 +20,8 @@ export class InquilinoForm {
     'inquilinos/EXT-INQ-018.jpg',
     'inquilinos/EXT-INQ-019.jpg'
   ];
-
+  
+  form!: FormGroup;
   index = 0;
 
   nuevoInquilino: any = {
@@ -62,6 +62,8 @@ guardar() {
       alert('Debes elegir una imagen');
       return;
     }
+  });
+}
 
   const request = {
      id: this.nuevoInquilino.number,

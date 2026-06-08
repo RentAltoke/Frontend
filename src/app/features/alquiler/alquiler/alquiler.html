@@ -85,14 +85,13 @@
 
       </article>
     </div>
-  </section>
 
   <!-- OCUPADAS -->
   <section>
     <h3>Unidades Ocupadas</h3>
 
-    <div class="unidad-card ocupada" *ngFor="let unidad of unidadesOcupadas">
-      
+  <section class="section-block" *ngIf="estadoFiltro === '' || estadoFiltro === 'Disponible'">
+    <div class="section-head">
       <div>
         <h3>🔴 Unidades Ocupadas</h3>
         <p>Consulta quién ocupa la unidad y el monto de renta pactado.</p>
