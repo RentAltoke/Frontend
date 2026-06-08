@@ -448,8 +448,5 @@ button {
 .unit-card.removing {
   opacity: 0;
   transform: scale(0.92);
-}
-.unit-card.removing {
-  opacity: 0;
   transform: translateY(-10px) scale(0.95);
 }
