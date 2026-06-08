@@ -191,8 +191,6 @@ async generarPDF(r: any) {
   });
 
   const finalY = (doc as any).lastAutoTable.finalY;
-
-
   doc.setFillColor(254, 109, 3);
   doc.rect(130, finalY + 5, 60, 12, 'F');
 
@@ -236,8 +234,6 @@ getBase64ImageFromURL(url: string): Promise<string> {
     img.src = url;
   });
 }
-
-
 }   
 
 

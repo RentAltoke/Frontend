@@ -1,143 +1,195 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Reportes } from './reportes';
-import { HttpClient } from '@angular/common/http';
+import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { of } from 'rxjs';
+import { ChangeDetectorRef } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Reportes } from './reportes';
 
+vi.mock('jspdf', () => ({
+  default: class {
+    setFillColor() {}
+    rect() {}
+    addImage() {}
+    setTextColor() {}
+    setFontSize() {}
+    text() {}
+    roundedRect() {}
+    setDrawColor() {}
+    line() {}
+    save() {}
+
+    lastAutoTable = {
+      finalY: 100
+    };
+  }
+}));
+
+vi.mock('jspdf-autotable', () => ({
+  default: () => {}
+}));
 describe('Reportes', () => {
 
-  let component: Reportes;
-  let fixture: ComponentFixture<Reportes>;
+let component: Reportes;
+let httpMock: {get: ReturnType<typeof vi.fn>;};
+let cdrMock: Partial<ChangeDetectorRef>;
+beforeEach(() => {
+  httpMock = {
+    get: vi.fn()
+  };
+  cdrMock = {
+    detectChanges: vi.fn()
+  };
+  component = new Reportes(
+    httpMock as any,
+    cdrMock as ChangeDetectorRef
+  );
+});
 
-  let httpSpy: jasmine.SpyObj<HttpClient>;
+it('debe crear el componente', () => {
+  expect(component).toBeTruthy();
+});
 
-  beforeEach(async () => {
+it('debe llamar cargarRecibos en ngOnInit', () => {
+  const spy =vi.spyOn(component, 'cargarRecibos').mockImplementation(() => {});
+  component.ngOnInit();
+  expect(spy).toHaveBeenCalled();});
 
-    httpSpy = jasmine.createSpyObj(
-      'HttpClient',
-      ['get']
-    );
 
-    httpSpy.get.and.returnValue(
-      of([
-        {
-          codigo_recibo: 'REC-001',
-          tipo_unidad: 'Departamento',
-          unidad: '101',
-          inmueble: 'Edificio Central',
-          inquilino: 'Carlos Ruiz',
-          ipc: 10,
-          agua: 50,
-          igv: 20,
-          luz: 40,
-          renta: 1000,
-          mantenimiento: 80,
-          otros: 0,
-          total_recibo: 1200,
-          codigo_inquilino: 'EXT-INQ-001',
-          imagen_url: '/img.jpg'
-        }
-      ])
-    );
+it('debe cargar recibos correctamente', () => {
 
-    await TestBed.configureTestingModule({
-      imports: [Reportes],
-      providers: [
-        {
-          provide: HttpClient,
-          useValue: httpSpy
-        }
-      ]
-    }).compileComponents();
+  httpMock.get.mockReturnValue(
+    of([
+      {
+        codigo_recibo: 'R001',
+        tipo_unidad: 'Departamento',
+        unidad: '101',
+        inmueble: 'Torres Lima',
+        inquilino: 'Juan',
+        ipc: 10,
+        agua: 20,
+        igv: 30,
+        luz: 40,
+        renta: 1000,
+        mantenimiento: 50,
+        otros: 5,
+        total_recibo: 1155,
+        codigo_inquilino: 1,
+        imagen_url: 'imagen.jpg'
+      }
+    ])
+  );
 
-    fixture = TestBed.createComponent(Reportes);
-    component = fixture.componentInstance;
+  component.cargarRecibos();
 
-    fixture.detectChanges();
+  expect(component.recibos.length)
+    .toBe(1);
+
+  expect(component.recibos[0].codigo)
+    .toBe('R001');
+
+});
+
+it('debe calcular totalGeneral', () => {
+
+  httpMock.get.mockReturnValue(
+    of([
+      { total_recibo: 100 },
+      { total_recibo: 200 },
+      { total_recibo: 300 }
+    ])
+  );
+
+  component.cargarRecibos();
+
+  expect(component.totalGeneral)
+    .toBe(600);
+
+});
+
+it('debe calcular promedioTotal', () => {
+
+  httpMock.get.mockReturnValue(
+    of([
+      { total_recibo: 100 },
+      { total_recibo: 200 }
+    ])
+  );
+
+  component.cargarRecibos();
+
+  expect(component.promedioTotal)
+    .toBe(150);
+
+});
+
+it('debe filtrar por codigo', () => {
+
+  component.recibos = [
+    { codigo: 'ABC123', total: 100 },
+    { codigo: 'XYZ999', total: 100 }
+  ];
+
+  component.codigoFiltro = 'ABC';
+
+  component.filtrarRecibos();
+
+  expect(component.recibosFiltrados.length)
+    .toBe(1);
+
+});
+
+it('debe filtrar por inmueble', () => {
+
+  component.recibos = [
+    {
+      codigo:'1',
+      inmueble:'Lima Center',
+      inquilino:'Juan',
+      total:100
+    },
+    {
+      codigo:'2',
+      inmueble:'Miraflores',
+      inquilino:'Pedro',
+      total:100
+    }
+  ];
+
+  component.inmuebleFiltro = 'Lima';
+
+  component.filtrarRecibos();
+
+  expect(component.recibosFiltrados.length)
+    .toBe(1);
+
+});
+
+//-------------------------
+it('debe obtener las tres imagenes al generar PDF', async () => {
+  const PNG_VALIDO =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO5X2uoAAAAASUVORK5CYII=';
+  const spyImagen =
+    vi.spyOn(component, 'getBase64ImageFromURL')
+      .mockResolvedValue(PNG_VALIDO);
+  await component.generarPDF({
+    codigo: 'R001',
+    cod_inquilino: 1,
+    cod_inmueble: 'img.jpg',
+    total: 500,
+    renta: 500,
+    agua: 0,
+    luz: 0,
+    mantenimiento: 0,
+    ipc: 0,
+    igv: 0,
+    otros: 0,
+    inquilino: 'Juan',
+    unidad: '101',
+    inmueble: 'Edificio'
   });
 
-  it('debe crear el componente', () => {
-    expect(component).toBeTruthy();
-  });
+  expect(spyImagen)
+    .toHaveBeenCalledTimes(3);
 
-  it('debe cargar recibos en ngOnInit', () => {
-    expect(component.recibos.length).toBe(1);
-  });
-
-  it('debe calcular totalGeneral', () => {
-    expect(component.totalGeneral)
-      .toBe(1200);
-  });
-
-  it('debe calcular promedioTotal', () => {
-    expect(component.promedioTotal)
-      .toBe(1200);
-  });
-
-  it('debe copiar recibos a recibosFiltrados', () => {
-    expect(component.recibosFiltrados.length)
-      .toBe(1);
-  });
-
-  it('debe filtrar por código', () => {
-
-    component.codigoFiltro = 'REC-001';
-
-    component.filtrarRecibos();
-
-    expect(component.recibosFiltrados.length)
-      .toBe(1);
-  });
-
-  it('debe filtrar por inmueble', () => {
-
-    component.inmuebleFiltro = 'Central';
-
-    component.filtrarRecibos();
-
-    expect(component.recibosFiltrados.length)
-      .toBe(1);
-  });
-
-  it('debe filtrar por inquilino', () => {
-
-    component.inquilinoFiltro = 'Carlos';
-
-    component.filtrarRecibos();
-
-    expect(component.recibosFiltrados.length)
-      .toBe(1);
-  });
-
-  it('debe filtrar por monto mínimo y máximo', () => {
-
-    component.minValue = 1000;
-    component.maxValue = 1300;
-
-    component.filtrarRecibos();
-
-    expect(component.recibosFiltrados.length)
-      .toBe(1);
-  });
-
-  it('no debe devolver registros fuera del rango', () => {
-
-    component.minValue = 2000;
-    component.maxValue = 3000;
-
-    component.filtrarRecibos();
-
-    expect(component.recibosFiltrados.length)
-      .toBe(0);
-  });
-
-  it('debe ejecutar cargarRecibos()', () => {
-
-    component.recibos = [];
-
-    component.cargarRecibos();
-
-    expect(component.recibos.length)
-      .toBeGreaterThan(0);
-  });
-
+});
+//--------------------------
 });

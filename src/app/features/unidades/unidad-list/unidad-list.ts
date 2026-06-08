@@ -27,12 +27,10 @@ export class UnidadList implements OnInit {
   ngOnInit() {
     this.inmuebleId = +this.route.snapshot.params['id'];
 
-    // 🔥 traer inmueble
     this.inmuebleService.getById(this.inmuebleId).subscribe(data => {
       this.inmueble = data;
     });
 
-    // 🔥 traer unidades desde backend
     this.unidadService.getByInmueble(this.inmuebleId).subscribe(data => {
       this.unidades = data;
       this.cdr.detectChanges(); 
@@ -47,7 +45,6 @@ export class UnidadList implements OnInit {
 
   eliminarUnidad(uid: number) {
     this.unidadService.delete(uid).subscribe(() => {
-      // 🔥 actualizar lista en frontend
       this.unidades = this.unidades.filter(u => u.id !== uid);
     });
   }

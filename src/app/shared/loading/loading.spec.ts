@@ -1,22 +1,33 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { LoadingComponent } from './loading';
 
-import { Loading } from './loading';
+describe('LoadingComponent', () => {
 
-describe('Loading', () => {
-  let component: Loading;
-  let fixture: ComponentFixture<Loading>;
+  let component: LoadingComponent;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [Loading],
-    }).compileComponents();
+  let loadingServiceMock: any;
 
-    fixture = TestBed.createComponent(Loading);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+  beforeEach(() => {
+
+    loadingServiceMock = {};
+
+    component = new LoadingComponent(
+      loadingServiceMock
+    );
+
   });
 
-  it('should create', () => {
+  it('debe crear el componente', () => {
+
     expect(component).toBeTruthy();
+
   });
+
+  it('debe almacenar el servicio recibido por el constructor', () => {
+
+    expect(component.loadingService)
+      .toBe(loadingServiceMock);
+
+  });
+
 });
