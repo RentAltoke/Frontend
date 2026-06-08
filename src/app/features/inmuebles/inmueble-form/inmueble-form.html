@@ -1,5 +1,6 @@
 <div class="form-container">
-  <h2 class="form-title">Datos del Inmueble</h2>
+    <form [formGroup]="form"> 
+    <h2 class="form-title">Datos del Inmueble</h2>
 
   <div class="image-selector-card">
     <div class="selector-controls">
@@ -16,21 +17,21 @@
       Confirmar Imagen Seleccionada
     </button>
 
-    <div *ngIf="inmueble.imagenUrl" class="preview">
+    <div  *ngIf="form.get('imagenUrl')?.value" class="preview">
       <h4>Imagen Confirmada:</h4>
-      <img [src]="inmueble.imagenUrl" alt="Inmueble seleccionado">
+      <img [src]="form.get('imagenUrl')?.value" alt="Inmueble seleccionado">
     </div>
   </div>
 
   <div class="form-grid">
     <div class="form-group full-width">
       <label>Nombre del Inmueble</label>
-      <input [(ngModel)]="inmueble.nombre" placeholder="Ej: Departamento Centro">
+      <input formControlName="nombre"  (keypress)="soloLetras($event)" placeholder="Ej: Departamento Centro">
     </div>
 
     <div class="form-group">
       <label>Tipo de Inmueble</label>
-      <select [(ngModel)]="inmueble.tipo">
+      <select formControlName="tipo">
         <option value="RESIDENCIAL">Residencial</option>
         <option value="COMERCIAL">Comercial</option>
         <option value="INDUSTRIAL">Industrial</option>
@@ -40,27 +41,27 @@
 
     <div class="form-group">
       <label>Ciudad</label>
-      <input [(ngModel)]="inmueble.ciudad" placeholder="Ej: Lima">
+      <input formControlName="ciudad" (keypress)="soloLetras($event)"  placeholder="Ej: Lima">
     </div>
 
     <div class="form-group full-width">
       <label>Dirección</label>
-      <input [(ngModel)]="inmueble.direccion" placeholder="Calle, Avenida...">
+      <input formControlName="direccion" (keypress)="soloLetras($event)"  placeholder="Calle, Avenida...">
     </div>
 
     <div class="form-group">
       <label>Número</label>
-      <input [(ngModel)]="inmueble.numero" placeholder="Ej: 123">
+      <input formControlName="numero"  (keypress)="soloNumeros($event)"  placeholder="Ej: 123">
     </div>
 
     <div class="form-group">
       <label>Código Postal</label>
-      <input [(ngModel)]="inmueble.codigoPostal" placeholder="Ej: 28001">
+      <input formControlName="codigoPostal"  (keypress)="soloNumeros($event)"  placeholder="Ej: 28001">
     </div>
 
     <div class="form-group full-width">
       <label>Descripción</label>
-      <input [(ngModel)]="inmueble.descripcion" placeholder="Detalles adicionales sobre el inmueble...">
+      <input formControlName="descripcion"   (keypress)="soloLetras($event)" placeholder="Detalles adicionales sobre el inmueble...">
     </div>
   </div>
 
@@ -73,4 +74,5 @@
       Guardar Inmueble
     </button>
   </div>
+</form>
 </div>

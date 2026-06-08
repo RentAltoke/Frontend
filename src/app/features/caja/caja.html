@@ -8,6 +8,49 @@
 <p class="subtitulo">
   Historial de movimientos financieros
 </p>
+<div class="summary-cards">
+
+  <div class="summary-card ingresos">
+    <div class="card-icon">💰</div>
+
+    <div>
+      <span>Total Ingresos</span>
+      <h3>S/ {{ totalIngresos | number:'1.2-2' }}</h3>
+    </div>
+  </div>
+
+  <div class="summary-card gastos">
+    <div class="card-icon">💸</div>
+
+    <div>
+      <span>Total Gastos</span>
+      <h3>S/ {{ totalGastos | number:'1.2-2' }}</h3>
+    </div>
+  </div>
+
+  <div
+    class="summary-card balance"
+    [class.balance-positivo]="balance >= 0"
+    [class.balance-negativo]="balance < 0">
+
+    <div class="card-icon">
+      {{ balance >= 0 ? '📈' : '📉' }}
+    </div>
+
+    <div>
+      <span>
+        {{ balance >= 0 ? 'Ganancia' : 'Pérdida' }}
+      </span>
+
+      <h3>
+        S/ {{ balance | number:'1.2-2' }}
+      </h3>
+    </div>
+
+  </div>
+
+</div>
+
   <table class="tabla-movimientos">
     <thead>
       <tr>
@@ -39,5 +82,9 @@
       </tr>
     </tbody>
   </table>
+<button (click)="descargarPdf()">
+  <i class="fas fa-file-pdf"></i>
+  Descargar PDF
+</button>
 
 </div>

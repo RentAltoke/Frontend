@@ -121,3 +121,156 @@ h2 {
   margin-top: -10px;
   margin-bottom: 20px;
 }
+
+/* DASHBOARD */
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: 24px;
+  margin: 30px 0;
+}
+
+.summary-card {
+  background: var(--blanco);
+  border-radius: 20px;
+  padding: 24px;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+
+  transition: all .25s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-icon {
+  width: 65px;
+  height: 65px;
+
+  border-radius: 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 1.8rem;
+}
+
+.summary-card span {
+  display: block;
+  color: var(--texto-sec);
+  font-size: .9rem;
+  margin-bottom: 5px;
+}
+
+.summary-card h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+/* INGRESOS */
+
+.ingresos {
+  border-left: 6px solid #16a34a;
+}
+
+.ingresos .card-icon {
+  background: #dcfce7;
+}
+
+/* GASTOS */
+
+.gastos {
+  border-left: 6px solid var(--rojo);
+}
+
+.gastos .card-icon {
+  background: #fee2e2;
+}
+
+/* BALANCE POSITIVO */
+
+.balance-positivo {
+  border-left: 6px solid var(--naranja);
+}
+
+.balance-positivo .card-icon {
+  background: #fff3e8;
+}
+
+/* BALANCE NEGATIVO */
+
+.balance-negativo {
+  border-left: 6px solid var(--rojo);
+}
+
+.balance-negativo .card-icon {
+  background: #fee2e2;
+}
+
+/*boton*/
+button {
+  background: linear-gradient(
+    135deg,
+    var(--naranja),
+    var(--rojo)
+  );
+
+  color: var(--blanco);
+  border: none;
+  border-radius: 12px;
+
+  padding: 12px 24px;
+
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+
+  cursor: pointer;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  box-shadow:
+    0 6px 18px rgba(254, 109, 3, 0.25),
+    0 2px 6px rgba(15, 28, 52, 0.15);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 10px 25px rgba(254, 109, 3, 0.35),
+    0 4px 12px rgba(15, 28, 52, 0.20);
+
+  filter: brightness(1.05);
+}
+
+button:active {
+  transform: translateY(1px);
+
+  box-shadow:
+    0 4px 10px rgba(254, 109, 3, 0.25),
+    0 2px 4px rgba(15, 28, 52, 0.15);
+}
+
+button:disabled {
+  background: var(--texto-sec);
+  cursor: not-allowed;
+  box-shadow: none;
+  opacity: 0.7;
+}

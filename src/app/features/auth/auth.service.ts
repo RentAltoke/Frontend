@@ -17,48 +17,41 @@ export class AuthService {
       `${this.apiUrl}/login`,
       credentials
     ).pipe(
-
       tap(response => {
-      console.log(response.token);
-        localStorage.setItem(
-          'token',
-          response.token
-        );
+
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('token', response.token);
+        }
 
       })
-
     );
   }
+
   logout(): void {
 
-    localStorage.removeItem('token');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('token');
+    }
 
   }
 
   isLoggedIn(): boolean {
 
-    return !!localStorage.getItem('token');
+    if (typeof window === 'undefined') {
+      return false;
+    }
 
+    return !!window.localStorage.getItem('token');
   }
 
-
-/*
-
-login(usuario: any) {
-  localStorage.setItem('usuario', JSON.stringify(usuario));
-  }
-
-logout() {
-  localStorage.clear(); 
-}
-
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem('usuario');
-  }
-
-  */
   getUsuario() {
-    return JSON.parse(localStorage.getItem('usuario') || '{}');
+
+    if (typeof window === 'undefined') {
+      return {};
+    }
+
+    return JSON.parse(
+      window.localStorage.getItem('usuario') || '{}'
+    );
   }
-  
 }
