@@ -1,32 +1,29 @@
-<div class="usuario-container" *ngIf="usuario">
+<div class="page-container" *ngIf="usuario">
 
   <div class="usuario-card">
 
-    <!-- HEADER -->
     <div class="usuario-header">
       <h2>Perfil de Usuario</h2>
     </div>
-    <!-- CONTENIDO -->
+
     <div class="usuario-body">
 
-      <!-- AVATAR -->
       <div class="usuario-avatar">
-        <img src="/logo2.png" alt="Usuario">
+        <div class="avatar-circle">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="#FE6D03" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="#1E293B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </div>
       </div>
 
-      <!-- INFO -->
       <div class="usuario-info">
-
         <h3>{{ usuario.nombre }} {{ usuario.apellido }}</h3>
-
         <p class="email">{{ usuario.email }}</p>
 
         <div class="badges">
-          <span class="badge rol">
-            {{ usuario.rol }}
-          </span>
-
-          <span 
+          <span class="badge rol">{{ usuario.rol }}</span>
+          <span
             class="badge estado"
             [class.activo]="usuario.activo"
             [class.inactivo]="!usuario.activo"
@@ -35,11 +32,18 @@
           </span>
         </div>
 
-        <div class="extra">
-          <p><strong>ID:</strong> {{ usuario.id }}</p>
-          <p><strong>Registrado:</strong> {{ usuario.createdAt | date:'short' }}</p>
-        </div>
+        <hr class="divider">
 
+        <div class="extra">
+          <div class="extra-item">
+            <span>ID</span>
+            <span>{{ usuario.id }}</span>
+          </div>
+          <div class="extra-item">
+            <span>Registrado</span>
+            <span>{{ usuario.createdAt | date:'short' }}</span>
+          </div>
+        </div>
       </div>
 
     </div>

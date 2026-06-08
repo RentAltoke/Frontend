@@ -1,26 +1,34 @@
-<h2>Unidades de {{inmueble?.nombre}}</h2>
+<div class="page-container">
 
-<button (click)="nuevaUnidad()" class="btn-add">
-  ➕ Añadir Unidad
-</button>
+  <header class="section-header">
+    <div>
+      <h2>Unidades de {{inmueble?.nombre}}</h2>
+      <p>Administre las unidades de este inmueble.</p>
+    </div>
+    <button (click)="nuevaUnidad()" class="btn-add">
+      <svg width="25" height="25" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M6 12H18M12 6V18" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg> Añadir Unidad
+    </button>
+  </header>
 
-<div class="grid">
+  <div class="grid">
 
-  <div class="card" *ngFor="let u of unidades">
+    <div class="card" *ngFor="let u of unidades">
 
-    <h3>{{u.tipo}}</h3>
+      <h3>{{u.tipo}}</h3>
 
-    <p><strong>Planta:</strong> {{u.planta}}</p>
-    <p><strong>Código:</strong> {{u.codigo}}</p>
+      <p><strong>Planta:</strong> {{u.planta}}</p>
+      <p><strong>Código:</strong> {{u.codigo}}</p>
 
-    <span class="estado" [ngClass]="u.estado?.toLowerCase()">
-      {{u.estado}}
-    </span>
+      <span class="estado" [ngClass]="u.estado?.toLowerCase()">
+        {{u.estado}}
+      </span>
 
-    <div class="actions">
-      <button (click)="eliminarUnidad(u.id)" class="btn-delete">
-        ❌ Eliminar
-      </button>
+      <div class="actions">
+        <button (click)="eliminarUnidad(u.id)" class="btn-delete">
+          ❌ Eliminar
+        </button>
+      </div>
+
     </div>
 
   </div>

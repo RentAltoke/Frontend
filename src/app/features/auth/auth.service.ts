@@ -17,23 +17,40 @@ export class AuthService {
       `${this.apiUrl}/login`,
       credentials
     ).pipe(
-      tap(response => {
 
-        if (typeof window !== 'undefined') {
-          localStorage.setItem('token', response.token);
-        }
+      tap(response => {
+      console.log(response.token);
+        localStorage.setItem(
+          'token',
+          response.token
+        );
 
       })
+
     );
   }
-
   logout(): void {
 
-    if (typeof window !== 'undefined') {
-      localStorage.removeItem('token');
-    }
+    localStorage.removeItem('token');
 
   }
+
+  isLoggedIn(): boolean {
+
+    return !!localStorage.getItem('token');
+
+  }
+
+
+/*
+
+login(usuario: any) {
+  localStorage.setItem('usuario', JSON.stringify(usuario));
+  }
+
+logout() {
+  localStorage.clear(); 
+}
 
   isLoggedIn(): boolean {
 
@@ -44,6 +61,7 @@ export class AuthService {
     return !!window.localStorage.getItem('token');
   }
 
+  */
   getUsuario() {
 
     if (typeof window === 'undefined') {
@@ -54,4 +72,5 @@ export class AuthService {
       window.localStorage.getItem('usuario') || '{}'
     );
   }
+  
 }

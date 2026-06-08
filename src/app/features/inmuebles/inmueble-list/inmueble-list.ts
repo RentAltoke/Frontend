@@ -3,7 +3,6 @@ import { InmuebleService } from '../inmueble.service';
 import { ChangeDetectorRef,Component,OnInit } from '@angular/core';
 import { Router,RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import Swal from 'sweetalert2';
 @Component({
   standalone: true,
   imports: [CommonModule, RouterModule,FormsModule],
