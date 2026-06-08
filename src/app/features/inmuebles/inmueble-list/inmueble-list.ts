@@ -82,7 +82,8 @@ console.log("Tipo id:", typeof id);
   }
 
 
-  
+ // inmueble.removing = true;
+
 setTimeout(() => {
 
 this.inmuebles =

@@ -1,7 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { Component,OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InquilinoService, Inquilino } from '../inquilino.service';
@@ -9,7 +7,6 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-inquilino-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './inquilino-form.html',
   styleUrls: ['./inquilino-form.css']

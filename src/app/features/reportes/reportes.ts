@@ -1,5 +1,4 @@
 import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
-import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
