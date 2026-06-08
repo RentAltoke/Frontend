@@ -1,12 +1,11 @@
-<div class="contenedor">
-  <div class="title-group">
-    <h2>Gestión de Alquileres</h2>
-    <p>Administre sus alquieres y disponibilidad de unidades.</p>
-  </div>
-  
-  <!-- DISPONIBLES -->
-  <section>
-    <h3>Unidades Disponibles</h3>
+<div class="page-shell">
+
+  <header class="hero-panel">
+    <div class="hero-text">
+      <span class="eyebrow">Módulo de alquileres</span>
+      <h2>Gestión de Alquileres</h2>
+      <p>Visualiza y administra unidades disponibles y ocupadas desde una vista moderna y ordenada.</p>
+    </div>
 
     <div class="hero-stats">
       <div class="stat-card">
@@ -24,17 +23,69 @@
     </div>
   </header>
 
-  <section class="section-block">
+<section class="filter-panel">
+
+  <div class="filter-header">
+    <h3>🔎 Búsqueda de Unidades</h3>
+    <span>{{ unidadesFiltradas.length }} resultados</span>
+  </div>
+
+  <div class="filters-grid">
+
+    <div class="filter-group">
+      <label>Estado</label>
+
+      <select [(ngModel)]="estadoFiltro">
+        <option value="">Todos</option>
+        <option value="Disponible">Disponible</option>
+        <option value="Ocupado">Ocupado</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label>Inmueble</label>
+
+      <input
+        type="text"
+        placeholder="Buscar inmueble..."
+        [(ngModel)]="inmuebleFiltro">
+    </div>
+
+    <div class="filter-group">
+      <label>Inquilino</label>
+
+      <input
+        type="text"
+        placeholder="Buscar inquilino..."
+        [(ngModel)]="inquilinoFiltro">
+    </div>
+
+    <div class="filter-group">
+      <label>Unidad</label>
+
+      <input
+        type="text"
+        placeholder="Código unidad..."
+        [(ngModel)]="unidadFiltro">
+    </div>
+
+  </div>
+
+</section>
+
+
+  <section class="section-block" *ngIf="estadoFiltro === '' || estadoFiltro === 'Disponible'">
     <div class="section-head">
       <div>
         <h3>🟢 Unidades Disponibles</h3>
         <p>Selecciona un inquilino y asigna la unidad.</p>
       </div>
-      <span class="section-badge">{{ unidadesDisponibles.length }} registros</span>
+      <span class="section-badge">{{disponiblesFiltradas.length }} registros
+</span>
     </div>
 
     <div class="cards-grid">
-      <article class="unit-card available" *ngFor="let unidad of unidadesDisponibles">
+      <article class="unit-card available" [class.removing]="unidad.removing" *ngFor="let unidad of unidadesDisponibles;trackBy: trackByUnidadId">
 
         <div class="unit-card__top">
           <div class="unit-title-group">
@@ -85,22 +136,22 @@
 
       </article>
     </div>
+  </section>
 
-  <!-- OCUPADAS -->
-  <section>
-    <h3>Unidades Ocupadas</h3>
-
-  <section class="section-block" *ngIf="estadoFiltro === '' || estadoFiltro === 'Disponible'">
+  <section class="section-block" *ngIf="estadoFiltro === '' || estadoFiltro === 'Ocupado'">
     <div class="section-head">
       <div>
         <h3>🔴 Unidades Ocupadas</h3>
-        <p>Consulta quién ocupa la unidad y el monto de renta pactado.</p>
+        <p>Consulta quién ocupa la unidad y el monto de renta pactado.</p> 
       </div>
       <span class="section-badge">{{ unidadesOcupadas.length }} registros</span>
     </div>
 
     <div class="cards-grid">
-      <article class="unit-card occupied" *ngFor="let unidad of unidadesOcupadas">
+      <article  [class.removing]="unidad.removing"  *ngFor="let unidad of unidadesOcupadas; trackBy: trackByUnidadId"
+    class="unit-card"
+    [class.available]="unidad.estado === 'Disponible'"
+    [class.occupied]="unidad.estado === 'Ocupado'">
 
         <div class="unit-card__top">
           <div class="unit-title-group">

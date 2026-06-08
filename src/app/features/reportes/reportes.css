@@ -1,12 +1,34 @@
 :root {
-  --naranja: #FE6D03;
-  --azul: #1E293B;
-  --rojo: #D9301C;
-  --bg-subtle: #F4F7FE;
-  --text-muted: #64748B;
-  --white: #ffffff;
-  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.04);
-  --shadow-hover: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --naranja: rgb(254, 109, 3);
+  --azul: rgb(15, 28, 52);
+  --rojo: rgb(217, 48, 28);
+
+  --gris-bg: #f4f7fb;
+  --gris-texto: #6b7280;
+  --gris-borde: #e5e7eb;
+  --blanco: #ffffff;
+  --shadow-sm: 0 8px 20px rgba(15, 28, 52, 0.06);
+  --shadow-md: 0 18px 40px rgba(15, 28, 52, 0.12);
+}
+
+.hero-panel {
+  background: rgb(15, 28, 52);
+  color: white;
+
+  border: 1px solid var(--gris-borde);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 8px 30px rgba(15, 28, 52, 0.06);
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.hero-text {
+  max-width: 720px;
 }
 
 .eyebrow {
@@ -123,7 +145,8 @@
 /* HEADER */
 .card-header {
   background: var(--azul);
-  padding: 14px 16px;
+  padding: 10px;
+  border-radius: 12px 12px 0 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -214,9 +237,8 @@
 
 /* BOTON */
 .btn-reporte {
-  flex: 1;
-  background: var(--azul);
-  color: var(--white);
+  background: var(--naranja);
+  color: var(--azul);
   border: none;
   padding: 12px;
   border-radius: 10px;
@@ -231,5 +253,32 @@
 }
 
 .btn-reporte:hover {
-  background: var(--naranja);
+  background: var(--rojo);
+}
+
+.filtros-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.filtros-container input {
+  padding: 12px;
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.range-container {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+}
+
+.range-container label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 600;
 }

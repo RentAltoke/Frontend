@@ -24,11 +24,6 @@ unidadFiltro: string = '';
   unidadesDisponibles: any[] = [];
   unidadesOcupadas: any[] = [];
   seleccionInquilino: { [key: number]: number | null } = {};
-
-
-
-
-
   constructor(
     private http: HttpClient,
     private cdr: ChangeDetectorRef
@@ -214,14 +209,33 @@ async  alquilarUnidad(unidad: any) {
   const inquilinoId = this.seleccionInquilino[unidad.id];
 
   if (inquilinoId == null) {
-    alert('Selecciona un inquilino');
-    return;
-  }
-
+    Swal.fire({
+      icon: 'warning',
+      title: 'Seleccione un inquilino',
+      text: 'Debe seleccionar un inquilino para continuar.',
+      confirmButtonColor: '#FE6D03'
+    });
+    return;}
   const inquilino = this.inquilinos.find(i => i.id === inquilinoId);
+      if (!inquilino) {
+        return;
+      }
+  const result = await Swal.fire({
+    title: 'Confirmar alquiler',
+    html: `
+      ¿Desea asignar la unidad
+      <b>${unidad.codigo}</b>
+      a
+      <b>${inquilino.nombreCompleto}</b>?
+    `,
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Sí, alquilar',
+    cancelButtonText: 'Cancelar',
+    confirmButtonColor: '#FE6D03'
+  });
 
-  if (!inquilino) {
-    alert('No se encontró el inquilino');
+  if (!result.isConfirmed) {
     return;
   }
 
@@ -245,10 +259,29 @@ async  alquilarUnidad(unidad: any) {
   unidad.inquilino = inquilino;
   unidad.contrato = nuevoContrato;
 
-  this.unidadesDisponibles = this.unidadesDisponibles.filter(u => u.id !== unidad.id);
-  this.unidadesOcupadas.push(unidad);
+unidad.estado = 'Ocupado';
+unidad.inquilino = inquilino;
+unidad.contrato = nuevoContrato;
 
-  alert(`Unidad ${unidad.codigo} alquilada a ${inquilino.nombreCompleto}`);
+this.unidadesDisponibles =this.unidadesDisponibles.filter(u => u.id !== unidad.id);
+this.unidadesOcupadas = [...this.unidadesOcupadas,unidad];
+
+this.cdr.detectChanges();
+ Swal.fire({
+  icon: 'success',
+  title: 'Unidad alquilada',
+  html: `
+    <b>${unidad.codigo}</b><br>
+    fue asignada a<br>
+    <b>${inquilino.nombreCompleto}</b>
+  `,
+  confirmButtonText: 'Aceptar',
+  confirmButtonColor: '#FE6D03',
+  background: '#ffffff',
+  color: '#1E293B',
+  timer: 3000,
+  timerProgressBar: true
+});
 }
 
 
@@ -300,7 +333,4 @@ this.cdr.detectChanges();
 trackByUnidadId(_: number, unidad: any): number {
   return unidad.id;
 }
-
-
-
 }

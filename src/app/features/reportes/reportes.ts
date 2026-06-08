@@ -1,4 +1,5 @@
 import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef} from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -66,6 +67,10 @@ cargarRecibos(){
     
     
       }));
+    
+this.totalGeneral = this.recibos.reduce((acc, r) => acc + (r.total || 0), 0);
+this.promedioTotal = this.recibos.length > 0 ? this.totalGeneral / this.recibos.length : 0;
+    this.recibosFiltrados = [...this.recibos];
     this.cdr.detectChanges();
   });
 }

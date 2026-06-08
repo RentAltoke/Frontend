@@ -75,48 +75,4 @@ login() {
 
 }
 
-
-
-  /*
-
-  login() {
-    
-  this.errorMessage = '';
-
-    if (!this.userInput || this.passwordInput.length < 8) {
-      this.errorMessage = 'Ingrese datos válidos';
-      return;
-    }
-
-    // 🔥 LLAMADA AL BACKEND
-    this.http.get<any[]>('http://localhost:8081/api/usuarios')
-      .subscribe({
-        next: (usuarios) => {
-
-          const usuario = usuarios.find(u =>
-            u.email === this.userInput &&
-            u.passwordHash === this.passwordInput &&
-            u.activo === true
-          );
-
-          if (usuario) {
-
-            this.authService.login(usuario);
-            const returnUrl =
-              this.route.snapshot.queryParams['returnUrl'] || '/inicio';
-            this.router.navigate([returnUrl]);
-          } else {
-            this.errorMessage = 'Usuario o contraseña incorrectos';
-          }
-        },
-        error: () => {
-          this.errorMessage = 'Error al conectar con el servidor';
-        }
-      });
-
-    }
-    
-    
-    */
-
 }

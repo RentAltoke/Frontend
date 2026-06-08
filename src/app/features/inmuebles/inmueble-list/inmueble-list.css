@@ -324,3 +324,10 @@
 .filter-select:focus {
   border-color: var(--accent-orange);
 }
+
+
+
+.card.removing {
+  opacity: 0;
+  transform: scale(.9);
+}
