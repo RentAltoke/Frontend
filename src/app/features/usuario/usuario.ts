@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../auth/auth.service';
 
 @Component({
   standalone: true,
@@ -13,9 +12,18 @@ export class Usuario implements OnInit {
 
   usuario: any = null;
 
-  constructor(private authService: AuthService) {}
-
   ngOnInit(): void {
-    this.usuario = this.authService.getUsuario();
+    const token = localStorage.getItem('token');
+    if (!token) return;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      this.usuario = {
+        email: payload.sub,
+        expira: new Date(payload.exp * 1000).toLocaleDateString('es-PE')
+      };
+    } catch {
+      this.usuario = null;
+    }
   }
 }

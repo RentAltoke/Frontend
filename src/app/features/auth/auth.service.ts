@@ -44,14 +44,15 @@ export class AuthService {
     return !!window.localStorage.getItem('token');
   }
 
-  getUsuario() {
+getUsuario() {
+  if (typeof window === 'undefined') return {};
 
-    if (typeof window === 'undefined') {
-      return {};
-    }
-
-    return JSON.parse(
-      window.localStorage.getItem('usuario') || '{}'
-    );
+  const raw = window.localStorage.getItem('usuario');
+  
+  try {
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
   }
+}
 }

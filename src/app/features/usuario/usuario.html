@@ -1,49 +1,36 @@
-<div class="usuario-container" *ngIf="usuario">
-
+<div class="page-container" *ngIf="usuario; else sinSesion">
   <div class="usuario-card">
 
-    <!-- HEADER -->
     <div class="usuario-header">
       <h2>Perfil de Usuario</h2>
     </div>
-    <!-- CONTENIDO -->
+
     <div class="usuario-body">
 
-      <!-- AVATAR -->
       <div class="usuario-avatar">
         <img src="/logo2.png" alt="Usuario">
       </div>
 
-      <!-- INFO -->
       <div class="usuario-info">
 
-        <h3>{{ usuario.nombre }} {{ usuario.apellido }}</h3>
-
-        <p class="email">{{ usuario.email }}</p>
+        <h3>{{ usuario.email }}</h3>
 
         <div class="badges">
-          <span class="badge rol">
-            {{ usuario.rol }}
-          </span>
-
-          <span 
-            class="badge estado"
-            [class.activo]="usuario.activo"
-            [class.inactivo]="!usuario.activo"
-          >
-            {{ usuario.activo ? 'Activo' : 'Inactivo' }}
-          </span>
+          <span class="badge rol">Sesión activa</span>
         </div>
 
         <div class="extra">
-          <p><strong>ID:</strong> {{ usuario.id }}</p>
-          <p><strong>Registrado:</strong> {{ usuario.createdAt | date:'short' }}</p>
+          <p><strong>Correo:</strong> {{ usuario.email }}</p>
+          <p><strong>Sesión válida hasta:</strong> {{ usuario.expira }}</p>
         </div>
 
       </div>
-
     </div>
-
   </div>
-
 </div>
+
+<ng-template #sinSesion>
+  <div class="page-container">
+    <p>No hay sesión activa.</p>
+  </div>
+</ng-template>
