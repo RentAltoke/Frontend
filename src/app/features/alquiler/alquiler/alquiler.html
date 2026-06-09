@@ -85,7 +85,7 @@
     </div>
 
     <div class="cards-grid">
-      <article class="unit-card available" [class.removing]="unidad.removing" *ngFor="let unidad of unidadesDisponibles;trackBy: trackByUnidadId">
+      <article class="unit-card available" [class.removing]="unidad.removing" *ngFor="let unidad of disponiblesFiltradas;trackBy: trackByUnidadId">
 
         <div class="unit-card__top">
           <div class="unit-title-group">
@@ -148,7 +148,7 @@
     </div>
 
     <div class="cards-grid">
-      <article  [class.removing]="unidad.removing"  *ngFor="let unidad of unidadesOcupadas; trackBy: trackByUnidadId"
+      <article  [class.removing]="unidad.removing"  *ngFor="let unidad of ocupadasFiltradas; trackBy: trackByUnidadId"
     class="unit-card"
     [class.available]="unidad.estado === 'Disponible'"
     [class.occupied]="unidad.estado === 'Ocupado'">
