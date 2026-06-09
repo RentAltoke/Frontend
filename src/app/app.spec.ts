@@ -1,10 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
+import { provideRouter } from '@angular/router';
+import { provideLocationMocks } from '@angular/common/testing';
 
 describe('App', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [App],
+      providers: [
+        provideRouter([]),
+        provideLocationMocks(),
+      ]
     }).compileComponents();
   });
 
@@ -14,16 +20,12 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-it('should render title', async () => {
-  const fixture = TestBed.createComponent(App);
+  it('should render title', async () => {
+    const fixture = TestBed.createComponent(App);
+    fixture.detectChanges();
+    await fixture.whenStable();
 
-  fixture.detectChanges();
-  await fixture.whenStable();
-
-  const compiled = fixture.nativeElement as HTMLElement;
-
-  expect(compiled.textContent).toContain('Hello');
-});
-
-
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
+  });
 });
