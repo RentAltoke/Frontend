@@ -58,7 +58,7 @@ component = new Caja(
     component.ngOnInit();
 
     paramMapSubject.next({
-      get: () => '5'
+      get: () => '5'//Sirve para emitir datos.
     });
 
     expect(component.inquilinoId).toBe(5);
@@ -160,7 +160,7 @@ component = new Caja(
 
     expect(component.movimientos.length)
       .toBe(1);
-
+//Compara objetos completos
     expect(component.movimientos[0]).toEqual({
       codigo: 'M001',
       fecha: '2025-01-01',
@@ -215,7 +215,7 @@ component = new Caja(
 //--------------
 it('debe generar descarga PDF correctamente', () => {
 
-  const blob = new Blob(['pdf']);
+  const blob = new Blob(['pdf']);//Simula un PDF descargado.
 
   component.inquilinoId = 1;
 

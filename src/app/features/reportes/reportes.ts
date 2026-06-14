@@ -6,7 +6,7 @@ import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import { FormsModule } from '@angular/forms';
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.html',
@@ -42,7 +42,7 @@ this.cargarRecibos();
 
 recibos: any[] = [];
 cargarRecibos(){
-  this.http.get<any[]>(`http://localhost:8081/api/recibos/resumen`).subscribe(data => {
+  this.http.get<any[]>(`${environment.apiUrl}/api/recibos/resumen`).subscribe(data => {
 
   this.recibos = data.map(r => ({
 

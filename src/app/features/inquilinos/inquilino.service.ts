@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from '../../../environments/environment';
 export interface Inquilino {
   id: number;
   codigo: string;
@@ -17,7 +17,7 @@ export interface Inquilino {
 })
 export class InquilinoService {
 
-  private apiUrl = 'http://localhost:8081/api/inquilinos';
+  private apiUrl = `${environment.apiUrl}/api/inquilinos`;
 
   constructor(private http: HttpClient) {}
 

@@ -51,7 +51,7 @@ describe('Login Component', () => {
   });
 
   afterEach(() => {
-    vi.clearAllMocks();
+    vi.clearAllMocks();//limpia despues de cada prueba
   });
 
   it('debe crear el componente', () => {

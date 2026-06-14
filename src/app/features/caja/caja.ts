@@ -2,7 +2,7 @@ import { Component, OnInit,ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-
+import { environment } from '../../../environments/environment';
 @Component({
   selector: 'app-caja',
   standalone: true,
@@ -38,7 +38,7 @@ ngOnInit(): void {
 cargarInquilino() {
   if (!this.inquilinoId) return;
 
-  this.http.get<any[]>('http://localhost:8081/api/inquilinos')
+  this.http.get<any[]>(`${environment.apiUrl}/api/inquilinos`)
     .subscribe(data => {
 
       const inquilino = data.find(i => i.id === this.inquilinoId);
@@ -53,7 +53,7 @@ cargarInquilino() {
 cargarMovimientos() {
   if (!this.inquilinoId) return;
 
-  this.http.get<any[]>(`http://localhost:8081/api/movimientos/inquilino/${this.inquilinoId}`)
+  this.http.get<any[]>(`${environment.apiUrl}/api/movimientos/inquilino/${this.inquilinoId}`)
     .subscribe(data => {
 
       this.movimientos = data.map(m => ({
@@ -97,7 +97,7 @@ descargarPdf() {
   if (!this.inquilinoId) return;
 
   this.http.get(
-    `http://localhost:8081/api/reportes/caja/${this.inquilinoId}`,
+    `${environment.apiUrl}/api/reportes/caja/${this.inquilinoId}`,
     {
       responseType: 'blob'
     }

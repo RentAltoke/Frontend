@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-alquiler',
@@ -35,7 +36,7 @@ unidadFiltro: string = '';
 
 cargarDatos() {
 
-  this.http.get<any[]>('http://localhost:8081/api/inmuebles/unidades').subscribe({
+  this.http.get<any[]>(`${environment.apiUrl}/api/inmuebles/unidades`).subscribe({
     next: (data) => {
 
       const unidadesMapeadas = data.map(row => ({
@@ -60,7 +61,7 @@ cargarDatos() {
   });
 
 
-  this.http.get<any[]>('http://localhost:8081/api/inquilinos').subscribe({
+  this.http.get<any[]>(`${environment.apiUrl}/api/inquilinos`).subscribe({
     next: (data) => {
       this.inquilinos = data;
     }
