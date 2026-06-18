@@ -274,3 +274,21 @@ button:disabled {
   box-shadow: none;
   opacity: 0.7;
 }
+
+.grafico-container {
+  background: white;
+
+  border-radius: 20px;
+
+  padding: 25px;
+
+  margin-bottom: 30px;
+
+  box-shadow:
+      0 4px 12px rgba(0,0,0,.05);
+}
+.grafico-title {
+  color: var(--azul);
+  font-weight: 700;
+  margin-bottom: 15px;
+}

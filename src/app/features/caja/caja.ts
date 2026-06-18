@@ -3,14 +3,37 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
+import {
+  NgApexchartsModule,
+  ApexChart,
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+  ApexLegend,
+  ApexDataLabels
+} from 'ng-apexcharts';
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  labels: string[];
+  responsive: ApexResponsive[];
+  legend: ApexLegend;
+  dataLabels: ApexDataLabels;
+  colors: string[];
+};
+
 @Component({
   selector: 'app-caja',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,NgApexchartsModule],
   templateUrl: './caja.html',
   styleUrls: ['./caja.css'],
 })
+
+
 export class Caja implements OnInit {
+  public chartOptions!: Partial<ChartOptions>;
+
   totalIngresos = 0;
   totalGastos = 0;
   balance = 0;
@@ -23,7 +46,46 @@ constructor(
   private route: ActivatedRoute,
   private http: HttpClient,
   private cdr: ChangeDetectorRef
-) {}
+) {
+this.chartOptions = {
+  series: [0, 0],
+
+  chart: {
+    type: 'pie',
+    height: 380,
+    toolbar: {
+      show: false
+    }
+  },
+
+  labels: ['Ingresos', 'Gastos'],
+
+  colors: [
+    '#FE6D03',
+    '#D9301C'
+  ],
+
+  legend: {
+    position: 'bottom',
+    fontSize: '14px'
+  },
+
+  dataLabels: {
+    enabled: true
+  },
+
+  responsive: [
+    {
+      breakpoint: 480,
+      options: {
+        chart: {
+          height: 280
+        }
+      }
+    }
+  ]
+};
+}
 
 ngOnInit(): void {
   this.route.paramMap.subscribe(params => {
@@ -83,13 +145,23 @@ cargarMovimientos() {
         .reduce((sum, m) => sum + m.monto, 0);
 
       this.balance = this.totalIngresos - this.totalGastos;
+
+        this.chartOptions = {
+          ...this.chartOptions,
+          series: [
+            this.totalIngresos,
+            this.totalGastos
+          ]
+        };
+
       console.log('Datos');
       console.log('Ingresos:', this.totalIngresos);
       console.log('Gastos:', this.totalGastos);
       console.log('Balance:', this.balance);
      this.cdr.detectChanges();
     });
-}
+
+  }
 
 
 descargarPdf() {

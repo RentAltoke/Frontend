@@ -63,8 +63,42 @@
 
 </div>
 
+<div class="dashboard-graficos">
 
+  <div class="grafico-container">
 
+    <h3>
+      Recaudación por Inmueble
+    </h3>
+
+    <apx-chart
+      [series]="chartInmuebles.series"
+      [chart]="chartInmuebles.chart"
+      [xaxis]="chartInmuebles.xaxis"
+      [dataLabels]="chartInmuebles.dataLabels"
+      [colors]="chartInmuebles.colors">
+    </apx-chart>
+
+  </div>
+
+  <div class="grafico-container">
+
+    <h3>
+      Distribución de Conceptos
+    </h3>
+
+    <apx-chart
+      [series]="chartConceptos.series"
+      [chart]="chartConceptos.chart"
+      [labels]="chartConceptos.labels"
+      [legend]="chartConceptos.legend"
+      [colors]="chartConceptos.colors"
+      [dataLabels]="chartConceptos.dataLabels">
+    </apx-chart>
+
+  </div>
+
+</div>
 
   <div class="cards-container">
 

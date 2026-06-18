@@ -7,14 +7,36 @@ import autoTable from 'jspdf-autotable';
 import { FormsModule } from '@angular/forms';
 import { NgxSliderModule, Options } from '@angular-slider/ngx-slider';
 import { environment } from '../../../environments/environment';
+import {
+  NgApexchartsModule,
+  ApexChart,
+  ApexNonAxisChartSeries,
+  ApexResponsive,
+  ApexLegend,
+  ApexDataLabels
+} from 'ng-apexcharts';
+
+export type ChartOptions = {
+  series: ApexNonAxisChartSeries;
+  chart: ApexChart;
+  labels: string[];
+  responsive: ApexResponsive[];
+  legend: ApexLegend;
+  dataLabels: ApexDataLabels;
+  colors: string[];
+};
+
 @Component({
   selector: 'app-reportes',
   templateUrl: './reportes.html',
-  imports: [CommonModule, RouterModule,FormsModule,NgxSliderModule],
+  imports: [CommonModule, RouterModule,FormsModule,NgxSliderModule,NgApexchartsModule],
   styleUrl: './reportes.css',
 })
 export class Reportes implements OnInit{
-
+public chartOptions!: Partial<ChartOptions>;
+public chartConceptos!: any;
+public chartInmuebles!: any;
+totalRecibosFiltrados = 0;
 recibosFiltrados: any[] = [];
 totalGeneral = 0;
 promedioTotal = 0;
@@ -31,8 +53,88 @@ options: Options = {
   step: 50
 };
 constructor(
-  private http: HttpClient, private cdr: ChangeDetectorRef
-) {}
+  private http: HttpClient,
+  private cdr: ChangeDetectorRef
+) {
+this.chartConceptos = {
+
+  series: [0,0,0,0],
+
+  chart: {
+    type: 'donut',
+    height: 350
+  },
+
+  labels: [
+    'Renta',
+    'Agua',
+    'Luz',
+    'Mantenimiento'
+  ],
+
+  colors: [
+    '#FE6D03',
+    '#0F1C34',
+    '#D9301C',
+    '#6c757d'
+  ],
+
+  legend: {
+    position: 'bottom'
+  },
+
+  dataLabels: {
+    enabled: true
+  }
+};
+
+
+this.chartInmuebles = {
+
+  series: [
+    {
+      name: 'Monto Total',
+      data: []
+    }
+  ],
+
+  chart: {
+    type: 'bar',
+    height: 350
+  },
+
+  colors: ['#FE6D03'],
+
+  dataLabels: {
+    enabled: true,
+    formatter: (value: number): string => {
+      return value.toFixed(2);
+    }
+  },
+
+  yaxis: {
+    labels: {
+      formatter: (value: number): string => {
+        return value.toFixed(2);
+      }
+    }
+  },
+
+  tooltip: {
+    y: {
+      formatter: (value: number): string => {
+        return `S/ ${value.toFixed(2)}`;
+      }
+    }
+  },
+
+  xaxis: {
+    categories: []
+  }
+
+};
+
+}
 
 ngOnInit(): void {
 
@@ -70,6 +172,7 @@ cargarRecibos(){
 this.totalGeneral = this.recibos.reduce((acc, r) => acc + (r.total || 0), 0);
 this.promedioTotal = this.recibos.length > 0 ? this.totalGeneral / this.recibos.length : 0;
     this.recibosFiltrados = [...this.recibos];
+    this.actualizarDashboard();
     this.cdr.detectChanges();
   });
 }
@@ -102,9 +205,108 @@ filtrarRecibos() {
            inquilinoOK &&
            montoOK;
   });
-
+  this.actualizarDashboard();
 }
 
+actualizarDashboard() {
+
+  this.totalRecibosFiltrados =
+    this.recibosFiltrados.length;
+
+  this.totalGeneral =
+    this.recibosFiltrados.reduce(
+      (acc, r) => acc + Number(r.total || 0),
+      0
+    );
+
+  this.promedioTotal =
+    this.recibosFiltrados.length > 0
+      ? this.totalGeneral / this.recibosFiltrados.length
+      : 0;
+
+      const agrupado: any = {};
+
+this.recibosFiltrados.forEach(r => {
+
+  agrupado[r.inmueble] =
+    (agrupado[r.inmueble] || 0)
+    + Number(r.total);
+});
+this.actualizarGraficoConceptos();
+this.actualizarGraficoInmuebles();
+}
+
+actualizarGraficoConceptos() {
+
+  const renta =
+    this.recibosFiltrados.reduce(
+      (a, r) => a + Number(r.renta || 0),
+      0
+    );
+
+  const agua =
+    this.recibosFiltrados.reduce(
+      (a, r) => a + Number(r.agua || 0),
+      0
+    );
+
+  const luz =
+    this.recibosFiltrados.reduce(
+      (a, r) => a + Number(r.luz || 0),
+      0
+    );
+
+  const mantenimiento =
+    this.recibosFiltrados.reduce(
+      (a, r) => a + Number(r.mantenimiento || 0),
+      0
+    );
+
+  this.chartConceptos = {
+    ...this.chartConceptos,
+    series: [
+      renta,
+      agua,
+      luz,
+      mantenimiento
+    ]
+  };
+}
+
+actualizarGraficoInmuebles() {
+
+  const agrupado: any = {};
+
+  this.recibosFiltrados.forEach(r => {
+
+    agrupado[r.inmueble] =
+      (agrupado[r.inmueble] || 0)
+      + Number(r.total);
+
+  });
+
+  const valores = Object.values(agrupado).map(
+    v => Number(Number(v).toFixed(2))
+  );
+
+  this.chartInmuebles = {
+
+    ...this.chartInmuebles,
+
+    series: [
+      {
+        name: 'Monto Total',
+        data: valores
+      }
+    ],
+
+    xaxis: {
+      categories: Object.keys(agrupado)
+    }
+
+  };
+}
+//--------------PDF------------
 async generarPDF(r: any) {
 
   const doc = new jsPDF();

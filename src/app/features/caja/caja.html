@@ -51,6 +51,21 @@
 
 </div>
 
+<div class="grafico-container" *ngIf="chartOptions">
+  <h3 class="grafico-title">
+    Distribución Financiera
+  </h3>
+
+  <apx-chart
+    [series]="chartOptions.series!"
+    [chart]="chartOptions.chart!"
+    [labels]="chartOptions.labels!"
+    [responsive]="chartOptions.responsive!">
+  </apx-chart>
+
+</div>
+
+
   <table class="tabla-movimientos">
     <thead>
       <tr>
